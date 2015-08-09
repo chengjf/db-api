@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+      <meta charset="utf-8"/>
+      <link href="../static/bootstrap/css/bootstrap.min.css?v=20150604" rel="stylesheet"/>
+      <title>接口管理系统</title>
+  </head>
+  <body>
+
+  <script type="text/x-handlebars" data-template-name="application">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class ="sr-only">Toggle navigation</span>
+            <span class ="icon-bar"></span>
+            <span class ="icon-bar"></span>
+            <span class ="icon-bar"></span>
+          </button>
+          {{#link-to  "application" class="navbar-brand"}}接口管理系统{{/link-to}}
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>{{#link-to  "application"  activeClass="selected"}}首页{{/link-to}}</li>
+            <li>
+              {{#link-to  "systems"  activeClass="selected"}}系统{{/link-to}}
+            </li>
+            <li>
+              <a href="#">关于</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/logout">退出</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>{{title}}{{model.length}}{{x}}</h1>
+      {{outlet}}
+    </div>
+    
+    <footer style='height:50px;position:fixed;bottom:0px;'>
+      <div class='container'>Copyright@chengjf.com</div>
+    </footer>
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <ul>
+    {{#each model itemController="item" as |item|}}
+      <li><a href='#' {{action 'doSomething'}}>{{item.model}}</a></li>
+    {{/each}}
+    </ul>
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="systems">
+
+    <button type="button" class="btn btn-primary"{{action 'add'}} >新增</button>
+
+    <br/><br/><br/>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>系统编号</th>
+          <th>系统名称</th>
+          <th>系统描述</th>
+          <th>系统修改</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model itemController="system" as |item|}}
+
+        {{#if item.isEditing}}
+          <tr>
+            <td>{{item.number}}</td>
+            <td>{{edit-system class="edit" value=item.name }}</td>
+            <td>{{edit-system class="edit" value=item.desc }}</td>
+
+            <td><button type="button" class="btn btn-primary" {{action 'save' target=item}}>保存</button>
+            <button type="button" class="btn btn-primary" {{action 'cancelEdit' target=item}}>取消</button>
+            </td>
+          </tr>
+
+        {{else if item.isCreating}}
+          <tr>
+            <td>{{input type="text" id="item.number" placeholder="number" value=item.number}}</td>
+            <td>{{input type="text" id="item.name" placeholder="name" value=item.name}}</td>
+            <td>{{input type="text" id="item.desc" placeholder="desc" value=item.desc}}</td>
+
+            <td><button type="button" class="btn btn-primary" {{action 'save' target=item}}>保存</button>
+            <button type="button" class="btn btn-primary" {{action 'cancelSave' target=item}}>取消</button>
+            </td>
+          </tr>
+          
+        {{else}}
+          <tr>
+            
+            <td>{{item.number}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.desc}}</td>
+            <td><button type="button" class="btn btn-primary" {{action 'edit' target=item}}>修改</button>
+            <button type="button" class="btn btn-primary" {{action 'delete' target=item}}>删除</button>
+            </td>
+          </tr>
+        {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
+  </script>
+
+
+
+  <script src="../static/ember/jquery-1.11.1.min.js"></script>
+  <script src="../static/ember/ember-template-compiler.js"></script>
+  <script src="../static/ember/ember.debug.js"></script>
+  <script src="../static/ember/ember-data.js"></script>
+  
+  <script src="../static/js/application.js"></script>
+
+  </body>
+</html>

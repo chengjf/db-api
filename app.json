@@ -1,0 +1,27 @@
+{
+  "name": "db api",
+  "description": "数据库接口管理",
+  "keywords": [
+    "db",
+    "REST API",
+    "python",
+    "flask",
+    "emberjs"
+  ],
+  "website": "http://buildingfortheweb.com",
+  "repository": "https://github.com/chengjf/db-api",
+  "logo": "http://i.imgur.com/e3cYpKo.png",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "python app.py populate_db --confirm"
+  },
+  "env": {
+    "DEBUG": {
+      "description": "Set to 'yes' to enable debug mode.",
+      "value": "no"
+    }
+  },
+  "addons": [
+    
+  ]
+}
