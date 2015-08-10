@@ -28,7 +28,10 @@ app.config.update(
 #setup logging
 logger = logging.getLogger('db-api')
 logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())
+handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s %(levelname)s  %(filename)15s %(funcName)s %(lineno)3s: %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 # init views
 from db_api import views
@@ -38,7 +41,7 @@ from db_api.database import db, restless
 from db_api.model import user, system
 
 
-logger.info(db)
+logger.info('database url: ' + str(db))
 db.create_all()
 logger.info('database created ...')
 
