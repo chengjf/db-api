@@ -1,31 +1,26 @@
-#!flask/Scripts/python.exe
-
 # -*- coding: utf-8 -*-
 
-from flask import Flask, jsonify
-
-from flask_sqlalchemy import SQLAlchemy
-from flask_restless import APIManager
-import datetime
 import os
 import logging
+
+from flask import Flask
 
 from . import config
 
 app = Flask(__name__)
 
-#database url
+# database url
 basedir = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 
-#init config
-#app.config.from_object(config)
+# init config
+# app.config.from_object(config)
 app.config.update(
-	DEBUG=(os.environ.get('DEBUG') == 'yes'),
-	SQLALCHEMY_DATABASE_URI=SQLALCHEMY_DATABASE_URI
+    DEBUG=(os.environ.get('DEBUG') == str('yes')),
+    SQLALCHEMY_DATABASE_URI=SQLALCHEMY_DATABASE_URI
 )
 
-#setup logging
+# setup logging
 logger = logging.getLogger('db-api')
 logger.setLevel(logging.INFO)
 handler = logging.StreamHandler()
@@ -36,19 +31,18 @@ logger.addHandler(handler)
 # init views
 from . import views
 
-#init database
+# init database
 from .database import db, restless
-from .model import user, system
-
+from db_api.model import user, system
 
 logger.info('database url: ' + str(db))
 db.create_all()
 logger.info('database created ...')
 
 from . import db_init
+
 db_init.init()
 logger.info('database initialized ...')
 
-
 if __name__ == "__main__":
-	app.run(debug=True)
+    app.run(debug=True)

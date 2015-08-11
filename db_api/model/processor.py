@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+
 from .. import logger
+
 
 def get_single_preprocessor(instance_id=None, **kw):
     """Accepts a single	argument, `instance_id`, the primary key of the
@@ -7,6 +9,7 @@ def get_single_preprocessor(instance_id=None, **kw):
 
     """
     pass
+
 
 def get_single_postprocessor(result=None, **kw):
     """Accepts a single	argument, `result`, which is the dictionary
@@ -29,7 +32,8 @@ def get_many_preprocessor(search_params=None, **kw):
     logger.info(search_params)
     logger.info("end get_many_preprocessor")
 
-def get_many_postprocessor(result=None,	search_params=None, **kw):
+
+def get_many_postprocessor(result=None, search_params=None, **kw):
     """Accepts two arguments, `result`,	which is the dictionary
     representation of the JSON response	which will be returned to the
     client, and	`search_params`, which is a dictionary containing the
@@ -45,7 +49,8 @@ def get_many_postprocessor(result=None,	search_params=None, **kw):
     logger.info(result)
     logger.info("end get_many_postprocessor")
 
-def put_single_preprocessor(instance_id=None,	data=None, **kw):
+
+def put_single_preprocessor(instance_id=None, data=None, **kw):
     """Accepts two arguments, `instance_id`, the primary key of	the
     instance of	the model to patch, and	`data`,	the dictionary of fields
     to change on the instance.
@@ -59,6 +64,7 @@ def put_single_preprocessor(instance_id=None,	data=None, **kw):
     logger.info("end put_single_preprocessor")
     pass
 
+
 def put_single_postprocessor(result=None, **kw):
     """Accepts a single	argument, `result`, which is the dictionary
     representation of the requested instance of	the model.
@@ -70,7 +76,8 @@ def put_single_postprocessor(result=None, **kw):
     logger.info("end put_single_postprocessor")
     pass
 
-def put_many_preprocessor(search_params=None,	data=None, **kw):
+
+def put_many_preprocessor(search_params=None, data=None, **kw):
     """Accepts two arguments: `search_params`, which is	a dictionary
     containing the search parameters for the request, and `data`, which
     is a dictionary representing the fields to change on the matching
@@ -79,8 +86,9 @@ def put_many_preprocessor(search_params=None,	data=None, **kw):
     """
     pass
 
+
 def put_many_postprocessor(query=None, data=None, search_params=None,
-			     **kw):
+                           **kw):
     """Accepts three arguments:	`query`, which is the SQLAlchemy query
     which was inferred from the	search parameters in the query string,
     `data`, which is the dictionary representation of the JSON response
@@ -105,6 +113,7 @@ def post_preprocessor(data=None, **kw):
     logger.info("end post_preprocessor")
     pass
 
+
 def post_postprocessor(result=None, **kw):
     """Accepts a single	argument, `result`, which is the dictionary
     representation of the created instance of the model.
@@ -114,6 +123,7 @@ def post_postprocessor(result=None, **kw):
     logger.info(result)
     logger.info("end post_postprocessor")
     pass
+
 
 def delete_single_preprocessor(instance_id=None, **kw):
     """Accepts a single	argument, `instance_id`, which is the primary key
@@ -125,6 +135,7 @@ def delete_single_preprocessor(instance_id=None, **kw):
     logger.info(instance_id)
     logger.info("end delete_single_preprocessor")
 
+
 def delete_single_postprocessor(was_deleted=None, **kw):
     """Accepts a single	argument, `was_deleted`, which represents whether
     the	instance has been deleted.
@@ -135,12 +146,14 @@ def delete_single_postprocessor(was_deleted=None, **kw):
     logger.info(was_deleted)
     logger.info("end delete_single_postprocessor")
 
+
 def delete_many_preprocessor(search_params=None, **kw):
     """Accepts a single	argument, `search_params`, which is a dictionary
     containing the search parameters for the request.
 
     """
     pass
+
 
 def delete_many_postprocessor(result=None, search_params=None, **kw):
     """Accepts two arguments: `result`,	which is the dictionary
@@ -150,12 +163,12 @@ def delete_many_postprocessor(result=None, search_params=None, **kw):
     request.
 
     """
-    pass 
-
+    pass
 
 
 def foo(name='1'):
     return bar()
+
 
 def hello(system_name):
     def name(fn):
@@ -163,12 +176,16 @@ def hello(system_name):
             print("hello, %s" % fn.__name__)
             fn(system_name, *args, **kwds)
             print("goodby, %s" % fn.__name__)
+
         return wrapper
+
     return name
+
 
 @hello('system')
 def bar(name):
     logger.info('bar ' + name)
+
 
 def test(system_name):
     def default_get_many_postprocessor(result=None, search_params=None, **kw):
@@ -184,13 +201,14 @@ def test(system_name):
         if result != None:
             objects = result['objects']
             result.clear()
-            b = {system_name : objects}
-            #result[name] = objects
+            b = {system_name: objects}
+            # result[name] = objects
             result.update(b)
             logger.info(result)
             logger.info("end default_get_many_postprocessor " + system_name)
         else:
             logger.info('result is None')
+
     return default_get_many_postprocessor
 
 
@@ -207,8 +225,8 @@ def default_get_many_postprocessor(system_name=None, result=None, search_params=
     if result != None:
         objects = result['objects']
         result.clear()
-        b = {system_name : objects}
-        #result[name] = objects
+        b = {system_name: objects}
+        # result[name] = objects
         result.update(b)
         logger.info(result)
         logger.info("end default_get_many_postprocessor " + system_name)

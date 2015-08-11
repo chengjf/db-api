@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from . import app
-app.run(debug = True)
+from db_api import app
+
+app.run(debug=True)
