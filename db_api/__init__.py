@@ -18,7 +18,7 @@ app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 
-# init config
+#init config
 #app.config.from_object(config)
 app.config.update(
 	DEBUG=(os.environ.get('DEBUG') == 'yes'),
