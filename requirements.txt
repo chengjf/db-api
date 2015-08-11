@@ -3,10 +3,3 @@ Flask
 Flask-Script
 Flask-SQLAlchemy
 FLask-Restless
-gunicorn
-itsdangerous
-passlib
-psycopg2
-pycparser
-six
-wsgiref
