@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from db_api import app
+from . import app
 from flask import jsonify
 from flask import render_template
 

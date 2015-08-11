@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import json
-from db_api import  app
-from db_api import logger
+from .. import app
+from .. import logger
 
-from db_api.database import	db
-from db_api.database import	restless
-from db_api.model import processor
+from .. import	db
+from .. import	restless
+from . import processor
 
 
 class System(db.Model):

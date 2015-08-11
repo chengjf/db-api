@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from db_api import logger
+from .. import logger
 
 def get_single_preprocessor(instance_id=None, **kw):
     """Accepts a single	argument, `instance_id`, the primary key of the

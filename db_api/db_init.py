@@ -1,6 +1,6 @@
-from db_api import db
-from db_api.model import user
-from db_api.model import system
+from . import db
+from .model import user
+from .model import system
 
 def init():
 	#init_system()
