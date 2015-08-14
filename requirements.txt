@@ -3,3 +3,4 @@ Flask
 Flask-Script
 Flask-SQLAlchemy
 FLask-Restless
+Flask-Principal

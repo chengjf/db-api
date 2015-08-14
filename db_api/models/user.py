@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from .. import db
-from .. import restless
+from ..extensions import db
+from ..extensions import restless
 
 
 class User(db.Model):

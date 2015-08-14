@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from .. import logger
+from ..extensions import logger
 
 
 def get_single_preprocessor(instance_id=None, **kw):
     """Accepts a single	argument, `instance_id`, the primary key of the
-    instance of	the model to get.
+    instance of	the models to get.
 
     """
     pass
@@ -13,7 +13,7 @@ def get_single_preprocessor(instance_id=None, **kw):
 
 def get_single_postprocessor(result=None, **kw):
     """Accepts a single	argument, `result`, which is the dictionary
-    representation of the requested instance of	the model.
+    representation of the requested instance of	the models.
 
     """
     pass
@@ -52,7 +52,7 @@ def get_many_postprocessor(result=None, search_params=None, **kw):
 
 def put_single_preprocessor(instance_id=None, data=None, **kw):
     """Accepts two arguments, `instance_id`, the primary key of	the
-    instance of	the model to patch, and	`data`,	the dictionary of fields
+    instance of	the models to patch, and	`data`,	the dictionary of fields
     to change on the instance.
 
     """
@@ -67,7 +67,7 @@ def put_single_preprocessor(instance_id=None, data=None, **kw):
 
 def put_single_postprocessor(result=None, **kw):
     """Accepts a single	argument, `result`, which is the dictionary
-    representation of the requested instance of	the model.
+    representation of the requested instance of	the models.
 
     """
 
@@ -101,7 +101,7 @@ def put_many_postprocessor(query=None, data=None, search_params=None,
 
 def post_preprocessor(data=None, **kw):
     """Accepts a single	argument, `data`, which	is the dictionary of
-    fields to set on the new instance of the model.
+    fields to set on the new instance of the models.
 
     """
     logger.info(data)
@@ -116,7 +116,7 @@ def post_preprocessor(data=None, **kw):
 
 def post_postprocessor(result=None, **kw):
     """Accepts a single	argument, `result`, which is the dictionary
-    representation of the created instance of the model.
+    representation of the created instance of the models.
 
     """
     logger.info("start post_postprocessor")
