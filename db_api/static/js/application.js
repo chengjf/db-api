@@ -1,16 +1,45 @@
-App = Ember.Application.create();
+var User = Ember.Object.extend({
+	username: 'guest',
+	permissions: null,
+	isLoggined : false,
+	fullName: function() {
+		var username = this.get('username');
+		return username;
+	}.property('username')
+});
+
+var tom = User.create({});
+
+App = Ember.Application.create({
+	current_user: tom
+});
+
+Ember.Handlebars.registerHelper('has_permission', function(source, action, options) {
+	var username = App.current_user.get('fullName');
+	if (username != null && username != 'guest') {
+		return options.fn(this);
+	}
+});
+
+
+Ember.Handlebars.registerHelper('whenequal', function(val1, val2, options) {
+	if (val1 == val2) {
+		return options.fn(this);
+	}
+});
+
+
 
 App.Router.map(function() {
 	// put your routes here
 	this.resource("systems");
+	this.resource("auth",
+		function() {
+			this.resource("login");
+		});
 });
 
-App.IndexRoute = Ember.Route.extend({
-	model: function() {
-		// return ['red', 'yellow', 'blue'];
-		return this.store.findAll('system');
-	}
-});
+App.IndexRoute = Ember.Route.extend({});
 
 App.IndexController = Ember.Controller.extend({
 	actions: {
@@ -120,3 +149,49 @@ App.EditSystemView = Ember.TextField.extend({
 });
 
 Ember.Handlebars.helper('edit-system', App.EditSystemView);
+
+
+App.LoginController = Ember.Controller.extend({
+	needs: 'application',
+	username: '',
+	password: '',
+
+	actions: {
+		doSomething: function() {
+			$.ajax()
+			return true;
+		},
+		login: function() {
+			var self = this;
+			data = {
+				username: $("#username").val(),
+				password: $('#password').val(),
+				remember_me: $('#remember_me').get(0).checked
+			};
+			$.ajax({
+				url: '/auth/login',
+				data: JSON.stringify(data),
+				type: 'post',
+				dataType: 'json',
+				contentType: "application/json; charset=utf-8",
+				success: function(response) {
+					$.ajaxSetup({
+						headers: {
+							'Authorization': 'Bearer ' + response.api_key.access_token,
+						}
+					})
+					App.current_user.set('username', response.username);
+					App.current_user.set('isLoggined', true);
+					self.transitionToRoute('index');
+				},
+
+				error: function(error) {
+					if (error.status === 401) {
+						// if there is a authentication error the user is informed of it to try again
+						alert("wrong user or password, please try again");
+					}
+				}
+			});
+		}
+	}
+});

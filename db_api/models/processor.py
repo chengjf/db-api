@@ -198,7 +198,7 @@ def test(system_name):
         """
         pass
         logger.info("start default_get_many_postprocessor " + system_name)
-        if result != None:
+        if result:
             objects = result['objects']
             result.clear()
             b = {system_name: objects}
@@ -222,7 +222,7 @@ def default_get_many_postprocessor(system_name=None, result=None, search_params=
     """
     pass
     logger.info("start default_get_many_postprocessor " + system_name)
-    if result != None:
+    if result:
         objects = result['objects']
         result.clear()
         b = {system_name: objects}

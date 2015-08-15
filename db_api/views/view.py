@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 __author__ = 'sharp'
+
+import flask
+
 from db_api.extensions import db
 
 

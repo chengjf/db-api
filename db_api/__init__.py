@@ -2,10 +2,9 @@
 
 from .app import create_app
 
-app = create_app()
+
+class UserDataConfig(object):
+    INIT_USER_DATA = False
 
 
-# @app.route('/')
-# @app.route('/index')
-# def index():
-#     return "Hello, world!"
+app = create_app(UserDataConfig)
