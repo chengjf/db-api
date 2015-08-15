@@ -4,3 +4,4 @@ Flask-Script
 Flask-SQLAlchemy
 FLask-Restless
 Flask-Principal
+Flask-Login
