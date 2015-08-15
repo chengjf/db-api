@@ -3,7 +3,6 @@ from flask import Blueprint
 from flask import redirect, url_for, request, flash
 import flask
 from flask_login import login_user, current_user, logout_user
-from db_api.auth.forms import LoginForm
 from db_api.models.user import User
 from itsdangerous import TimestampSigner
 
