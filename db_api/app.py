@@ -40,11 +40,6 @@ def create_app(config=None):
     # configure_errorhandlers(app)
     # configure_logging(app)
 
-    # init tools
-    init_user_data(app)
-
-
-
     # initial login manager
     login_manager.init_app(app)
 
@@ -73,13 +68,12 @@ def configure_extensions(app):
 
     # Flask-SQLAlchemy
     db.init_app(app)
+    db.app = app
 
     # init models
     model.init_app(app)
 
-    # init db
-    db.app = app
-    db.create_all()
+
 
     # init restless
     restless.init_app(app)
