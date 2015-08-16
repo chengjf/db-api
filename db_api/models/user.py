@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from msilib.schema import Signature
 from flask_login import UserMixin
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
