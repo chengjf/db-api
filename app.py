@@ -18,7 +18,6 @@ manager = Manager(app)
 def init_admin():
     init_user_data(app)
 
-
 @manager.command
 def init_db():
     db.create_all()

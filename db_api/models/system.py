@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from ..extensions import db
-from ..extensions import restless
-from . import processor
+from db_api.extensions import db
+from db_api.extensions import restless
+from db_api.models import processor
 
 
 class System(db.Model):

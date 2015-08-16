@@ -3,50 +3,21 @@ __author__ = 'sharp'
 
 from flask import Flask
 from db_api.extensions import login_manager
-from db_api.models.user import User
-
-from .extensions import db
-from .extensions import restless
-from .views import view
-from .models import model
-from .tools import init_user_data
-from .auth.views import auth
-__author__ = 'sharp'
-
-
-
 
 
 def create_app(config=None):
     """Creates the app."""
-
     # Initialize the app
     app = Flask("db_api")
-
     # Use the default config and override it afterwards
     app.config.from_object('db_api.configs.default.DefaultConfig')
     # Update the config
     app.config.from_object(config)
-    # try to update the config via the environment variable
-    # app.config.from_envvar("FLASKBB_SETTINGS", silent=True)
-
-    configure_blueprints(app)
-
-    configure_extensions(app)
-
-    # configure_template_filters(app)
-    # configure_context_processors(app)
-    # configure_before_handlers(app)
-    # configure_errorhandlers(app)
-    # configure_logging(app)
-
-    # initial login manager
-    login_manager.init_app(app)
-
     return app
 
 
 def configure_blueprints(app):
+    from .auth.views import auth
     # app.register_blueprint(forum, url_prefix=app.config["FORUM_URL_PREFIX"])
     # app.register_blueprint(user, url_prefix=app.config["USER_URL_PREFIX"])
     app.register_blueprint(auth, url_prefix=app.config["AUTH_URL_PREFIX"])
@@ -57,9 +28,12 @@ def configure_blueprints(app):
     #     message, url_prefix=app.config["MESSAGE_URL_PREFIX"]
     # )
 
-def configure_extensions(app):
-    """Configures the extensions."""
 
+def configure_extensions(app):
+    from db_api.extensions import db
+    from db_api.extensions import restless
+    from db_api.views import view
+    from db_api.models import model
     # Flask-WTF CSRF
     # csrf.init_app(app)
 
@@ -80,6 +54,8 @@ def configure_extensions(app):
 
     # init views
     view.init_app(app)
+
+    login_manager.init_app(app)
 
     # Flask-Migrate
     # migrate.init_app(app, db)

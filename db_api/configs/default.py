@@ -77,3 +77,5 @@ class DefaultConfig(object):
     MESSAGE_URL_PREFIX = "/message"
     AUTH_URL_PREFIX = "/auth"
     ADMIN_URL_PREFIX = "/admin"
+
+    TOKEN_EXPIRATION = 600
