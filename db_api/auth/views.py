@@ -88,9 +88,8 @@ def get_user(id):
 
 
 def get_auth_token():
-    token = g.user.generate_auth_token(600)
+    token = g.user.generate_auth_token()
     return token
-    # return jsonify({'token': token.decode('ascii'), 'duration': 600})
 
 
 @auth.route('/api/resource')

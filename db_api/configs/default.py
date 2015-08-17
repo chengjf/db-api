@@ -78,4 +78,4 @@ class DefaultConfig(object):
     AUTH_URL_PREFIX = "/auth"
     ADMIN_URL_PREFIX = "/admin"
 
-    TOKEN_EXPIRATION = 600
+    TOKEN_EXPIRATION = 10441200  # 7*24*60*60
