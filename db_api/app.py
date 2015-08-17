@@ -2,7 +2,7 @@
 __author__ = 'sharp'
 
 from flask import Flask
-from db_api.extensions import login_manager
+# from db_api.extensions import login_manager
 
 
 def create_app(config=None):
@@ -55,7 +55,7 @@ def configure_extensions(app):
     # init views
     view.init_app(app)
 
-    login_manager.init_app(app)
+    #login_manager.init_app(app)
 
     # Flask-Migrate
     # migrate.init_app(app, db)
@@ -118,12 +118,12 @@ def configure_extensions(app):
     #     return flaskbb_config["DEFAULT_LANGUAGE"]
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    """Loads the user. Required by the `login` extension."""
-
-    u = db.session.query(User).filter(User.id == user_id).first()
-    if u:
-        return u
-    else:
-        return None
+# @login_manager.user_loader
+# def load_user(user_id):
+#     """Loads the user. Required by the `login` extension."""
+#
+#     u = db.session.query(User).filter(User.id == user_id).first()
+#     if u:
+#         return u
+#     else:
+#         return None

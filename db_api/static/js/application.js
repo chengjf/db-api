@@ -1,25 +1,52 @@
 User = Ember.Object.extend({
 	username: 'guest',
 	permissions: null,
-	isLoggined : false,
+	isLoggined: false,
 	loginerror: null,
-	
+
 	fullName: function() {
 		var username = this.get('username');
 		return username;
-	}.property('username')
+	}.property('username', 'isLoggined'),
+
+
 });
 
+
 var tom = User.create({});
+tom.has_system_add_permission = function() {
+	var username = this.get('username');
+	return username != null && username != 'guest';
+}.property('username');
+
+tom.has_system_edit_permission = function() {
+	var username = this.get('username');
+	return username != null && username != 'guest';
+}.property('username');
+
+tom.has_system_delete_permission = function() {
+	var username = this.get('username');
+	return username != null && username == 'admin';
+}.property('username');
+
+
 
 App = Ember.Application.create({
 	current_user: tom
 });
 
+Ember.Handlebars.helper('fullName', function(person) {
+	return person.get('username') + " " + person.get('isLoggined');
+}, 'username', 'isLoggined');
+
 
 
 Ember.Handlebars.registerHelper('has_permission', function(source, action, options) {
+
+	Em.Logger.debug("source: " + source + " action: " + action);
 	var username = App.current_user.get('fullName');
+	Em.Logger.debug(App.current_user.get('username'));
+	Em.Logger.debug("has_permission " + username);
 	if (username != null && username != 'guest') {
 		return options.fn(this);
 	}
@@ -48,10 +75,10 @@ App.IndexRoute = Ember.Route.extend({});
 
 App.ApplicationController = Ember.Controller.extend({
 	actions: {
-		logout: function(){
-			if(window.localStorage){
-		 		token = window.localStorage.removeItem('token');
-		 		$.ajaxSetup({
+		logout: function() {
+			if (window.localStorage) {
+				token = window.localStorage.removeItem('token');
+				$.ajaxSetup({
 					headers: {
 						'Authorization': ""
 					}
@@ -59,40 +86,39 @@ App.ApplicationController = Ember.Controller.extend({
 			}
 			App.current_user.set('username', null);
 			App.current_user.set('isLoggined', false);
-			console.log("退出登录");
+			Em.Logger.debug("退出登录");
 			this.transitionToRoute('index');
 		}
 	},
-	init: function(){
-		if(window.localStorage){
-			 token = window.localStorage.getItem('token');
-			 $.ajaxSetup({
+	init: function() {
+		if (window.localStorage) {
+			token = window.localStorage.getItem('token');
+			$.ajaxSetup({
 				headers: {
 					'Authorization': token
 				}
 			});
 		}
 
-		$.getJSON('/auth/users').success(function(response){
-			if(response.status != 401){
-				console.log("收到响应 " + JSON.stringify(response));
-				console.log('验证成功！用户名：' + response.username);
+		$.getJSON('/auth/users').success(function(response) {
+			if (response.status != 401) {
+				Em.Logger.debug("收到响应 " + JSON.stringify(response));
+				Em.Logger.debug('验证成功！用户名：' + response.username);
 				App.current_user.set('username', response.username);
 				App.current_user.set('isLoggined', true);
-			}else{
+			} else {
 				console.log("验证失败！");
 			}
-		}).error(function(response){
-			console.log("收到响应 " + JSON.stringify(response));
-			console.log('验证失败！');
+		}).error(function(response) {
+			Em.Logger.debug("收到响应 " + JSON.stringify(response));
+			Em.Logger.debug("验证失败！ ");
 		})
 	},
 });
 
 
 App.IndexController = Ember.Controller.extend({
-	actions: {
-	}
+	actions: {}
 });
 
 
@@ -199,8 +225,8 @@ Ember.Handlebars.helper('edit-system', App.EditSystemView);
 
 
 App.LoginView = Ember.View.extend({
-  usernameBinding: Ember.Binding.oneWay('App.current_user.username'),
-  errorBinding: Ember.Binding.oneWay('App.current_user.loginerror')
+	usernameBinding: Ember.Binding.oneWay('App.current_user.username'),
+	errorBinding: Ember.Binding.oneWay('App.current_user.loginerror')
 });
 
 
@@ -230,18 +256,18 @@ App.LoginController = Ember.Controller.extend({
 				dataType: 'json',
 				contentType: "application/json; charset=utf-8",
 				success: function(response) {
-					if(window.localStorage){
-						 window.localStorage.setItem('token', response.api_key.access_token);
-					}else{
-					 alert('This browser does NOT support localStorage');
+					if (window.localStorage) {
+						window.localStorage.setItem('token', response.api_key.access_token);
+					} else {
+						alert('This browser does NOT support localStorage');
 					}
 					$.ajaxSetup({
 						headers: {
 							'Authorization': response.api_key.access_token,
 						}
 					})
-					console.log("收到响应 " + JSON.stringify(response));
-					console.log('登陆成功！用户名：' + response.username);
+					Em.Logger.debug("收到响应 " + JSON.stringify(response));
+					Em.Logger.debug('登陆成功！用户名：' + response.username);
 					App.current_user.set('username', response.username);
 					App.current_user.set('isLoggined', true);
 					self.transitionToRoute('index');
@@ -251,6 +277,7 @@ App.LoginController = Ember.Controller.extend({
 					if (error.status === 401) {
 						// if there is a authentication error the user is informed of it to try again
 						// alert("wrong user or password, please try again");
+						Em.Logger.debug("验证失败！");
 						App.current_user.set('loginerror', '用户名或密码错误！');
 					}
 				}
