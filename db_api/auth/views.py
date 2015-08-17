@@ -41,6 +41,11 @@ def logout():
     return redirect('/')
 
 
+@auth.route('/helloworld')
+def helloworld():
+    from db_api import  app
+    return app.send_static_file("helloworld.html")
+
 @basic_auth.verify_password
 def verify_password(username_or_token, password):
     # first try to authenticate by token
