@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from ..extensions import logger
+from db_api.extensions import logger
+from db_api.extensions import restless
 
 
 def get_single_preprocessor(instance_id=None, **kw):
@@ -99,19 +100,20 @@ def put_many_postprocessor(query=None, data=None, search_params=None,
     pass
 
 
-def post_preprocessor(data=None, **kw):
-    """Accepts a single	argument, `data`, which	is the dictionary of
-    fields to set on the new instance of the models.
+def my_post_preprocessor(model_name):
+    def post_preprocessor(data=None, **kw):
+        """Accepts a single	argument, `data`, which	is the dictionary of
+        fields to set on the new instance of the models.
 
-    """
-    logger.info(data)
-    logger.info("start post_preprocessor")
-    system = data['system']
-    data.clear()
-    data.update(system)
-    logger.info(data)
-    logger.info("end post_preprocessor")
-    pass
+        """
+        logger.info(data)
+        logger.info("start post_preprocessor")
+        system = data['system']
+        data.clear()
+        data.update(system)
+        logger.info(data)
+        logger.info("end post_preprocessor")
+    return post_preprocessor
 
 
 def post_postprocessor(result=None, **kw):
@@ -166,69 +168,45 @@ def delete_many_postprocessor(result=None, search_params=None, **kw):
     pass
 
 
-def foo(name='1'):
-    return bar()
-
-
-def hello(system_name):
-    def name(fn):
-        def wrapper(*args, **kwds):
-            print("hello, %s" % fn.__name__)
-            fn(system_name, *args, **kwds)
-            print("goodby, %s" % fn.__name__)
-
-        return wrapper
-
-    return name
-
-
-@hello('system')
-def bar(name):
-    logger.info('bar ' + name)
-
-
-def test(system_name):
+def my_get_many_postprocessor(model_name):
     def default_get_many_postprocessor(result=None, search_params=None, **kw):
-        """Accepts two arguments, `result`, which is the dictionary
-        representation of the JSON response which will be returned to the
-        client, and `search_params`, which is a dictionary containing the
-        search parameters for the request (that produced the specified
-        `result`).
-
-        """
-        pass
-        logger.info("start default_get_many_postprocessor " + system_name)
+        logger.info("start default_get_many_postprocessor " + model_name)
         if result:
             objects = result['objects']
             result.clear()
-            b = {system_name: objects}
-            # result[name] = objects
+            b = {model_name: objects}
             result.update(b)
             logger.info(result)
-            logger.info("end default_get_many_postprocessor " + system_name)
+            logger.info("end default_get_many_postprocessor " + model_name)
         else:
             logger.info('result is None')
-
     return default_get_many_postprocessor
 
 
-def default_get_many_postprocessor(system_name=None, result=None, search_params=None, **kw):
-    """Accepts two arguments, `result`, which is the dictionary
-    representation of the JSON response which will be returned to the
-    client, and `search_params`, which is a dictionary containing the
-    search parameters for the request (that produced the specified
-    `result`).
-
-    """
-    pass
-    logger.info("start default_get_many_postprocessor " + system_name)
-    if result:
-        objects = result['objects']
-        result.clear()
-        b = {system_name: objects}
-        # result[name] = objects
-        result.update(b)
-        logger.info(result)
-        logger.info("end default_get_many_postprocessor " + system_name)
-    else:
-        logger.info('result is None')
+def create_restless_api(model, model_name, collection_name, methods=['GET', 'POST', 'DELETE', 'PUT'],
+                        url_prefix='/api/v1', results_per_page=-1):
+    restless.create_api(
+        model,
+        methods=methods,
+        url_prefix=url_prefix,
+        collection_name=collection_name,
+        results_per_page=results_per_page,
+        preprocessors={
+            'GET_MANY': [get_many_preprocessor],
+            'POST': [my_post_preprocessor(model_name)],
+            'GET_SINGLE': [get_single_preprocessor],
+            'PUT_SINGLE': [put_single_preprocessor],
+            'PUT_MANY': [put_many_preprocessor],
+            'DELETE_SINGLE': [delete_single_preprocessor],
+            'DELETE_MANY': [delete_many_preprocessor]
+        },
+        postprocessors={
+            'GET_MANY': [my_get_many_postprocessor(model_name)],
+            'POST': [post_postprocessor],
+            'GET_SINGLE': [get_single_postprocessor],
+            'PUT_SINGLE': [put_single_postprocessor],
+            'PUT_MANY': [put_many_postprocessor],
+            'DELETE_SINGLE': [delete_single_postprocessor],
+            'DELETE_MANY': [delete_many_postprocessor]
+        }
+    )

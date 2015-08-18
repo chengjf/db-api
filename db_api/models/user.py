@@ -8,8 +8,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
 from db_api import app
 from db_api.extensions import db
 from db_api.extensions import restless
-from db_api.models import processor
-
+from db_api.models.processor import create_restless_api
 
 
 class User(db.Model):
@@ -42,39 +41,18 @@ class User(db.Model):
 
     @staticmethod
     def verify_auth_token(token):
-        s = Serializer(app.config['SECRET_KEY'])
-        try:
-            data = s.loads(token)
-        except SignatureExpired:
+        if token:
+            s = Serializer(app.config['SECRET_KEY'])
+            try:
+                data = s.loads(token)
+            except SignatureExpired:
+                return None
+            except BadSignature:
+                return None
+            user = User.query.get(data['id'])
+            return user
+        else:
             return None
-        except BadSignature:
-            return None
-        user = User.query.get(data['id'])
-        return user
 
 
-restless.create_api(
-    User,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    collection_name='users',
-    results_per_page=-1,
-    preprocessors={
-        'GET_MANY': [processor.get_many_preprocessor],
-        'POST': [processor.post_preprocessor],
-        'GET_SINGLE': [processor.get_single_preprocessor],
-        'PUT_SINGLE': [processor.put_single_preprocessor],
-        'PUT_MANY': [processor.put_many_preprocessor],
-        'DELETE_SINGLE': [processor.delete_single_preprocessor],
-        'DELETE_MANY': [processor.delete_many_preprocessor]
-    },
-    postprocessors={
-        'GET_MANY': [processor.test('user')],
-        'POST': [processor.post_postprocessor],
-        'GET_SINGLE': [processor.get_single_postprocessor],
-        'PUT_SINGLE': [processor.put_single_postprocessor],
-        'PUT_MANY': [processor.put_many_postprocessor],
-        'DELETE_SINGLE': [processor.delete_single_postprocessor],
-        'DELETE_MANY': [processor.delete_many_postprocessor]
-    }
-)
+create_restless_api(User, 'user', 'users')

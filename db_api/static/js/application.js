@@ -29,6 +29,12 @@ tom.has_system_delete_permission = function() {
 	return username != null && username == 'admin';
 }.property('username');
 
+tom.has_user_edit_permission = function() {
+	var username = this.get('username');
+	return username != null && username == 'admin';
+}.property('username');
+
+
 
 
 App = Ember.Application.create({
