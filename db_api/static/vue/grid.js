@@ -3,12 +3,6 @@ define(function(require) {
 	var template = require('text!grid.tpl');
 
 	Vue = require('vue')
-
-	console.log(Vue)
-	VueResource = require('vue-resource.min')
-	Vue.use(VueResource);
-	console.log(Vue)
-	console.log(VueResource)
 	Vue.component('grid', {
 		template: template,
 		data: function() {

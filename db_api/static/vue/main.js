@@ -7,10 +7,11 @@ requirejs.config({
   }
 });
 
-requirejs(['vue', 'director.min', 'text'], function() {
+requirejs(['vue', 'director.min', 'text', 'vue-resource.min'], function() {
 
   var Vue = require('vue')
-  console.log(Vue)
+  // 将vue-resource在一开始就配置好，避免在使用时出错
+  Vue.use(require('vue-resource.min'));
   require(["app"], function(x) {
     var app = new Vue(x)
     console.log(app)
