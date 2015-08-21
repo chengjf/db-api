@@ -8,8 +8,6 @@ User = Ember.Object.extend({
 		var username = this.get('username');
 		return username;
 	}.property('username', 'isLoggined'),
-
-
 });
 
 
@@ -35,8 +33,6 @@ tom.has_user_edit_permission = function() {
 }.property('username');
 
 
-
-
 App = Ember.Application.create({
 	current_user: tom
 });
@@ -44,7 +40,6 @@ App = Ember.Application.create({
 Ember.Handlebars.helper('fullName', function(person) {
 	return person.get('username') + " " + person.get('isLoggined');
 }, 'username', 'isLoggined');
-
 
 
 Ember.Handlebars.registerHelper('has_permission', function(source, action, options) {
@@ -122,12 +117,9 @@ App.ApplicationController = Ember.Controller.extend({
 	},
 });
 
-
 App.IndexController = Ember.Controller.extend({
 	actions: {}
 });
-
-
 
 App.SystemsRoute = Ember.Route.extend({
 	model: function() {
@@ -198,8 +190,6 @@ App.SystemController = Ember.ObjectController.extend({
 	}
 });
 
-
-
 App.ItemController = Ember.Controller.extend({
 	actions: {
 		doSomething: function() {
@@ -227,8 +217,6 @@ App.EditSystemView = Ember.TextField.extend({
 });
 
 Ember.Handlebars.helper('edit-system', App.EditSystemView);
-
-
 
 App.LoginView = Ember.View.extend({
 	usernameBinding: Ember.Binding.oneWay('App.current_user.username'),
