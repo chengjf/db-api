@@ -19,4 +19,22 @@ define(function(require) {
     }
   })
 
+  var Select = Vue.extend({
+    template: template,
+    data: function() {
+      return {
+        message: "select",
+        result: null
+      }
+    },
+    methods: {
+
+    },
+    ready: function() {
+      console.log("select is ready")
+    }
+  })
+
+  return Select
+
 });

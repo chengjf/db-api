@@ -11,22 +11,33 @@
         <a href="/auth/helloworld#/grid" class="navbar-link">grid</a>
       </li>
     </ul>
+  
   </div>
 </nav>
+
 <div id="wrapper">
   <div id="header container">
     <h1><a href="#">{{title}}</a></h1>
   </div>
-</div
+</div>
 
-  <div class="container">
+<div class="container">
     <!-- main view -->
     <component is="{{view}}"
-    class="view"
-    params="{{params}}"
-    keep-alive
-    v-transition
-    transition-mode="out-in">
+      class="view"
+      params="{{params}}"
+      keep-alive
+      v-transition
+      transition-mode="out-in">
   </component>
 
+  <div id='router'>
+    <p>
+        <a class="btn btn-info" href="/auth/helloworld#/component">Go to component</a>
+        <a class="btn btn-info" href="/auth/helloworld#/select">Go to select</a>
+        <a class="btn btn-info" href="/auth/helloworld#/grid">Go to grid</a>
+    </p>
+    <router-view></router-view>
   </div>
+
+</div>  
