@@ -7,7 +7,7 @@ requirejs.config({
   }
 });
 
-requirejs(['vue', 'director.min', 'text', 'vue-resource.min', 'vue-router.min', 'component', 'select', 'grid'], function() {
+requirejs(['vue', 'text', 'vue-resource.min', 'vue-router.min', 'component', 'select', 'grid'], function() {
 
   var Vue = require('vue')
     // 将vue-resource在一开始就配置好，避免在使用时出错
