@@ -84,8 +84,23 @@ th.active .arrow {
 			<tr v-repeat="entry: systems
 				        | filterBy filterKey
 				        | orderBy sortKey reversed[sortKey]" >
-				<td v-repeat='key : columns'>{{entry[key]}}</td>
-				
+				<td v-repeat='key : columns'>
+          <template v-if="key==='operator'">
+            <template v-if="entry[key].indexOf('v')>-1">
+              <button type="button" class="tn btn-default" v-on='click:viewSystem()'>View</button>
+            </template>
+            <template v-if="entry[key].indexOf('m')>-1">
+              <button type="button" class="tn btn-default" v-on='click:modifySystem()'>Mofidy</button>
+            </template>
+            <template v-if="entry[key].indexOf('d')>-1">
+              <button type="button" class="tn btn-default" v-on='click:deleteSystem()'>Delete</button>
+            </template>
+          </template>
+          <template v-if="key!='operator'">
+            {{entry[key]}}
+          </template>
+        </td>
+			
 			</tr>
 		</tbody>
 </table>

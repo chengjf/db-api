@@ -62,6 +62,12 @@ define(function(require) {
 			resource.get({}, function(item, status, request) {
 				console.log(item);
 				this.$set('systems', item.system);
+				this.columns.push('operator');
+				this.systems.forEach(function(system){
+					// read 1, modify 2, delete 4
+					system['operator']='vmd';
+				})
+
 				console.log(this.systems);
 			});
 
@@ -80,6 +86,15 @@ define(function(require) {
 				self.sortKey = key;
 				console.log(this.reversed);
 				self.reversed[key] = !this.reversed[key];
+			},
+			viewSystem: function(){
+				console.log('viweSystem')
+			}, 
+			modifySystem: function(){
+				console.log('modifySystem')
+			},
+			deleteSystem: function(){
+				console.log('deleteSystem')
 			}
 		}
 	})
