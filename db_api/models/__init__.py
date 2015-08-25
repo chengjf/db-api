@@ -2,6 +2,6 @@
 
 __author__ = 'sharp'
 
-from .model import Model
+from model import Model
 
 model = Model()
