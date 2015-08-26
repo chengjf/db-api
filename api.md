@@ -1,5 +1,7 @@
 # 数据库接口管理系统API文档
 
+标签（空格分隔）： Server Client 报文 JSON 数据库接口 管理系统
+
 ---
 
 #1. 用户管理
@@ -104,9 +106,36 @@
 |---|---|---|
 |id|int|该注册用户的数字ID|
 
-
-
 #1.5 更新用户
+更新已有用户的注册信息。
+
+*Request*
+> PUT /user/{id_or_username}
+
+|name|type|description|
+|---|---|---|
+|id_or_username|mixed|该注册用户的数字ID或者用户名|
+
+```json:n
+{
+    "password": "o0xi8wbnd7sdRF7sdF"
+}
+```
+
+*Response*
+
+```json
+{
+    "id": 12345
+}
+```
+
+|name|type|description|
+|---|---|---|
+|id|int|该注册用户的数字ID|
+
+
+
 #1.6 获取用户
 
 --------
