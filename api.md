@@ -138,6 +138,30 @@
 
 #1.6 获取用户
 
+*Request*
+
+> GET /user/{id_or_username}
+
+|name|type|description|
+|---|---|---|
+|id_or_username|mixed|该注册用户的数字ID或者用户名|
+
+*Response*
+
+```json
+{
+    "id": 12345,
+    "email": "user@xyz.com",
+    "username": "TestUser"
+}
+```
+
+
+|name|type|description|
+|---|---|---|
+|id_or_username|mixed|该注册用户的数字ID或者用户名|
+|email|string|注册用户的邮箱地址|
+|username|string|用户的登陆名|
 --------
 #2. 用户登录授权
 
