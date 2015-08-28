@@ -73,3 +73,8 @@ docs/_build/
 ### Local ###
 *.db
 .env
+
+
+### java ###
+*.class
+*.prefs
