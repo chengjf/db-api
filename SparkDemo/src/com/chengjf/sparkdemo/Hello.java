@@ -35,6 +35,15 @@ public class Hello {
 				logger.debug("req: " + req.pathInfo());
 			}
 		});
+		
+		after(new Filter() {
+			
+			@Override
+			public void handle(Request req, Response res) {
+				logger.debug("res: " + res.body());
+				
+			}
+		});
 
 		get(new Route("/") {
 
