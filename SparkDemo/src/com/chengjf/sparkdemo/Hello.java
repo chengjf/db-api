@@ -1,13 +1,16 @@
 package com.chengjf.sparkdemo;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import spark.Filter;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -21,7 +24,18 @@ public class Hello {
 
 	private static List<String> todoList = new ArrayList<String>();
 
+	private static final Logger logger = LoggerFactory.getLogger(Hello.class);
+
 	public static void main(String[] args) {
+
+		before(new Filter() {
+
+			@Override
+			public void handle(Request req, Response res) {
+				logger.debug("req: " + req.pathInfo());
+			}
+		});
+
 		get(new Route("/") {
 
 			@Override
@@ -50,14 +64,17 @@ public class Hello {
 			}
 		});
 
-		post(new MyFreeMarkerRoute("/todo/add") {
+		post(new Route("/todo/add") {
+
 			@Override
-			public Object handle(Request res, Response rep) {
-				String todo = res.queryParams("content");
+			public Object handle(Request req, Response res) {
+				String todo = req.queryParams("content");
 				todoList.add(todo);
 				Map<String, Object> model = new HashMap<String, Object>();
 				model.put("todoList", todoList);
-				return modelAndView(model, "template/todoList.ftl");
+				// redirect到查看页
+				res.redirect("/todo");
+				return null;
 			}
 		});
 
