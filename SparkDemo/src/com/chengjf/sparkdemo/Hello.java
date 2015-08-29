@@ -1,14 +1,25 @@
 package com.chengjf.sparkdemo;
 
-import static spark.Spark.*;
+import static spark.Spark.after;
+import static spark.Spark.before;
+import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.staticFileLocation;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.chengjf.sparkdemo.dao.DaoFactory;
+import com.chengjf.sparkdemo.dao.TodoDao;
+import com.chengjf.sparkdemo.dao.impl.TodoMybatisDao;
+import com.chengjf.sparkdemo.model.Todo;
 
 import spark.Filter;
 import spark.ModelAndView;
@@ -18,7 +29,7 @@ import spark.Route;
 
 /**
  * @author chengjf
- * @date 2015-8-27
+ * @date 2015-08-27
  */
 public class Hello {
 
@@ -28,6 +39,9 @@ public class Hello {
 
 	public static void main(String[] args) {
 
+		// 设置静态文件路径
+		staticFileLocation("/static");
+
 		before(new Filter() {
 
 			@Override
@@ -35,13 +49,13 @@ public class Hello {
 				logger.debug("req: " + req.pathInfo());
 			}
 		});
-		
+
 		after(new Filter() {
-			
+
 			@Override
 			public void handle(Request req, Response res) {
 				logger.debug("res: " + res.body());
-				
+
 			}
 		});
 
@@ -49,7 +63,8 @@ public class Hello {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return "Welcome!";
+				res.redirect("/todo");
+				return null;
 			}
 		});
 
@@ -67,8 +82,16 @@ public class Hello {
 			@Override
 			public ModelAndView handle(Request arg0, Response arg1) {
 
+				try {
+					@SuppressWarnings({ "rawtypes", "unused" })
+					Class clazz = Class.forName("org.sqlite.JDBC");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				List<Todo> todos =DaoFactory.getInstance().getTodoDao().getAllTodos();
 				Map<String, Object> model = new HashMap<String, Object>();
-				model.put("todoList", todoList);
+				model.put("todoList", todos);
 				return modelAndView(model, "template/todoList.ftl");
 			}
 		});
@@ -77,10 +100,19 @@ public class Hello {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				String todo = req.queryParams("content");
-				todoList.add(todo);
-				Map<String, Object> model = new HashMap<String, Object>();
-				model.put("todoList", todoList);
+				String content = req.queryParams("content");
+				// todoList.add(todo);
+				// Map<String, Object> model = new HashMap<String, Object>();
+				// model.put("todoList", todoList);
+
+				Todo todo = new Todo();
+				UUID uuid = UUID.randomUUID();
+				todo.setId(uuid.toString());
+				todo.setContent(content);
+				todo.setCompleted(false);
+				todo.setCreatedDate(new Date());
+				DaoFactory.getInstance().getTodoDao().addTodo(todo);
+
 				// redirect到查看页
 				res.redirect("/todo");
 				return null;
