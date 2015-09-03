@@ -18,7 +18,6 @@
 		</property>
 	</bean>
 
-
 	<bean id="afterFilter" class="com.chengjf.sparkdemo.filter.MyAfterFilter">
 		<property name="filterList">
 			<list>
@@ -26,8 +25,13 @@
 			</list>
 		</property>
 	</bean>
-
-
-
+	
 	<!-- url -->
+	<bean id="todoUrl" class="com.chengjf.sparkdemo.module.todo.TodoUrlHandler" >
+		 <constructor-arg  name="url" value="/todo" />
+	</bean>
+	<bean id="todoAddUrl" class="com.chengjf.sparkdemo.module.todo.TodoAddUrlHandler" >
+		 <constructor-arg  name="url" value="/todo/add" />
+	</bean>
+	
 </beans>
