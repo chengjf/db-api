@@ -12,13 +12,13 @@ import java.util.Date;
 public class Todo {
 
 	private String id;
-	
+
 	private String content;
-	
+
 	private boolean isCompleted;
-	
+
 	private Date createdDate;
-	
+
 	private Date completedDate;
 
 	public String getContent() {
@@ -61,5 +61,4 @@ public class Todo {
 		this.completedDate = completedDate;
 	}
 
-	
 }
