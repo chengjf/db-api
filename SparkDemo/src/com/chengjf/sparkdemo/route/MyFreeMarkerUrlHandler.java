@@ -26,7 +26,8 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 
 	@Override
 	public final void start() {
-		spark.Spark.get(new MyFreeMarkerRoute("/") {
+		
+		spark.Spark.get(new MyFreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
@@ -34,7 +35,7 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 			}
 		});
 
-		spark.Spark.post(new MyFreeMarkerRoute("/") {
+		spark.Spark.post(new MyFreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
@@ -42,7 +43,7 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 			}
 		});
 
-		spark.Spark.put(new MyFreeMarkerRoute("/") {
+		spark.Spark.put(new MyFreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
@@ -50,7 +51,7 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 			}
 		});
 
-		spark.Spark.patch(new MyFreeMarkerRoute("/") {
+		spark.Spark.patch(new MyFreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
@@ -58,7 +59,7 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 			}
 		});
 
-		spark.Spark.delete(new MyFreeMarkerRoute("/") {
+		spark.Spark.delete(new MyFreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
@@ -66,7 +67,7 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 			}
 		});
 
-		spark.Spark.head(new MyFreeMarkerRoute("/") {
+		spark.Spark.head(new MyFreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
@@ -74,7 +75,7 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 			}
 		});
 
-		spark.Spark.connect(new MyFreeMarkerRoute("/") {
+		spark.Spark.connect(new MyFreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
@@ -82,7 +83,7 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 			}
 		});
 
-		spark.Spark.options(new MyFreeMarkerRoute("/") {
+		spark.Spark.options(new MyFreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
