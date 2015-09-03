@@ -20,6 +20,6 @@ public interface TodoDao {
 	public int addTodo(Todo todo);
 
 	public int deleteTodo(Todo todo);
-	
+
 	public int deleteTodoByID(String id);
 }
