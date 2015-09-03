@@ -1,9 +1,12 @@
 package com.chengjf.sparkdemo;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.chengjf.sparkdemo.constants.FilterConstants;
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.filter.MyFilter;
 
@@ -29,10 +32,11 @@ public class Bootstrap {
 
 	public static void initFilter() {
 
-		MyFilter beforeFilter = MyContext.getContext().getBean(FilterConstants.BEFORE_FILTER, MyFilter.class);
-		beforeFilter.start();
+		Map<String, MyFilter> allMyFilters = MyContext.getContext().getBeansOfType(MyFilter.class);
+		Set<Entry<String, MyFilter>> set = allMyFilters.entrySet();
+		for (Entry<String, MyFilter> entry : set) {
+			entry.getValue().start();
+		}
 
-		MyFilter afterFilter = MyContext.getContext().getBean(FilterConstants.AFTER_FILTER, MyFilter.class);
-		afterFilter.start();
 	}
 }
