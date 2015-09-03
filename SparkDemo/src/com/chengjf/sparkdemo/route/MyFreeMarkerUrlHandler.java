@@ -26,7 +26,7 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 
 	@Override
 	public final void start() {
-		
+
 		spark.Spark.get(new MyFreeMarkerRoute(this.url) {
 
 			@Override

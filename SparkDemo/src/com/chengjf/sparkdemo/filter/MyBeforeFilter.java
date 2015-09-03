@@ -2,7 +2,6 @@ package com.chengjf.sparkdemo.filter;
 
 import static spark.Spark.before;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
