@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo;
+package com.chengjf.sparkdemo.route;
 
 import java.io.File;
 import java.io.IOException;
