@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<!-- filter -->
+	<bean id="myAfterFilterImpl" class="com.chengjf.sparkdemo.filter.impl.MyAfterFilterImpl">
+	</bean>
+
+	<bean id="myBeforeFilterImpl" class="com.chengjf.sparkdemo.filter.impl.MyBeforeFilterImpl">
+	</bean>
+
+	<bean id="beforeFilter" class="com.chengjf.sparkdemo.filter.MyBeforeFilter">
+		<property name="filterList">
+			<list>
+				<ref bean="myBeforeFilterImpl" />
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="afterFilter" class="com.chengjf.sparkdemo.filter.MyAfterFilter">
+		<property name="filterList">
+			<list>
+				<ref bean="myAfterFilterImpl" />
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- url -->
+</beans>

@@ -42,23 +42,35 @@ public class Hello {
 		// 设置静态文件路径
 		staticFileLocation("/static");
 
-		before(new Filter() {
+		Bootstrap.boot();
+		
+//		before(new Filter() {
+//
+//			@Override
+//			public void handle(Request req, Response res) {
+//				logger.debug("req: " + req.pathInfo());
+//			}
+//		});
+//
+//		before(new Filter() {
+//
+//			@Override
+//			public void handle(Request req, Response res) {
+//				logger.debug("req2: " + req.pathInfo());
+//			}
+//		});
+//		after(new Filter() {
+//
+//			@Override
+//			public void handle(Request req, Response res) {
+//				logger.debug("res: " + res.body());
+//
+//			}
+//		});
 
-			@Override
-			public void handle(Request req, Response res) {
-				logger.debug("req: " + req.pathInfo());
-			}
-		});
-
-		after(new Filter() {
-
-			@Override
-			public void handle(Request req, Response res) {
-				logger.debug("res: " + res.body());
-
-			}
-		});
-
+		
+		
+		
 		get(new Route("/") {
 
 			@Override
