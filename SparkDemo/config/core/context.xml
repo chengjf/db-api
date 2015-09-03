@@ -25,13 +25,16 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- url -->
-	<bean id="todoUrl" class="com.chengjf.sparkdemo.module.todo.TodoUrlHandler" >
-		 <constructor-arg  name="url" value="/todo" />
+	<bean id="todoUrl" class="com.chengjf.sparkdemo.module.todo.TodoUrlHandler">
+		<constructor-arg name="url" value="/todo" />
 	</bean>
-	<bean id="todoAddUrl" class="com.chengjf.sparkdemo.module.todo.TodoAddUrlHandler" >
-		 <constructor-arg  name="url" value="/todo/add" />
+	<bean id="todoAddUrl" class="com.chengjf.sparkdemo.module.todo.TodoAddUrlHandler">
+		<constructor-arg name="url" value="/todo/add" />
 	</bean>
-	
+	<bean id="indexUrl" class="com.chengjf.sparkdemo.module.index.IndexUrlHandler">
+		<constructor-arg name="url" value="/" />
+	</bean>
+
 </beans>
