@@ -15,8 +15,8 @@ import freemarker.template.Version;
  */
 public abstract class MyFreeMarkerRoute extends FreeMarkerRoute {
 
-	private static Configuration configuration = new Configuration(new Version(
-			"2.3.0"));
+	private static Configuration configuration = new Configuration(new Version("2.3.0"));
+
 	static {
 		try {
 			configuration.setDirectoryForTemplateLoading(new File("resource"));
