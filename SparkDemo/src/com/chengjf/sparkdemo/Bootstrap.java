@@ -24,7 +24,6 @@ public class Bootstrap {
 
 	public static void boot() {
 		logger.debug("boot start...");
-		MyContext context = new MyContext();
 
 		initFilter();
 		initUrl();
