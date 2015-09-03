@@ -1,12 +1,9 @@
 package com.chengjf.sparkdemo;
 
-import static spark.Spark.after;
-import static spark.Spark.before;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.staticFileLocation;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,11 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.chengjf.sparkdemo.dao.DaoFactory;
-import com.chengjf.sparkdemo.dao.TodoDao;
-import com.chengjf.sparkdemo.dao.impl.TodoMybatisDao;
 import com.chengjf.sparkdemo.model.Todo;
+import com.chengjf.sparkdemo.route.MyFreeMarkerRoute;
 
-import spark.Filter;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -33,8 +28,6 @@ import spark.Route;
  */
 public class Hello {
 
-	private static List<String> todoList = new ArrayList<String>();
-
 	private static final Logger logger = LoggerFactory.getLogger(Hello.class);
 
 	public static void main(String[] args) {
@@ -43,34 +36,7 @@ public class Hello {
 		staticFileLocation("/static");
 
 		Bootstrap.boot();
-		
-//		before(new Filter() {
-//
-//			@Override
-//			public void handle(Request req, Response res) {
-//				logger.debug("req: " + req.pathInfo());
-//			}
-//		});
-//
-//		before(new Filter() {
-//
-//			@Override
-//			public void handle(Request req, Response res) {
-//				logger.debug("req2: " + req.pathInfo());
-//			}
-//		});
-//		after(new Filter() {
-//
-//			@Override
-//			public void handle(Request req, Response res) {
-//				logger.debug("res: " + res.body());
-//
-//			}
-//		});
 
-		
-		
-		
 		get(new Route("/") {
 
 			@Override
@@ -94,14 +60,7 @@ public class Hello {
 			@Override
 			public ModelAndView handle(Request arg0, Response arg1) {
 
-				try {
-					@SuppressWarnings({ "rawtypes", "unused" })
-					Class clazz = Class.forName("org.sqlite.JDBC");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				List<Todo> todos =DaoFactory.getInstance().getTodoDao().getAllTodos();
+				List<Todo> todos = DaoFactory.getInstance().getTodoDao().getAllTodos();
 				Map<String, Object> model = new HashMap<String, Object>();
 				model.put("todoList", todos);
 				return modelAndView(model, "template/todoList.ftl");
@@ -113,9 +72,6 @@ public class Hello {
 			@Override
 			public Object handle(Request req, Response res) {
 				String content = req.queryParams("content");
-				// todoList.add(todo);
-				// Map<String, Object> model = new HashMap<String, Object>();
-				// model.put("todoList", todoList);
 
 				Todo todo = new Todo();
 				UUID uuid = UUID.randomUUID();
