@@ -11,7 +11,7 @@ import spark.Response;
  * @date 2015-9-3
  *
  */
-public abstract class MyFreeMarkerUrlHandler {
+public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 
 	private String url;
 
@@ -24,6 +24,7 @@ public abstract class MyFreeMarkerUrlHandler {
 		return mv;
 	}
 
+	@Override
 	public final void start() {
 		spark.Spark.get(new MyFreeMarkerRoute("/") {
 

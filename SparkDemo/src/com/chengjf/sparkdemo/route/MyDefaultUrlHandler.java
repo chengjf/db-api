@@ -11,7 +11,7 @@ import spark.Route;
  * @date 2015-9-3
  *
  */
-public abstract class MyDefaultUrlHandler {
+public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 	private String url;
 
@@ -19,6 +19,7 @@ public abstract class MyDefaultUrlHandler {
 		this.url = url;
 	}
 
+	@Override
 	public final void start() {
 		spark.Spark.get(new Route("/") {
 
