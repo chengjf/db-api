@@ -3,6 +3,8 @@ package com.chengjf.sparkdemo;
 import static spark.Spark.staticFileLocation;
 
 /**
+ * 系统入口
+ * 
  * @author chengjf
  * @date 2015-08-27
  */
