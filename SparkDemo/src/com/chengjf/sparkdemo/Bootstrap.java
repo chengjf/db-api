@@ -20,7 +20,8 @@ import com.chengjf.sparkdemo.route.MyUrlHandler;
  */
 public class Bootstrap {
 
-	private static final Logger logger = LoggerFactory.getLogger(Bootstrap.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(Bootstrap.class);
 
 	public static void boot() {
 		logger.debug("boot start...");
@@ -32,7 +33,8 @@ public class Bootstrap {
 	}
 
 	public static void initFilter() {
-		Map<String, MyFilter> allMyFilters = MyContext.getContext().getBeansOfType(MyFilter.class);
+		Map<String, MyFilter> allMyFilters = MyContext.getContext()
+				.getBeansOfType(MyFilter.class);
 		Set<Entry<String, MyFilter>> set = allMyFilters.entrySet();
 		for (Entry<String, MyFilter> entry : set) {
 			entry.getValue().start();
@@ -40,7 +42,8 @@ public class Bootstrap {
 	}
 
 	public static void initUrl() {
-		Map<String, MyUrlHandler> allMyHandlers = MyContext.getContext().getBeansOfType(MyUrlHandler.class);
+		Map<String, MyUrlHandler> allMyHandlers = MyContext.getContext()
+				.getBeansOfType(MyUrlHandler.class);
 		Set<Entry<String, MyUrlHandler>> set = allMyHandlers.entrySet();
 		for (Entry<String, MyUrlHandler> entry : set) {
 			entry.getValue().start();
