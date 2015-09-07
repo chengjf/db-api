@@ -3,6 +3,9 @@ package com.chengjf.sparkdemo.route;
 import java.io.File;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import freemarker.template.Configuration;
 import freemarker.template.Version;
 
@@ -15,6 +18,9 @@ import freemarker.template.Version;
 public abstract class FreeMarkerRoute extends
 		spark.template.freemarker.FreeMarkerRoute {
 
+	private static final Logger logger = LoggerFactory
+			.getLogger(FreeMarkerRoute.class);
+
 	private static Configuration configuration = new Configuration(new Version(
 			"2.3.0"));
 
@@ -22,7 +28,7 @@ public abstract class FreeMarkerRoute extends
 		try {
 			configuration.setDirectoryForTemplateLoading(new File("resource"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("FreeMarker设置template路径出错！", e);
 		}
 	}
 

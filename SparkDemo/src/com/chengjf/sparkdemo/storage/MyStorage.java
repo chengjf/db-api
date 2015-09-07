@@ -6,6 +6,8 @@ import java.io.InputStream;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 存储类，初始化Mybatis
@@ -19,6 +21,9 @@ public class MyStorage {
 	private static MyStorage instance;
 
 	private SqlSessionFactory factory;
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(MyStorage.class);
 
 	private MyStorage() {
 		init();
@@ -47,13 +52,13 @@ public class MyStorage {
 			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 			this.factory = builder.build(inputStream);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("mybatis-config.xml配置文件读取出错！", e);
 		} finally {
 			if (inputStream != null) {
 				try {
 					inputStream.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error("mybatis-config.xml文件流关闭出错！", e);
 				}
 			}
 		}
