@@ -1,15 +1,17 @@
-package com.chengjf.sparkdemo.model;
+package com.chengjf.sparkdemo.module.todo.model;
 
 import java.util.Date;
 
+import com.chengjf.sparkdemo.model.IModel;
+
 /**
- * Todo POJO
+ * Todo Model
  * 
  * @author sharp
  * @date 2015-08-29
  *
  */
-public class Todo {
+public class Todo implements IModel {
 
 	private String id;
 

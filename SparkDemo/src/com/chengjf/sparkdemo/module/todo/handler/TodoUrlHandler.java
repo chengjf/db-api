@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.chengjf.sparkdemo.dao.DaoFactory;
-import com.chengjf.sparkdemo.model.Todo;
+import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.route.MyFreeMarkerUrlHandler;
 
 import spark.ModelAndView;

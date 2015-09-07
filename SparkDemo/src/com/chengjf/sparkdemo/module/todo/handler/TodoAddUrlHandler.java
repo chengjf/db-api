@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import com.chengjf.sparkdemo.dao.DaoFactory;
-import com.chengjf.sparkdemo.model.Todo;
+import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.route.MyFreeMarkerUrlHandler;
 
 import spark.ModelAndView;

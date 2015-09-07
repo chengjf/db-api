@@ -2,7 +2,7 @@ package com.chengjf.sparkdemo.module.todo.dao;
 
 import java.util.List;
 
-import com.chengjf.sparkdemo.model.Todo;
+import com.chengjf.sparkdemo.module.todo.model.Todo;
 
 /**
  * 代办事项DAO

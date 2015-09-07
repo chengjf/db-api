@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.chengjf.sparkdemo.dao.impl.CommonMybatisDao;
-import com.chengjf.sparkdemo.model.Todo;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
+import com.chengjf.sparkdemo.module.todo.model.Todo;
 
 /**
  * TodoDao的Mybatis实现
