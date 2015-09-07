@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo.module.index;
+package com.chengjf.sparkdemo.module.index.handler;
 
 import com.chengjf.sparkdemo.route.MyDefaultUrlHandler;
 
