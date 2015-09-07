@@ -26,14 +26,14 @@
 		</property>
 	</bean>
 
-	<!-- url -->
-	<bean id="todoUrl" class="com.chengjf.sparkdemo.module.todo.controller.TodoController">
+	<!-- controller -->
+	<bean id="todoController" class="com.chengjf.sparkdemo.module.todo.controller.TodoController">
 		<constructor-arg name="url" value="/todo" />
 	</bean>
-	<bean id="todoAddUrl" class="com.chengjf.sparkdemo.module.todo.controller.TodoAddController">
+	<bean id="todoAddController" class="com.chengjf.sparkdemo.module.todo.controller.TodoAddController">
 		<constructor-arg name="url" value="/todo/add" />
 	</bean>
-	<bean id="indexUrl" class="com.chengjf.sparkdemo.module.index.controller.IndexController">
+	<bean id="indexController" class="com.chengjf.sparkdemo.module.index.controller.IndexController">
 		<constructor-arg name="url" value="/" />
 	</bean>
 
