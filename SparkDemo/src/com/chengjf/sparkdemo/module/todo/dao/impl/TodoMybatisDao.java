@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo.dao.impl;
+package com.chengjf.sparkdemo.module.todo.dao.impl;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.chengjf.sparkdemo.dao.TodoDao;
+import com.chengjf.sparkdemo.dao.impl.CommonMybatisDao;
 import com.chengjf.sparkdemo.model.Todo;
+import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 
 /**
  * TodoDao的Mybatis实现

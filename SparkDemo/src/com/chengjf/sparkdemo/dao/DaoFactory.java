@@ -3,7 +3,8 @@ package com.chengjf.sparkdemo.dao;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.chengjf.sparkdemo.dao.impl.TodoMybatisDao;
+import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
+import com.chengjf.sparkdemo.module.todo.dao.impl.TodoMybatisDao;
 
 /**
  * DAO工厂
