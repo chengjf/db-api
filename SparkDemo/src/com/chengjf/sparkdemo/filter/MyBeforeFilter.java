@@ -18,7 +18,8 @@ import spark.Filter;
  */
 public class MyBeforeFilter implements MyFilter {
 
-	private static final Logger logger = LoggerFactory.getLogger(MyBeforeFilter.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(MyBeforeFilter.class);
 
 	private List<Filter> filterList;
 

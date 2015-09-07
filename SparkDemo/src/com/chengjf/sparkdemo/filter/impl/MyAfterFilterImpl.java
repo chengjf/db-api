@@ -15,7 +15,8 @@ import spark.Response;
  *
  */
 public class MyAfterFilterImpl extends Filter {
-	private static final Logger logger = LoggerFactory.getLogger(MyAfterFilterImpl.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(MyAfterFilterImpl.class);
 
 	@Override
 	public void handle(Request req, Response res) {

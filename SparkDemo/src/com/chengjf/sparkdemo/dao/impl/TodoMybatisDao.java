@@ -18,7 +18,8 @@ import com.chengjf.sparkdemo.model.Todo;
  */
 public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 
-	private static final Logger logger = LoggerFactory.getLogger(TodoMybatisDao.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(TodoMybatisDao.class);
 
 	public TodoMybatisDao() {
 		SqlSession session = this.factory.openSession();

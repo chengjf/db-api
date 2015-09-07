@@ -19,7 +19,8 @@ import spark.Filter;
  */
 public class MyAfterFilter implements MyFilter {
 
-	private static final Logger logger = LoggerFactory.getLogger(MyAfterFilter.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(MyAfterFilter.class);
 
 	private List<Filter> filterList = new ArrayList<Filter>();
 

@@ -15,7 +15,8 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class MyContext {
 	private static ApplicationContext context;
 
-	private static final Logger logger = LoggerFactory.getLogger(MyContext.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(MyContext.class);
 
 	static {
 		try {
