@@ -3,7 +3,6 @@ package com.chengjf.sparkdemo.route;
 import java.io.File;
 import java.io.IOException;
 
-import spark.template.freemarker.FreeMarkerRoute;
 import freemarker.template.Configuration;
 import freemarker.template.Version;
 
@@ -13,7 +12,7 @@ import freemarker.template.Version;
  * @author chengjf
  * @date 2015-8-27
  */
-public abstract class MyFreeMarkerRoute extends FreeMarkerRoute {
+public abstract class FreeMarkerRoute extends spark.template.freemarker.FreeMarkerRoute {
 
 	private static Configuration configuration = new Configuration(new Version(
 			"2.3.0"));
@@ -26,7 +25,7 @@ public abstract class MyFreeMarkerRoute extends FreeMarkerRoute {
 		}
 	}
 
-	protected MyFreeMarkerRoute(String path) {
+	protected FreeMarkerRoute(String path) {
 		super(path);
 		this.setConfiguration(configuration);
 	}

@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<properties resource="config.properties" />
 
 	<typeAliases>
-		<typeAlias alias="Todo" type="com.chengjf.sparkdemo.model.Todo" />
+		<typeAlias alias="Todo" type="com.chengjf.sparkdemo.module.todo.model.Todo" />
 	</typeAliases>
 
 	<environments default="development">

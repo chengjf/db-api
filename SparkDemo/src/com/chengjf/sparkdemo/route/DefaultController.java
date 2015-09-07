@@ -11,11 +11,11 @@ import spark.Route;
  * @date 2015-9-3
  *
  */
-public abstract class MyDefaultUrlHandler implements MyUrlHandler {
+public abstract class DefaultController implements IController {
 
 	private String url;
 
-	public MyDefaultUrlHandler(String url) {
+	public DefaultController(String url) {
 		this.url = url;
 	}
 
@@ -25,7 +25,7 @@ public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return MyDefaultUrlHandler.this.get(req, res);
+				return DefaultController.this.get(req, res);
 			}
 		});
 
@@ -33,7 +33,7 @@ public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return MyDefaultUrlHandler.this.post(req, res);
+				return DefaultController.this.post(req, res);
 			}
 		});
 
@@ -41,7 +41,7 @@ public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return MyDefaultUrlHandler.this.put(req, res);
+				return DefaultController.this.put(req, res);
 			}
 		});
 
@@ -49,7 +49,7 @@ public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return MyDefaultUrlHandler.this.patch(req, res);
+				return DefaultController.this.patch(req, res);
 			}
 		});
 
@@ -57,7 +57,7 @@ public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return MyDefaultUrlHandler.this.delete(req, res);
+				return DefaultController.this.delete(req, res);
 			}
 		});
 
@@ -65,7 +65,7 @@ public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return MyDefaultUrlHandler.this.head(req, res);
+				return DefaultController.this.head(req, res);
 			}
 		});
 
@@ -73,7 +73,7 @@ public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return MyDefaultUrlHandler.this.connect(req, res);
+				return DefaultController.this.connect(req, res);
 			}
 		});
 
@@ -81,7 +81,7 @@ public abstract class MyDefaultUrlHandler implements MyUrlHandler {
 
 			@Override
 			public Object handle(Request req, Response res) {
-				return MyDefaultUrlHandler.this.options(req, res);
+				return DefaultController.this.options(req, res);
 			}
 		});
 	}

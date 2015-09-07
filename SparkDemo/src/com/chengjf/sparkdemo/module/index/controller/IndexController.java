@@ -1,6 +1,6 @@
-package com.chengjf.sparkdemo.module.index.handler;
+package com.chengjf.sparkdemo.module.index.controller;
 
-import com.chengjf.sparkdemo.route.MyDefaultUrlHandler;
+import com.chengjf.sparkdemo.route.DefaultController;
 
 import spark.Request;
 import spark.Response;
@@ -12,9 +12,9 @@ import spark.Response;
  * @date 2015-9-3
  *
  */
-public class IndexUrlHandler extends MyDefaultUrlHandler {
+public class IndexController extends DefaultController {
 
-	public IndexUrlHandler(String url) {
+	public IndexController(String url) {
 		super(url);
 	}
 

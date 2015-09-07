@@ -11,11 +11,11 @@ import spark.Response;
  * @date 2015-9-3
  *
  */
-public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
+public abstract class FreeMarkerController implements IController {
 
 	private String url;
 
-	public MyFreeMarkerUrlHandler(String url) {
+	public FreeMarkerController(String url) {
 		this.url = url;
 	}
 
@@ -27,67 +27,67 @@ public abstract class MyFreeMarkerUrlHandler implements MyUrlHandler {
 	@Override
 	public final void start() {
 
-		spark.Spark.get(new MyFreeMarkerRoute(this.url) {
+		spark.Spark.get(new FreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
-				return MyFreeMarkerUrlHandler.this.get(req, res);
+				return FreeMarkerController.this.get(req, res);
 			}
 		});
 
-		spark.Spark.post(new MyFreeMarkerRoute(this.url) {
+		spark.Spark.post(new FreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
-				return MyFreeMarkerUrlHandler.this.post(req, res);
+				return FreeMarkerController.this.post(req, res);
 			}
 		});
 
-		spark.Spark.put(new MyFreeMarkerRoute(this.url) {
+		spark.Spark.put(new FreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
-				return MyFreeMarkerUrlHandler.this.put(req, res);
+				return FreeMarkerController.this.put(req, res);
 			}
 		});
 
-		spark.Spark.patch(new MyFreeMarkerRoute(this.url) {
+		spark.Spark.patch(new FreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
-				return MyFreeMarkerUrlHandler.this.patch(req, res);
+				return FreeMarkerController.this.patch(req, res);
 			}
 		});
 
-		spark.Spark.delete(new MyFreeMarkerRoute(this.url) {
+		spark.Spark.delete(new FreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
-				return MyFreeMarkerUrlHandler.this.delete(req, res);
+				return FreeMarkerController.this.delete(req, res);
 			}
 		});
 
-		spark.Spark.head(new MyFreeMarkerRoute(this.url) {
+		spark.Spark.head(new FreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
-				return MyFreeMarkerUrlHandler.this.head(req, res);
+				return FreeMarkerController.this.head(req, res);
 			}
 		});
 
-		spark.Spark.connect(new MyFreeMarkerRoute(this.url) {
+		spark.Spark.connect(new FreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
-				return MyFreeMarkerUrlHandler.this.connect(req, res);
+				return FreeMarkerController.this.connect(req, res);
 			}
 		});
 
-		spark.Spark.options(new MyFreeMarkerRoute(this.url) {
+		spark.Spark.options(new FreeMarkerRoute(this.url) {
 
 			@Override
 			public ModelAndView handle(Request req, Response res) {
-				return MyFreeMarkerUrlHandler.this.options(req, res);
+				return FreeMarkerController.this.options(req, res);
 			}
 		});
 	}

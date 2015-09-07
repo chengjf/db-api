@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo.module.todo.handler;
+package com.chengjf.sparkdemo.module.todo.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.chengjf.sparkdemo.dao.DaoFactory;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
-import com.chengjf.sparkdemo.route.MyFreeMarkerUrlHandler;
+import com.chengjf.sparkdemo.route.FreeMarkerController;
 
 import spark.ModelAndView;
 import spark.Request;
@@ -19,9 +19,9 @@ import spark.Response;
  * @date 2015-9-3
  *
  */
-public class TodoUrlHandler extends MyFreeMarkerUrlHandler {
+public class TodoController extends FreeMarkerController {
 
-	public TodoUrlHandler(String url) {
+	public TodoController(String url) {
 		super(url);
 	}
 

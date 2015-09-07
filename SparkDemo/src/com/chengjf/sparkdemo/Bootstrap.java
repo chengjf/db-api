@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.filter.MyFilter;
-import com.chengjf.sparkdemo.route.MyUrlHandler;
+import com.chengjf.sparkdemo.route.IController;
 
 /**
  * 系统启动初始化配置
@@ -42,10 +42,10 @@ public class Bootstrap {
 	}
 
 	public static void initUrl() {
-		Map<String, MyUrlHandler> allMyHandlers = MyContext.getContext()
-				.getBeansOfType(MyUrlHandler.class);
-		Set<Entry<String, MyUrlHandler>> set = allMyHandlers.entrySet();
-		for (Entry<String, MyUrlHandler> entry : set) {
+		Map<String, IController> allMyHandlers = MyContext.getContext()
+				.getBeansOfType(IController.class);
+		Set<Entry<String, IController>> set = allMyHandlers.entrySet();
+		for (Entry<String, IController> entry : set) {
 			entry.getValue().start();
 		}
 	}

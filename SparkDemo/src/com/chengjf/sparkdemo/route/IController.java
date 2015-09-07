@@ -7,7 +7,7 @@ package com.chengjf.sparkdemo.route;
  * @date 2015-9-3
  *
  */
-public interface MyUrlHandler {
+public interface IController {
 
 	public void start();
 }
