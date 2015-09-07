@@ -40,5 +40,9 @@
 	<bean id="indexController" class="com.chengjf.sparkdemo.module.index.controller.IndexController" scope="singleton">
 		<constructor-arg name="url" value="/" />
 	</bean>
+	
+	<!-- DAO -->
+	<bean id="todoDao" class="com.chengjf.sparkdemo.module.todo.dao.impl.TodoMybatisDao" scope="singleton" lazy-init="true">
+	</bean>	
 
 </beans>

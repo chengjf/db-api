@@ -7,9 +7,10 @@ package com.chengjf.sparkdemo.constants;
  * @date 2015-9-3
  *
  */
-public class FilterConstants {
+public class WebConstants {
 
 	public static final String BEFORE_FILTER = "beforeFilter";
 	public static final String AFTER_FILTER = "afterFilter";
 
+	public static final String STATIC_FILE_PATH = "staticFilePath";
 }

@@ -4,13 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.chengjf.sparkdemo.dao.DaoFactory;
-import com.chengjf.sparkdemo.module.todo.model.Todo;
-import com.chengjf.sparkdemo.route.FreeMarkerController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+
+import com.chengjf.sparkdemo.context.MyContext;
+import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
+import com.chengjf.sparkdemo.module.todo.model.Todo;
+import com.chengjf.sparkdemo.route.FreeMarkerController;
 
 /**
  * Todo展示
@@ -21,15 +25,23 @@ import spark.Response;
  */
 public class TodoController extends FreeMarkerController {
 
+	private static final Logger logger = LoggerFactory
+			.getLogger(TodoController.class);
+
 	public TodoController(String url) {
 		super(url);
 	}
 
 	@Override
 	public ModelAndView get(Request req, Response res) {
-		List<Todo> todos = DaoFactory.getInstance().getTodoDao().getAllTodos();
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("todoList", todos);
+		TodoDao dao = MyContext.getContext().getBean(TodoDao.class);
+		if (dao == null) {
+			logger.error("未获取到" + TodoDao.class);
+		} else {
+			List<Todo> todos = dao.getAllTodos();
+			model.put("todoList", todos);
+		}
 		return modelAndView(model, "template/todoList.ftl");
 	}
 
