@@ -4,11 +4,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="config.properties" />
-
+	
 	<typeAliases>
 		<typeAlias alias="Todo" type="com.chengjf.sparkdemo.module.todo.model.Todo" />
 	</typeAliases>
-
+	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -23,6 +23,5 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		<mapper resource="sql/todo-mapper.xml" />
 	</mappers>
-
-
+	
 </configuration>
