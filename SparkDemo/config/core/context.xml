@@ -3,14 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
+	<!-- config -->
+	<bean id="configuration" class="com.chengjf.sparkdemo.config.Configuration" scope="singleton">
+		<constructor-arg name="path" value="config.properties" />
+	</bean>
 	<!-- filter -->
-	<bean id="myAfterFilterImpl" class="com.chengjf.sparkdemo.filter.impl.MyAfterFilterImpl">
+	<bean id="myAfterFilterImpl" class="com.chengjf.sparkdemo.filter.impl.MyAfterFilterImpl" scope="singleton">
 	</bean>
 
-	<bean id="myBeforeFilterImpl" class="com.chengjf.sparkdemo.filter.impl.MyBeforeFilterImpl">
+	<bean id="myBeforeFilterImpl" class="com.chengjf.sparkdemo.filter.impl.MyBeforeFilterImpl" scope="singleton">
 	</bean>
 
-	<bean id="beforeFilter" class="com.chengjf.sparkdemo.filter.MyBeforeFilter">
+	<bean id="beforeFilter" class="com.chengjf.sparkdemo.filter.MyBeforeFilter" scope="singleton">
 		<property name="filterList">
 			<list>
 				<ref bean="myBeforeFilterImpl" />
@@ -18,7 +22,7 @@
 		</property>
 	</bean>
 
-	<bean id="afterFilter" class="com.chengjf.sparkdemo.filter.MyAfterFilter">
+	<bean id="afterFilter" class="com.chengjf.sparkdemo.filter.MyAfterFilter" scope="singleton">
 		<property name="filterList">
 			<list>
 				<ref bean="myAfterFilterImpl" />
@@ -27,13 +31,13 @@
 	</bean>
 
 	<!-- controller -->
-	<bean id="todoController" class="com.chengjf.sparkdemo.module.todo.controller.TodoController">
+	<bean id="todoController" class="com.chengjf.sparkdemo.module.todo.controller.TodoController" scope="singleton">
 		<constructor-arg name="url" value="/todo" />
 	</bean>
-	<bean id="todoAddController" class="com.chengjf.sparkdemo.module.todo.controller.TodoAddController">
+	<bean id="todoAddController" class="com.chengjf.sparkdemo.module.todo.controller.TodoAddController" scope="singleton">
 		<constructor-arg name="url" value="/todo/add" />
 	</bean>
-	<bean id="indexController" class="com.chengjf.sparkdemo.module.index.controller.IndexController">
+	<bean id="indexController" class="com.chengjf.sparkdemo.module.index.controller.IndexController" scope="singleton">
 		<constructor-arg name="url" value="/" />
 	</bean>
 

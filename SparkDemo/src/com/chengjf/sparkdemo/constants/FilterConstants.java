@@ -1,7 +1,7 @@
 package com.chengjf.sparkdemo.constants;
 
 /**
- * Filter字符串静态变量
+ * Filter字符串静态常量
  * 
  * @author sharp
  * @date 2015-9-3

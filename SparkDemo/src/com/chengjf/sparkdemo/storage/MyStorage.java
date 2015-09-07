@@ -8,6 +8,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+
+import com.chengjf.sparkdemo.config.Configuration;
+import com.chengjf.sparkdemo.constants.DatabaseConstants;
+import com.chengjf.sparkdemo.context.MyContext;
 
 /**
  * 存储类，初始化Mybatis
@@ -45,7 +50,11 @@ public class MyStorage {
 	}
 
 	private void init() {
-		String resource = "mybatis-config.xml";
+		ApplicationContext context = MyContext.getContext();
+		Configuration configuration = context.getBean(Configuration.class);
+
+		String resource = configuration
+				.getProperty(DatabaseConstants.CONFIG_MYBATIS_CONFIG_FILE);
 		InputStream inputStream = null;
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
