@@ -12,7 +12,8 @@ import freemarker.template.Version;
  * @author chengjf
  * @date 2015-8-27
  */
-public abstract class FreeMarkerRoute extends spark.template.freemarker.FreeMarkerRoute {
+public abstract class FreeMarkerRoute extends
+		spark.template.freemarker.FreeMarkerRoute {
 
 	private static Configuration configuration = new Configuration(new Version(
 			"2.3.0"));
