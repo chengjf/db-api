@@ -42,10 +42,14 @@
 	<bean id="todoController" class="com.chengjf.sparkdemo.module.todo.controller.TodoController"
 		scope="singleton">
 		<constructor-arg name="url" value="/todo" />
+		<property name="template" value="template/todo/todoList.ftl">
+		</property>
 	</bean>
 	<bean id="todoAddController" class="com.chengjf.sparkdemo.module.todo.controller.TodoAddController"
 		scope="singleton">
 		<constructor-arg name="url" value="/todo/add" />
+		<property name="template" value="template/todo/addTodo.ftl">
+		</property>
 	</bean>
 	<bean id="indexController" class="com.chengjf.sparkdemo.module.index.controller.IndexController"
 		scope="singleton">

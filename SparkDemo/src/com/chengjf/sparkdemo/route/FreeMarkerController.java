@@ -14,6 +14,7 @@ import spark.Response;
 public abstract class FreeMarkerController implements IController {
 
 	private String url;
+	protected String template;
 
 	public FreeMarkerController(String url) {
 		this.url = url;
@@ -134,6 +135,14 @@ public abstract class FreeMarkerController implements IController {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
 	}
 
 }

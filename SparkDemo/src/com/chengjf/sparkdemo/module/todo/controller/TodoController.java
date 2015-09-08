@@ -47,7 +47,7 @@ public class TodoController extends FreeMarkerController {
 			}
 
 		}
-		return modelAndView(model, "template/todoList.ftl");
+		return modelAndView(model, this.template);
 	}
 
 }

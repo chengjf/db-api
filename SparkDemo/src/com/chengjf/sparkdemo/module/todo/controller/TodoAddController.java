@@ -27,7 +27,7 @@ public class TodoAddController extends FreeMarkerController {
 	@Override
 	public ModelAndView get(Request req, Response res) {
 
-		return modelAndView(null, "template/addTodo.ftl");
+		return modelAndView(null, this.template);
 	}
 
 	@Override
