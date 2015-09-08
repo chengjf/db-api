@@ -126,4 +126,25 @@
 		</property>
 	</bean>
 	
+	<bean id="pageDao" class="com.chengjf.sparkdemo.module.wiki.dao.impl.PageMybatisDao"
+		scope="singleton" >
+		<property name="sqlSessionTemplate">
+			<ref bean="sqlSessionTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="revisionDao" class="com.chengjf.sparkdemo.module.wiki.dao.impl.RevisionMybatisDao"
+		scope="singleton" >
+		<property name="sqlSessionTemplate">
+			<ref bean="sqlSessionTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="textDao" class="com.chengjf.sparkdemo.module.wiki.dao.impl.TextMybatisDao"
+		scope="singleton" >
+		<property name="sqlSessionTemplate">
+			<ref bean="sqlSessionTemplate" />
+		</property>
+	</bean>
+	
 </beans>
