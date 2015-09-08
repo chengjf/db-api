@@ -23,6 +23,9 @@ public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 			.getLogger(TodoMybatisDao.class);
 
 	public TodoMybatisDao() {
+	}
+
+	public void createTodoTable() {
 		SqlSession session = this.factory.openSession();
 		int result = session.update("createTodoTable");
 		if (result < 0) {

@@ -14,15 +14,15 @@
 		  completeddate date 
 		) 
 	</update>
-	<select id="selectTodo" resultType="Todo">
+	<select id="selectTodo" resultType="com.chengjf.sparkdemo.module.todo.model.Todo">
 		select * from Todo
 		where id = #{id}
 	</select>
-	<select id="selectAllTodo" resultType="Todo">
+	<select id="selectAllTodo" resultType="com.chengjf.sparkdemo.module.todo.model.Todo">
 		select * from Todo
 	</select>
 	
-	<insert id="insertTodo" parameterType="Todo">
+	<insert id="insertTodo" parameterType="com.chengjf.sparkdemo.module.todo.model.Todo">
 		INSERT INTO Todo 
 		  ( 
 		    id , 

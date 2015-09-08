@@ -39,8 +39,13 @@ public class TodoController extends FreeMarkerController {
 		if (dao == null) {
 			logger.error("未获取到" + TodoDao.class);
 		} else {
-			List<Todo> todos = dao.getAllTodos();
-			model.put("todoList", todos);
+			try {
+				List<Todo> todos = dao.getAllTodos();
+				model.put("todoList", todos);
+			} catch (Exception e) {
+				logger.error("获取所有Todo出错！", e);
+			}
+
 		}
 		return modelAndView(model, "template/todoList.ftl");
 	}

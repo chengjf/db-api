@@ -2,7 +2,7 @@ package com.chengjf.sparkdemo.dao.impl;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.chengjf.sparkdemo.storage.MyStorage;
+import com.chengjf.sparkdemo.dao.ICommonDao;
 
 /**
  * 公共Mybatis类，抽取了SqlSessionfactory供子类使用
@@ -11,11 +11,16 @@ import com.chengjf.sparkdemo.storage.MyStorage;
  * @date 2015-08-29
  *
  */
-public abstract class CommonMybatisDao {
+public abstract class CommonMybatisDao implements ICommonDao {
 
 	protected SqlSessionFactory factory;
 
-	public CommonMybatisDao() {
-		this.factory = MyStorage.getInstance().getFactory();
+	public SqlSessionFactory getFactory() {
+		return factory;
 	}
+
+	public void setFactory(SqlSessionFactory factory) {
+		this.factory = factory;
+	}
+
 }
