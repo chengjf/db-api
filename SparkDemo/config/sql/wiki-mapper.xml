@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wiki">
+	<!-- Page start -->
+	<select id="getPageById" resultType="Page"  parameterType="string">
+		select ( 
+		    id , 
+		    namespace , 
+		    title , 
+		    comment , 
+		    counter ,
+		    latest
+		  )  from Page
+		where id = #{id}
+	</select>
+	<select id="getAllPages" resultType="Page">
+		select ( 
+		    id , 
+		    namespace , 
+		    title , 
+		    comment , 
+		    counter ,
+		    latest
+		  ) from Page
+	</select>
+	
+	<insert id="addPage" parameterType="Page">
+		INSERT INTO Page 
+		  ( 
+		    id , 
+		    namespace , 
+		    title , 
+		    comment , 
+		    counter ,
+		    latest
+		  ) 
+		VALUES 
+		  ( 
+		    #{id} , 
+		    #{namespace} , 
+		    #{title} , 
+		    #{comment} , 
+		    #{counter} ,
+		    #{latest}
+		  )
+	</insert>
+	<update id="updatePage" parameterType="Page">
+		update Page 
+		set
+		namespace = #{namespace},
+		title     = #{title},
+		comment   = #{comment},
+		counter   = #{counter},
+		latest    = #{latest},
+		where id = ${id}
+	</update>
+	
+	<delete id="deletePage" parameterType="Page">
+		delete from Page where id = #{id}
+	</delete>
+	
+	<delete id="deletePageById" parameterType="string">
+		delete from Page where id = #{id}
+	</delete>
+	<!-- Page end -->
+	
+	<!-- Revision start -->
+	<select id="getRevisionById" resultType="Revision"  parameterType="string">
+		select ( 
+		    id , 
+		    page_id , 
+		    text_id , 
+		    comment , 
+		    user_id ,
+		    timestamp ,
+			is_deleted ,
+			parent_id
+		  ) from Revision
+		where id = #{id}
+	</select>
+	<select id="getAllRevisions" resultType="Revision">
+		select ( 
+		    id , 
+		    page_id , 
+		    text_id , 
+		    comment , 
+		    user_id ,
+		    timestamp ,
+			is_deleted ,
+			parent_id
+		  ) from Revision
+	</select>
+	
+	<insert id="addRevision" parameterType="Revision">
+		INSERT INTO Revision 
+		  ( 
+		    id , 
+		    page_id , 
+		    text_id , 
+		    comment , 
+		    user_id ,
+		    timestamp ,
+			is_deleted ,
+			parent_id
+		  ) 
+		VALUES 
+		  ( 
+		    #{id} , 
+		    #{page_id} , 
+		    #{text_id} , 
+		    #{comment} , 
+		    #{user_id} ,
+		    #{timestamp} ,
+			#{is_deleted} ,
+			#{parent_id}
+		  )
+	</insert>
+	<update id="updateRevision" parameterType="Revision">
+		update Revision 
+		set
+		page_id     = #{page_id},
+		text_id     = #{text_id},
+		comment     = #{comment},
+		user_id     = #{user_id},
+		timestamp   = #{timestamp},
+		is_deleted  = #{is_deleted},
+		parent_id   = #{parent_id},
+		where id = ${id}
+	</update>
+	
+	<delete id="deleteRevision" parameterType="Revision">
+		delete from Revision where id = #{id}
+	</delete>
+	
+	<delete id="deleteRevisionById" parameterType="string">
+		delete from Revision where id = #{id}
+	</delete>
+	<!-- Revision end-->
+	
+	<!-- Text start -->
+	<select id="getTextById" resultType="Text"  parameterType="string">
+		select ( 
+		    id , 
+		    text , 
+		    type
+		  ) from Text
+		where id = #{id}
+	</select>
+	<select id="getAllTexts" resultType="Text">
+		select ( 
+		    id , 
+		    text , 
+		    type
+		  ) from Text
+	</select>
+	
+	<insert id="addText" parameterType="Text">
+		INSERT INTO Text 
+		  ( 
+		    id , 
+		    text , 
+		    type
+		  ) 
+		VALUES 
+		  ( 
+		    #{id} , 
+		    #{text} , 
+		    #{type} , 
+		  )
+	</insert>
+	<update id="updateText" parameterType="Text">
+		update Text 
+		set
+		text     = #{text},
+		type     = #{type},
+		where id = ${id}
+	</update>
+	
+	<delete id="deleteText" parameterType="Text">
+		delete from Text where id = #{id}
+	</delete>
+	
+	<delete id="deleteTextById" parameterType="string">
+		delete from Text where id = #{id}
+	</delete>
+	<!-- Text end -->
+		
+</mapper>
