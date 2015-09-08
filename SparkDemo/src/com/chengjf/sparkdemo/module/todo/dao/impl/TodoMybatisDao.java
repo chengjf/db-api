@@ -26,7 +26,7 @@ public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 	}
 
 	public void createTodoTable() {
-		SqlSession session = this.factory.openSession();
+		SqlSession session = this.getSqlSession();
 		int result = session.update("createTodoTable");
 		if (result < 0) {
 			logger.debug("Todo table create failed!");
@@ -35,15 +35,12 @@ public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 		} else {
 			logger.debug("Todo table created succced");
 		}
-		session.commit();
-		session.close();
 	}
 
 	@Override
 	public List<Todo> getAllTodos() {
-		SqlSession session = this.factory.openSession();
+		SqlSession session = this.getSqlSession();
 		List<Todo> result = session.selectList("selectAllTodo");
-		session.close();
 		return result;
 	}
 
@@ -56,10 +53,8 @@ public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 	@Override
 	public int addTodo(Todo todo) {
 		int result;
-		SqlSession session = this.factory.openSession();
+		SqlSession session = this.getSqlSession();
 		result = session.insert("insertTodo", todo);
-		session.commit();
-		session.close();
 		return result;
 	}
 

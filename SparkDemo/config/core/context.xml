@@ -94,26 +94,26 @@
 	</bean>
 	
 	<!-- 配置当出现Exception、RuntimeException、Exception时采用对应的事务操作 -->
-	<!--
-	<tx:advice id="userTxAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"
-				no-rollback-for="java.lang.RuntimeException" />
-			<tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.RuntimeException"
-				/>
-			<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"
-				/>
-			<tx:method name="find*" propagation="SUPPORTS" />
-			<tx:method name="get*" propagation="SUPPORTS" />
-			<tx:method name="select*" propagation="SUPPORTS" />
-		</tx:attributes>
-	</tx:advice>
+	<!-- <tx:advice id="userTxAdvice" transaction-manager="transactionManager"> <tx:attributes>
+		<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"
+		no-rollback-for="java.lang.RuntimeException" /> <tx:method name="insert*" propagation="REQUIRED"
+		read-only="false" rollback-for="java.lang.RuntimeException" /> <tx:method name="update*"
+		propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" /> <tx:method
+		name="find*" propagation="SUPPORTS" /> <tx:method name="get*" propagation="SUPPORTS"
+		/> <tx:method name="select*" propagation="SUPPORTS" /> </tx:attributes> </tx:advice>
 		-->
+	
+	<!-- sqlSessionTemplate配置（支持批量） -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<!-- 参数1: sqlSessionFactory|参数2：ExecutorType -->
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+		<constructor-arg index="1" value="BATCH" />
+	</bean>
 	
 	<bean id="todoDao" class="com.chengjf.sparkdemo.module.todo.dao.impl.TodoMybatisDao"
 		scope="singleton" >
-		<property name="factory">
-			<ref bean="sqlSessionFactory" />
+		<property name="sqlSessionTemplate">
+			<ref bean="sqlSessionTemplate" />
 		</property>
 	</bean>
 	
