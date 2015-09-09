@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import spark.Filter;
 
+import com.chengjf.sparkdemo.constants.WebConstants;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 /**
  * 前置过滤器
  * 
@@ -23,7 +27,9 @@ public class MyBeforeFilter implements MyFilter {
 
 	private List<Filter> filterList;
 
-	public void setFilterList(List<Filter> filterList) {
+	@Inject
+	public void setFilterList(
+			@Named(WebConstants.BEFORE_FILTER) List<Filter> filterList) {
 		this.filterList = filterList;
 	}
 

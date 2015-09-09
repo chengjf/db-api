@@ -7,7 +7,7 @@ package com.chengjf.sparkdemo.module.wiki.model;
  * @date 2015-09-08
  */
 public class Text {
-	
+
 	private String id;
 	private String text;
 	private String type;

@@ -2,19 +2,12 @@ package com.chengjf.sparkdemo;
 
 import static spark.Spark.staticFileLocation;
 
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
 
-import com.chengjf.sparkdemo.config.Configuration;
 import com.chengjf.sparkdemo.constants.WebConstants;
-import com.chengjf.sparkdemo.context.MyContext;
-import com.chengjf.sparkdemo.filter.MyFilter;
-import com.chengjf.sparkdemo.route.IController;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 /**
  * 系统启动初始化配置
@@ -23,48 +16,44 @@ import com.chengjf.sparkdemo.route.IController;
  * @date 2015-9-3
  *
  */
+
 public class Bootstrap {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(Bootstrap.class);
 
-	private static final ApplicationContext context = MyContext.getContext();
+	// private static final ApplicationContext context = MyContext.getContext();
 
-	public static void boot() {
+	public Bootstrap() {
+		logger.debug("init......");
+	}
+
+	public void boot() {
 		logger.debug("boot start...");
 
-		initWeb();
-
-		initFilter();
-
-		initUrl();
+		// initUrl();
 
 		logger.debug("boot end...");
 	}
 
-	private static void initWeb() {
-		Configuration configuration = context.getBean(Configuration.class);
-		String path = configuration.getProperty(WebConstants.STATIC_FILE_PATH);
-
-		// 设置静态文件路径
+	/**
+	 * 设置静态文件路径
+	 * 
+	 * @param path
+	 */
+	@Inject
+	private void initStaticFileLocation(
+			@Named(WebConstants.STATIC_FILE_PATH) String path) {
+		logger.debug("initStaticFileLocation");
 		staticFileLocation(path);
 	}
 
-	private static void initFilter() {
-		Map<String, MyFilter> allMyFilters = context
-				.getBeansOfType(MyFilter.class);
-		Set<Entry<String, MyFilter>> set = allMyFilters.entrySet();
-		for (Entry<String, MyFilter> entry : set) {
-			entry.getValue().start();
-		}
-	}
-
-	private static void initUrl() {
-		Map<String, IController> allMyHandlers = context
-				.getBeansOfType(IController.class);
-		Set<Entry<String, IController>> set = allMyHandlers.entrySet();
-		for (Entry<String, IController> entry : set) {
-			entry.getValue().start();
-		}
-	}
+	// private static void initUrl() {
+	// Map<String, IController> allMyHandlers = context
+	// .getBeansOfType(IController.class);
+	// Set<Entry<String, IController>> set = allMyHandlers.entrySet();
+	// for (Entry<String, IController> entry : set) {
+	// entry.getValue().start();
+	// }
+	// }
 }

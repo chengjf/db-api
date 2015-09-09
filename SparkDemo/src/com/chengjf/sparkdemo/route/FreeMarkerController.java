@@ -4,6 +4,9 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
+import com.google.inject.Inject;
+
 /**
  * URL的FreeMarker处理类
  * 
@@ -15,9 +18,9 @@ public abstract class FreeMarkerController implements IController {
 
 	private String url;
 	protected String template;
+	protected TodoDao dao;
 
-	public FreeMarkerController(String url) {
-		this.url = url;
+	public FreeMarkerController() {
 	}
 
 	protected ModelAndView modelAndView(Object model, String view) {
@@ -143,6 +146,15 @@ public abstract class FreeMarkerController implements IController {
 
 	public void setTemplate(String template) {
 		this.template = template;
+	}
+
+	public TodoDao getDao() {
+		return dao;
+	}
+
+	@Inject
+	public void setDao(TodoDao dao) {
+		this.dao = dao;
 	}
 
 }

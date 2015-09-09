@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.chengjf.sparkdemo.dao.impl.CommonMybatisDao;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
+import com.google.inject.Inject;
 
 /**
  * TodoDao的Mybatis实现
@@ -22,11 +23,12 @@ public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 	private static final Logger logger = LoggerFactory
 			.getLogger(TodoMybatisDao.class);
 
+	@Inject
 	public TodoMybatisDao() {
 	}
 
 	public void createTodoTable() {
-		SqlSession session = this.getSqlSession();
+		SqlSession session = this.factory.openSession();
 		int result = session.update("createTodoTable");
 		if (result < 0) {
 			logger.debug("Todo table create failed!");
@@ -35,12 +37,15 @@ public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 		} else {
 			logger.debug("Todo table created succced");
 		}
+		session.commit();
+		session.close();
 	}
 
 	@Override
 	public List<Todo> getAllTodos() {
-		SqlSession session = this.getSqlSession();
+		SqlSession session = this.factory.openSession();
 		List<Todo> result = session.selectList("selectAllTodo");
+		session.close();
 		return result;
 	}
 
@@ -53,8 +58,10 @@ public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 	@Override
 	public int addTodo(Todo todo) {
 		int result;
-		SqlSession session = this.getSqlSession();
+		SqlSession session = this.factory.openSession();
 		result = session.insert("insertTodo", todo);
+		session.commit();
+		session.close();
 		return result;
 	}
 
@@ -69,5 +76,4 @@ public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

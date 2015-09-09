@@ -10,18 +10,23 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import com.chengjf.sparkdemo.context.MyContext;
+import com.chengjf.sparkdemo.constants.WebConstants;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.route.FreeMarkerController;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 public class TodoAddController extends FreeMarkerController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(TodoAddController.class);
 
-	public TodoAddController(String url) {
-		super(url);
+	@Inject
+	public TodoAddController(@Named(WebConstants.TODO_ADD_URL) String url,
+			@Named(WebConstants.TODO_ADD_TEMPLATE) String template) {
+		this.setUrl(url);
+		this.setTemplate(template);
 	}
 
 	@Override
@@ -40,7 +45,6 @@ public class TodoAddController extends FreeMarkerController {
 		todo.setContent(content);
 		todo.setCompleted(false);
 		todo.setCreatedDate(new Date());
-		TodoDao dao = MyContext.getContext().getBean(TodoDao.class);
 		if (dao == null) {
 			logger.error("未获取到" + TodoDao.class);
 		} else {

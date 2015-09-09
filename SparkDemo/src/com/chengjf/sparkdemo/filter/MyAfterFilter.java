@@ -8,6 +8,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.chengjf.sparkdemo.constants.WebConstants;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 import spark.Filter;
 
 /**
@@ -24,7 +28,9 @@ public class MyAfterFilter implements MyFilter {
 
 	private List<Filter> filterList = new ArrayList<Filter>();
 
-	public void setFilterList(List<Filter> filterList) {
+	@Inject
+	public void setFilterList(
+			@Named(WebConstants.AFTER_FILTER) List<Filter> filterList) {
 		this.filterList = filterList;
 	}
 
