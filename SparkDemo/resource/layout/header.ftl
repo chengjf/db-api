@@ -28,11 +28,11 @@
 						</a>
 					</li>
 					<li>
-						<a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i>
+						<a href="#todo" class="nav-header collapsed" data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i>
 							代办事项管理
 							<span class="pull-right glyphicon glyphicon-chevron-down"></span>
 						</a>
-						<ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
+						<ul id="todo" class="nav nav-list collapse secondmenu" style="height: 0px;">
 							<li>
 								<a href="/todo">
 									<i class="glyphicon glyphicon-user"></i>
@@ -43,6 +43,27 @@
 								<a href="/todo/add">
 									<i class="glyphicon glyphicon-th-list"></i>
 									添加代办事项
+								</a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="#wiki" class="nav-header collapsed" data-toggle="collapse"> <i class="glyphicon glyphicon-cog"></i>
+							Wiki管理
+							<span class="pull-right glyphicon glyphicon-chevron-down"></span>
+						</a>
+						<ul id="wiki" class="nav nav-list collapse secondmenu" style="height: 0px;">
+							<li>
+								<a href="/wiki">
+									<i class="glyphicon glyphicon-user"></i>
+									查看wiki
+								</a>
+							</li>
+							<li>
+								<a href="/wiki/add">
+									<i class="glyphicon glyphicon-th-list"></i>
+									添加wiki
 								</a>
 							</li>
 
