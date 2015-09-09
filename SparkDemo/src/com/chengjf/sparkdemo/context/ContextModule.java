@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import spark.Filter;
 
-import com.chengjf.sparkdemo.Bootstrap;
 import com.chengjf.sparkdemo.constants.WebConstants;
 import com.chengjf.sparkdemo.context.provider.AfterFilterProvider;
 import com.chengjf.sparkdemo.context.provider.BeforeFilterProvider;
@@ -21,6 +20,7 @@ import com.chengjf.sparkdemo.module.todo.controller.TodoAddController;
 import com.chengjf.sparkdemo.module.todo.controller.TodoController;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.dao.impl.TodoMybatisDao;
+import com.chengjf.sparkdemo.resource.StaticResource;
 import com.google.inject.AbstractModule;
 import com.google.inject.Binder;
 import com.google.inject.Scopes;
@@ -44,7 +44,7 @@ public class ContextModule extends AbstractModule {
 
 		Names.bindProperties(binder(), getProperties());
 
-		binder.bind(Bootstrap.class).in(Scopes.SINGLETON);
+		binder.bind(StaticResource.class).in(Scopes.SINGLETON);
 
 		// Filter
 		bind(new TypeLiteral<List<Filter>>() {

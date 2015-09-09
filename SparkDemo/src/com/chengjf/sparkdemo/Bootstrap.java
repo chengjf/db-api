@@ -1,13 +1,17 @@
 package com.chengjf.sparkdemo;
 
-import static spark.Spark.staticFileLocation;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.chengjf.sparkdemo.constants.WebConstants;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+import com.chengjf.sparkdemo.context.ContextModule;
+import com.chengjf.sparkdemo.context.MybatisContextModule;
+import com.chengjf.sparkdemo.filter.MyAfterFilter;
+import com.chengjf.sparkdemo.filter.MyBeforeFilter;
+import com.chengjf.sparkdemo.module.todo.controller.TodoAddController;
+import com.chengjf.sparkdemo.module.todo.controller.TodoController;
+import com.chengjf.sparkdemo.resource.StaticResource;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 /**
  * 系统启动初始化配置
@@ -22,38 +26,49 @@ public class Bootstrap {
 	private static final Logger logger = LoggerFactory
 			.getLogger(Bootstrap.class);
 
-	// private static final ApplicationContext context = MyContext.getContext();
+	private Injector injector;
 
 	public Bootstrap() {
 		logger.debug("init......");
+		this.injector = Guice.createInjector(new ContextModule(),
+				new MybatisContextModule());
 	}
 
 	public void boot() {
 		logger.debug("boot start...");
 
-		// initUrl();
+		initResource();
+		initFilter();
+		initController();
 
 		logger.debug("boot end...");
 	}
 
-	/**
-	 * 设置静态文件路径
-	 * 
-	 * @param path
-	 */
-	@Inject
-	private void initStaticFileLocation(
-			@Named(WebConstants.STATIC_FILE_PATH) String path) {
-		logger.debug("initStaticFileLocation");
-		staticFileLocation(path);
+	private void initResource() {
+		StaticResource resource = this.injector
+				.getInstance(StaticResource.class);
+		resource.execute();
 	}
 
-	// private static void initUrl() {
-	// Map<String, IController> allMyHandlers = context
-	// .getBeansOfType(IController.class);
-	// Set<Entry<String, IController>> set = allMyHandlers.entrySet();
-	// for (Entry<String, IController> entry : set) {
-	// entry.getValue().start();
-	// }
-	// }
+	private void initFilter() {
+		// start filter
+		MyBeforeFilter beforeFilter = injector
+				.getInstance(MyBeforeFilter.class);
+		beforeFilter.start();
+
+		MyAfterFilter afterFilter = injector.getInstance(MyAfterFilter.class);
+		afterFilter.start();
+	}
+
+	private void initController() {
+		TodoController todoController = injector
+				.getInstance(TodoController.class);
+		todoController.start();
+
+		TodoAddController todoAddController = injector
+				.getInstance(TodoAddController.class);
+		todoAddController.start();
+
+	}
+
 }
