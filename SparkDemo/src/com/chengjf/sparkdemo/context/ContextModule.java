@@ -16,11 +16,13 @@ import com.chengjf.sparkdemo.context.provider.AfterFilterProvider;
 import com.chengjf.sparkdemo.context.provider.BeforeFilterProvider;
 import com.chengjf.sparkdemo.filter.MyAfterFilter;
 import com.chengjf.sparkdemo.filter.MyBeforeFilter;
+import com.chengjf.sparkdemo.filter.MyFilter;
 import com.chengjf.sparkdemo.module.todo.controller.TodoAddController;
 import com.chengjf.sparkdemo.module.todo.controller.TodoController;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.dao.impl.TodoMybatisDao;
 import com.chengjf.sparkdemo.resource.StaticResource;
+import com.chengjf.sparkdemo.route.IController;
 import com.google.inject.AbstractModule;
 import com.google.inject.Binder;
 import com.google.inject.Scopes;
@@ -46,32 +48,29 @@ public class ContextModule extends AbstractModule {
 
 		binder.bind(StaticResource.class).in(Scopes.SINGLETON);
 
-		// Filter
+		/*
+		 * Filter绑定，所有的过滤器都需要绑定到MyFilter上
+		 */
 		bind(new TypeLiteral<List<Filter>>() {
 		}).annotatedWith(Names.named(WebConstants.BEFORE_FILTER)).toProvider(
 				BeforeFilterProvider.class);
 		bind(new TypeLiteral<List<Filter>>() {
 		}).annotatedWith(Names.named(WebConstants.AFTER_FILTER)).toProvider(
 				AfterFilterProvider.class);
-
-		binder.bind(MyBeforeFilter.class).in(Scopes.SINGLETON);
-		binder.bind(MyAfterFilter.class).in(Scopes.SINGLETON);
+		binder.bind(MyFilter.class)
+				.annotatedWith(Names.named("MyBeforeFilter"))
+				.to(MyBeforeFilter.class).in(Scopes.SINGLETON);
+		binder.bind(MyFilter.class).annotatedWith(Names.named("MyAfterFilter"))
+				.to(MyAfterFilter.class).in(Scopes.SINGLETON);
 
 		// URL
-		bind(String.class).annotatedWith(
-				Names.named(WebConstants.TODO_INDEX_URL)).toInstance("/todo");
-		bind(String.class).annotatedWith(
-				Names.named(WebConstants.TODO_INDEX_TEMPLATE)).toInstance(
-				"template/todo/todoList.ftl");
-		binder.bind(TodoController.class).in(Scopes.SINGLETON);
+		binder.bind(IController.class)
+				.annotatedWith(Names.named("TodoController"))
+				.to(TodoController.class).in(Scopes.SINGLETON);
+		binder.bind(IController.class)
+				.annotatedWith(Names.named("TodoAddController"))
+				.to(TodoAddController.class).in(Scopes.SINGLETON);
 
-		bind(String.class)
-				.annotatedWith(Names.named(WebConstants.TODO_ADD_URL))
-				.toInstance("/todo/add");
-		bind(String.class).annotatedWith(
-				Names.named(WebConstants.TODO_ADD_TEMPLATE)).toInstance(
-				"template/todo/addTodo.ftl");
-		binder.bind(TodoAddController.class).in(Scopes.SINGLETON);
 		// DAO
 		bind(TodoDao.class).to(TodoMybatisDao.class).in(Scopes.SINGLETON);
 	}

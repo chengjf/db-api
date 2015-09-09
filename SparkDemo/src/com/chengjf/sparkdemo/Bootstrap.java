@@ -1,17 +1,19 @@
 package com.chengjf.sparkdemo;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.chengjf.sparkdemo.context.ContextModule;
 import com.chengjf.sparkdemo.context.MybatisContextModule;
-import com.chengjf.sparkdemo.filter.MyAfterFilter;
-import com.chengjf.sparkdemo.filter.MyBeforeFilter;
-import com.chengjf.sparkdemo.module.todo.controller.TodoAddController;
-import com.chengjf.sparkdemo.module.todo.controller.TodoController;
+import com.chengjf.sparkdemo.filter.MyFilter;
 import com.chengjf.sparkdemo.resource.StaticResource;
+import com.chengjf.sparkdemo.route.IController;
+import com.google.inject.Binding;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.TypeLiteral;
 
 /**
  * 系统启动初始化配置
@@ -44,31 +46,39 @@ public class Bootstrap {
 		logger.debug("boot end...");
 	}
 
+	/**
+	 * 初始化资源
+	 */
 	private void initResource() {
 		StaticResource resource = this.injector
 				.getInstance(StaticResource.class);
 		resource.execute();
 	}
 
+	/**
+	 * 初始化Filter
+	 */
 	private void initFilter() {
-		// start filter
-		MyBeforeFilter beforeFilter = injector
-				.getInstance(MyBeforeFilter.class);
-		beforeFilter.start();
-
-		MyAfterFilter afterFilter = injector.getInstance(MyAfterFilter.class);
-		afterFilter.start();
+		List<Binding<MyFilter>> list = injector
+				.findBindingsByType(new TypeLiteral<MyFilter>() {
+				});
+		for (Binding<MyFilter> bind : list) {
+			MyFilter filter = injector.getInstance(bind.getKey());
+			filter.start();
+		}
 	}
 
+	/**
+	 * 初始化Controller
+	 */
 	private void initController() {
-		TodoController todoController = injector
-				.getInstance(TodoController.class);
-		todoController.start();
-
-		TodoAddController todoAddController = injector
-				.getInstance(TodoAddController.class);
-		todoAddController.start();
-
+		List<Binding<IController>> list = injector
+				.findBindingsByType(new TypeLiteral<IController>() {
+				});
+		for (Binding<IController> bind : list) {
+			IController controller = injector.getInstance(bind.getKey());
+			controller.start();
+		}
 	}
 
 }
