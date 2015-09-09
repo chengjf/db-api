@@ -17,7 +17,7 @@ public class Todo implements IModel {
 
 	private String content;
 
-	private boolean isCompleted;
+	private boolean completed;
 
 	private Date createdDate;
 
@@ -40,11 +40,11 @@ public class Todo implements IModel {
 	}
 
 	public boolean isCompleted() {
-		return isCompleted;
+		return completed;
 	}
 
-	public void setCompleted(boolean isCompleted) {
-		this.isCompleted = isCompleted;
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
 	}
 
 	public Date getCreatedDate() {
