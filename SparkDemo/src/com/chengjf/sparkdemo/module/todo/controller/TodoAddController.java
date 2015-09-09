@@ -10,23 +10,18 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import com.chengjf.sparkdemo.constants.WebConstants;
+import com.chengjf.sparkdemo.annotation.Controller;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.route.FreeMarkerController;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
+@Controller(template = "template/todo/addTodo.ftl", url = "/todo/add")
 public class TodoAddController extends FreeMarkerController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(TodoAddController.class);
 
-	@Inject
-	public TodoAddController(@Named(WebConstants.TODO_ADD_URL) String url,
-			@Named(WebConstants.TODO_ADD_TEMPLATE) String template) {
-		this.setUrl(url);
-		this.setTemplate(template);
+	public TodoAddController() {
 	}
 
 	@Override

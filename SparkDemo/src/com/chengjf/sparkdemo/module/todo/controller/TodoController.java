@@ -11,12 +11,11 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import com.chengjf.sparkdemo.constants.WebConstants;
+import com.chengjf.sparkdemo.annotation.Controller;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.route.FreeMarkerController;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 /**
  * Todo展示
@@ -25,16 +24,15 @@ import com.google.inject.name.Named;
  * @date 2015-9-3
  *
  */
+
+@Controller(template = "template/todo/todoList.ftl", url = "/todo")
 public class TodoController extends FreeMarkerController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(TodoController.class);
 
 	@Inject
-	public TodoController(@Named(WebConstants.TODO_INDEX_URL) String url,
-			@Named(WebConstants.TODO_INDEX_TEMPLATE) String template) {
-		this.setUrl(url);
-		this.setTemplate(template);
+	public TodoController() {
 	}
 
 	@Override

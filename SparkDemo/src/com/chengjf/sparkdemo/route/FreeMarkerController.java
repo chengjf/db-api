@@ -4,6 +4,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import com.chengjf.sparkdemo.annotation.Controller;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.google.inject.Inject;
 
@@ -30,7 +31,7 @@ public abstract class FreeMarkerController implements IController {
 
 	@Override
 	public final void start() {
-
+		parseAnnotation();
 		spark.Spark.get(new FreeMarkerRoute(this.url) {
 
 			@Override
@@ -157,4 +158,16 @@ public abstract class FreeMarkerController implements IController {
 		this.dao = dao;
 	}
 
+	private void parseAnnotation() {
+		try {
+			if (this.getClass().isAnnotationPresent(Controller.class)) {
+				Controller controller = this.getClass().getAnnotation(
+						Controller.class);
+				this.url = controller.url();
+				this.template = controller.template();
+			}
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+	}
 }
