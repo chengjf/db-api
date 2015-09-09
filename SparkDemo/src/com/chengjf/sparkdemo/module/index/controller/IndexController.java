@@ -1,9 +1,11 @@
 package com.chengjf.sparkdemo.module.index.controller;
 
-import com.chengjf.sparkdemo.route.DefaultController;
-
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+
+import com.chengjf.sparkdemo.annotation.Controller;
+import com.chengjf.sparkdemo.route.FreeMarkerController;
 
 /**
  * 首页展示
@@ -12,16 +14,14 @@ import spark.Response;
  * @date 2015-9-3
  *
  */
-public class IndexController extends DefaultController {
 
-	public IndexController(String url) {
-		super(url);
-	}
+@Controller(url = "/")
+public class IndexController extends FreeMarkerController {
 
 	@Override
-	public Object get(Request req, Response res) {
+	public ModelAndView get(Request req, Response res) {
 		res.redirect("/todo");
-		return res;
+		return null;
 	}
 
 }

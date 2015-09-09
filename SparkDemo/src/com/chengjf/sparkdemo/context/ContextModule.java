@@ -17,6 +17,7 @@ import com.chengjf.sparkdemo.context.provider.BeforeFilterProvider;
 import com.chengjf.sparkdemo.filter.MyAfterFilter;
 import com.chengjf.sparkdemo.filter.MyBeforeFilter;
 import com.chengjf.sparkdemo.filter.MyFilter;
+import com.chengjf.sparkdemo.module.index.controller.IndexController;
 import com.chengjf.sparkdemo.module.todo.controller.TodoAddController;
 import com.chengjf.sparkdemo.module.todo.controller.TodoController;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
@@ -70,6 +71,9 @@ public class ContextModule extends AbstractModule {
 		binder.bind(IController.class)
 				.annotatedWith(Names.named("TodoAddController"))
 				.to(TodoAddController.class).in(Scopes.SINGLETON);
+		binder.bind(IController.class)
+				.annotatedWith(Names.named("IndexController"))
+				.to(IndexController.class).in(Scopes.SINGLETON);
 
 		// DAO
 		bind(TodoDao.class).to(TodoMybatisDao.class).in(Scopes.SINGLETON);
