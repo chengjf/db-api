@@ -1,11 +1,10 @@
 package com.chengjf.sparkdemo.module.index.controller;
 
-import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import com.chengjf.sparkdemo.annotation.Controller;
-import com.chengjf.sparkdemo.controller.FreeMarkerController;
+import com.chengjf.sparkdemo.controller.DefaultController;
 
 /**
  * 首页展示
@@ -16,12 +15,12 @@ import com.chengjf.sparkdemo.controller.FreeMarkerController;
  */
 
 @Controller(url = "/")
-public class IndexController extends FreeMarkerController {
+public class IndexController extends DefaultController {
 
 	@Override
-	public ModelAndView get(Request req, Response res) {
+	public Object get(Request req, Response res) {
 		res.redirect("/todo");
-		return null;
+		return res;
 	}
 
 }

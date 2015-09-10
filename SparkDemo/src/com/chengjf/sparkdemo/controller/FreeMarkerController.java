@@ -1,5 +1,10 @@
 package com.chengjf.sparkdemo.controller;
 
+import java.lang.reflect.Method;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -15,9 +20,12 @@ import com.google.inject.Inject;
  * @date 2015-9-3
  *
  */
-public abstract class FreeMarkerController implements IController {
+public abstract class FreeMarkerController extends DefaultController implements
+		IController {
 
-	private String url;
+	private static final Logger logger = LoggerFactory
+			.getLogger(FreeMarkerController.class);
+
 	protected String template;
 	protected TodoDao dao;
 
@@ -31,7 +39,10 @@ public abstract class FreeMarkerController implements IController {
 
 	@Override
 	public final void start() {
-		parseAnnotation();
+
+		parseAnnotationForURL();
+		parseAnnotationForTemplate();
+
 		spark.Spark.get(new FreeMarkerRoute(this.url) {
 
 			@Override
@@ -158,16 +169,39 @@ public abstract class FreeMarkerController implements IController {
 		this.dao = dao;
 	}
 
-	private void parseAnnotation() {
+	/**
+	 * 解析Annotation，获取Template
+	 */
+	private void parseAnnotationForTemplate() {
 		try {
 			if (this.getClass().isAnnotationPresent(Controller.class)) {
 				Controller controller = this.getClass().getAnnotation(
 						Controller.class);
-				this.url = controller.url();
 				this.template = controller.template();
 			}
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error("获取IController的Controller注解出错！", e);
 		}
+	}
+
+	@SuppressWarnings("unused")
+	private boolean isFreeMarkerController(String methodName) {
+		boolean result = true;
+		try {
+			Method method = this.getClass().getMethod(methodName,
+					Request.class, Response.class);
+			@SuppressWarnings("rawtypes")
+			Class clazz = method.getReturnType();
+			if (clazz.equals(ModelAndView.class)) {
+				result = true;
+			} else {
+				result = false;
+			}
+		} catch (NoSuchMethodException e) {
+			logger.error("", e);
+		} catch (SecurityException e) {
+			logger.error("", e);
+		}
+		return result;
 	}
 }

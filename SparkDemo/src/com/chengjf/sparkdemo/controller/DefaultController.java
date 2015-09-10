@@ -1,8 +1,13 @@
 package com.chengjf.sparkdemo.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import spark.Request;
 import spark.Response;
 import spark.Route;
+
+import com.chengjf.sparkdemo.annotation.Controller;
 
 /**
  * URL默认处理类
@@ -13,15 +18,18 @@ import spark.Route;
  */
 public abstract class DefaultController implements IController {
 
-	private String url;
+	private static final Logger logger = LoggerFactory
+			.getLogger(DefaultController.class);
 
-	public DefaultController(String url) {
-		this.url = url;
+	protected String url;
+
+	public DefaultController() {
 	}
 
 	@Override
-	public final void start() {
-		spark.Spark.get(new Route("/") {
+	public void start() {
+		parseAnnotationForURL();
+		spark.Spark.get(new Route(this.url) {
 
 			@Override
 			public Object handle(Request req, Response res) {
@@ -29,7 +37,7 @@ public abstract class DefaultController implements IController {
 			}
 		});
 
-		spark.Spark.post(new Route("/") {
+		spark.Spark.post(new Route(this.url) {
 
 			@Override
 			public Object handle(Request req, Response res) {
@@ -37,7 +45,7 @@ public abstract class DefaultController implements IController {
 			}
 		});
 
-		spark.Spark.put(new Route("/") {
+		spark.Spark.put(new Route(this.url) {
 
 			@Override
 			public Object handle(Request req, Response res) {
@@ -45,7 +53,7 @@ public abstract class DefaultController implements IController {
 			}
 		});
 
-		spark.Spark.patch(new Route("/") {
+		spark.Spark.patch(new Route(this.url) {
 
 			@Override
 			public Object handle(Request req, Response res) {
@@ -53,7 +61,7 @@ public abstract class DefaultController implements IController {
 			}
 		});
 
-		spark.Spark.delete(new Route("/") {
+		spark.Spark.delete(new Route(this.url) {
 
 			@Override
 			public Object handle(Request req, Response res) {
@@ -61,7 +69,7 @@ public abstract class DefaultController implements IController {
 			}
 		});
 
-		spark.Spark.head(new Route("/") {
+		spark.Spark.head(new Route(this.url) {
 
 			@Override
 			public Object handle(Request req, Response res) {
@@ -69,7 +77,7 @@ public abstract class DefaultController implements IController {
 			}
 		});
 
-		spark.Spark.connect(new Route("/") {
+		spark.Spark.connect(new Route(this.url) {
 
 			@Override
 			public Object handle(Request req, Response res) {
@@ -77,7 +85,7 @@ public abstract class DefaultController implements IController {
 			}
 		});
 
-		spark.Spark.options(new Route("/") {
+		spark.Spark.options(new Route(this.url) {
 
 			@Override
 			public Object handle(Request req, Response res) {
@@ -130,4 +138,18 @@ public abstract class DefaultController implements IController {
 		this.url = url;
 	}
 
+	/**
+	 * 解析Annotation，获取URL
+	 */
+	protected void parseAnnotationForURL() {
+		try {
+			if (this.getClass().isAnnotationPresent(Controller.class)) {
+				Controller controller = this.getClass().getAnnotation(
+						Controller.class);
+				this.url = controller.url();
+			}
+		} catch (SecurityException e) {
+			logger.error("获取IController的Controller注解出错！", e);
+		}
+	}
 }
