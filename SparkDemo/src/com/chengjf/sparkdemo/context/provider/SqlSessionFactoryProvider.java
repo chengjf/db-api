@@ -14,6 +14,12 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
 
+/**
+ * Mybatis的SqlSessionFactory获取Provider
+ * 
+ * @author CHENGJIANFENG100
+ * @date 2015-09-10
+ */
 public class SqlSessionFactoryProvider implements Provider<SqlSessionFactory> {
 
 	private static final Logger logger = LoggerFactory

@@ -15,6 +15,12 @@ import com.chengjf.sparkdemo.controller.FreeMarkerController;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
 
+/**
+ * 增加一条Todo
+ * 
+ * @author CHENGJIANFENG100
+ * @date 2015-09-10
+ */
 @Controller(template = "template/todo/addTodo.ftl", url = "/todo/add")
 public class TodoAddController extends FreeMarkerController {
 

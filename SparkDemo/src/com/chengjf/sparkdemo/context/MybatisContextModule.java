@@ -15,7 +15,6 @@ public class MybatisContextModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		// TODO Auto-generated method stub
 		bind(SqlSessionFactory.class).toProvider(
 				SqlSessionFactoryProvider.class);
 	}

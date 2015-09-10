@@ -14,6 +14,9 @@ import com.google.inject.Inject;
  */
 public abstract class CommonMybatisDao implements ICommonDao {
 
+	/**
+	 * 该factory用来统一注入SqlSessionFactory
+	 */
 	protected SqlSessionFactory factory;
 
 	public SqlSessionFactory getFactory() {
