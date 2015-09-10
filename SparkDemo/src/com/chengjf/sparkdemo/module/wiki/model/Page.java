@@ -13,7 +13,7 @@ public class Page {
 	private String title;
 	private String comment;
 	private int counter;
-	private boolean latest;
+	private String latest;
 
 	public String getId() {
 		return id;
@@ -55,11 +55,11 @@ public class Page {
 		this.counter = counter;
 	}
 
-	public boolean isLatest() {
+	public String isLatest() {
 		return latest;
 	}
 
-	public void setLatest(boolean latest) {
+	public void setLatest(String latest) {
 		this.latest = latest;
 	}
 
