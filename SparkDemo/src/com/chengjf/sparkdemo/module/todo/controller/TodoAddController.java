@@ -11,9 +11,9 @@ import spark.Request;
 import spark.Response;
 
 import com.chengjf.sparkdemo.annotation.Controller;
+import com.chengjf.sparkdemo.controller.FreeMarkerController;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
-import com.chengjf.sparkdemo.route.FreeMarkerController;
 
 @Controller(template = "template/todo/addTodo.ftl", url = "/todo/add")
 public class TodoAddController extends FreeMarkerController {

@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 
 import com.chengjf.sparkdemo.context.ContextModule;
 import com.chengjf.sparkdemo.context.MybatisContextModule;
+import com.chengjf.sparkdemo.controller.IController;
 import com.chengjf.sparkdemo.filter.MyFilter;
 import com.chengjf.sparkdemo.resource.StaticResource;
-import com.chengjf.sparkdemo.route.IController;
 import com.google.inject.Binding;
 import com.google.inject.Guice;
 import com.google.inject.Injector;

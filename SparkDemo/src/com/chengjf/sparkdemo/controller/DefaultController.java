@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo.route;
+package com.chengjf.sparkdemo.controller;
 
 import spark.Request;
 import spark.Response;

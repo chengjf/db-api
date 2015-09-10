@@ -12,9 +12,9 @@ import spark.Request;
 import spark.Response;
 
 import com.chengjf.sparkdemo.annotation.Controller;
+import com.chengjf.sparkdemo.controller.FreeMarkerController;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
-import com.chengjf.sparkdemo.route.FreeMarkerController;
 import com.google.inject.Inject;
 
 /**

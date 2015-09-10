@@ -5,7 +5,7 @@ import spark.Request;
 import spark.Response;
 
 import com.chengjf.sparkdemo.annotation.Controller;
-import com.chengjf.sparkdemo.route.FreeMarkerController;
+import com.chengjf.sparkdemo.controller.FreeMarkerController;
 
 /**
  * 首页展示
