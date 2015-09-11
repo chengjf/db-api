@@ -8,11 +8,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import spark.Filter;
+
 import com.chengjf.sparkdemo.constants.WebConstants;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-
-import spark.Filter;
 
 /**
  * 后置过滤器

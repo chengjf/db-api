@@ -13,8 +13,8 @@ import spark.Response;
 import com.chengjf.sparkdemo.annotation.Controller;
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.controller.FreeMarkerController;
-import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
+import com.chengjf.sparkdemo.module.todo.service.ITodoService;
 
 /**
  * 增加一条Todo
@@ -47,11 +47,12 @@ public class TodoAddController extends FreeMarkerController {
 		todo.setContent(content);
 		todo.setCompleted(false);
 		todo.setCreatedDate(new Date());
-		TodoDao dao = MyContext.context.getInstance(TodoDao.class);
-		if (dao == null) {
-			logger.error("未获取到" + TodoDao.class);
+		ITodoService todoService = MyContext.context
+				.getInstance(ITodoService.class);
+		if (todoService == null) {
+			logger.error("未获取到" + ITodoService.class);
 		} else {
-			dao.addTodo(todo);
+			todoService.addTodo(todo);
 		}
 
 		// redirect到查看页

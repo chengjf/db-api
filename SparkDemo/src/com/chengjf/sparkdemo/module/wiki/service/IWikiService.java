@@ -10,5 +10,5 @@ import java.util.Map;
  */
 public interface IWikiService {
 
-	public int addNewWiki(Map<String, Object> parameters);
+	public boolean addNewWiki(Map<String, Object> parameters);
 }

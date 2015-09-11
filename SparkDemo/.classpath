@@ -22,6 +22,8 @@
 	<classpathentry kind="lib" path="libs/guava-18.0.jar"/>
 	<classpathentry kind="lib" path="libs/guice-4.0-no_aop.jar"/>
 	<classpathentry kind="lib" path="libs/javax.Inject-1.jar"/>
+	<classpathentry kind="lib" path="libs/ormlite-core-4.49-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/ormlite-jdbc-4.49-SNAPSHOT.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

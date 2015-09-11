@@ -14,15 +14,9 @@ import spark.Filter;
 import com.chengjf.sparkdemo.constants.WebConstants;
 import com.chengjf.sparkdemo.context.provider.AfterFilterProvider;
 import com.chengjf.sparkdemo.context.provider.BeforeFilterProvider;
-import com.chengjf.sparkdemo.controller.IController;
 import com.chengjf.sparkdemo.filter.MyAfterFilter;
 import com.chengjf.sparkdemo.filter.MyBeforeFilter;
 import com.chengjf.sparkdemo.filter.MyFilter;
-import com.chengjf.sparkdemo.module.index.controller.IndexController;
-import com.chengjf.sparkdemo.module.todo.controller.TodoAddController;
-import com.chengjf.sparkdemo.module.todo.controller.TodoController;
-import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
-import com.chengjf.sparkdemo.module.todo.dao.impl.TodoMybatisDao;
 import com.chengjf.sparkdemo.resource.StaticResource;
 import com.google.inject.AbstractModule;
 import com.google.inject.Binder;
@@ -64,19 +58,7 @@ public class ContextModule extends AbstractModule {
 		binder.bind(MyFilter.class).annotatedWith(Names.named("MyAfterFilter"))
 				.to(MyAfterFilter.class).in(Scopes.SINGLETON);
 
-		// URL
-		binder.bind(IController.class)
-				.annotatedWith(Names.named("TodoController"))
-				.to(TodoController.class).in(Scopes.SINGLETON);
-		binder.bind(IController.class)
-				.annotatedWith(Names.named("TodoAddController"))
-				.to(TodoAddController.class).in(Scopes.SINGLETON);
-		binder.bind(IController.class)
-				.annotatedWith(Names.named("IndexController"))
-				.to(IndexController.class).in(Scopes.SINGLETON);
-
-		// DAO
-		bind(TodoDao.class).to(TodoMybatisDao.class).in(Scopes.SINGLETON);
+		
 	}
 
 	/**

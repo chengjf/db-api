@@ -3,6 +3,8 @@ package com.chengjf.sparkdemo.module.todo.model;
 import java.util.Date;
 
 import com.chengjf.sparkdemo.model.IModel;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
  * Todo Model
@@ -11,16 +13,22 @@ import com.chengjf.sparkdemo.model.IModel;
  * @date 2015-08-29
  *
  */
+@DatabaseTable(tableName = "todo")
 public class Todo implements IModel {
 
+	@DatabaseField(columnName = "id")
 	private String id;
 
+	@DatabaseField(columnName = "content")
 	private String content;
 
+	@DatabaseField(columnName = "iscompleted")
 	private boolean completed;
 
+	@DatabaseField(columnName = "createdDate")
 	private Date createdDate;
 
+	@DatabaseField(columnName = "completedDate")
 	private Date completedDate;
 
 	public String getContent() {

@@ -33,6 +33,6 @@ CREATE TABLE IF NOT EXISTS Page
 	  title         text,
 	  comment	    text,	
 	  counter	    number,
-	  latest	    boolean
+	  latest	    text
 	);
 	
