@@ -10,8 +10,6 @@ import spark.Request;
 import spark.Response;
 
 import com.chengjf.sparkdemo.annotation.Controller;
-import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
-import com.google.inject.Inject;
 
 /**
  * URL的FreeMarker处理类
@@ -27,7 +25,6 @@ public abstract class FreeMarkerController extends DefaultController implements
 			.getLogger(FreeMarkerController.class);
 
 	protected String template;
-	protected TodoDao dao;
 
 	public FreeMarkerController() {
 	}
@@ -158,15 +155,6 @@ public abstract class FreeMarkerController extends DefaultController implements
 
 	public void setTemplate(String template) {
 		this.template = template;
-	}
-
-	public TodoDao getDao() {
-		return dao;
-	}
-
-	@Inject
-	public void setDao(TodoDao dao) {
-		this.dao = dao;
 	}
 
 	/**
