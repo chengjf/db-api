@@ -1,5 +1,7 @@
 package com.chengjf.sparkdemo.context;
 
+import com.google.inject.Injector;
+
 /**
  * 上下文解析提供
  * 
@@ -8,4 +10,6 @@ package com.chengjf.sparkdemo.context;
  *
  */
 public class MyContext {
+	
+	public static Injector context= null;
 }

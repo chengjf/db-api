@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.chengjf.sparkdemo.context.ContextModule;
+import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.context.MybatisContextModule;
 import com.chengjf.sparkdemo.controller.IController;
 import com.chengjf.sparkdemo.filter.MyFilter;
@@ -34,6 +35,7 @@ public class Bootstrap {
 		logger.debug("init......");
 		this.injector = Guice.createInjector(new ContextModule(),
 				new MybatisContextModule());
+		MyContext.context = this.injector;
 	}
 
 	public void boot() {
