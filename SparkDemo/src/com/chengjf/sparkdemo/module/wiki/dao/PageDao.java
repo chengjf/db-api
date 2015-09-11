@@ -2,6 +2,7 @@ package com.chengjf.sparkdemo.module.wiki.dao;
 
 import java.util.List;
 
+import com.chengjf.sparkdemo.dao.ICommonDao;
 import com.chengjf.sparkdemo.module.wiki.model.Page;
 
 /**
@@ -10,7 +11,7 @@ import com.chengjf.sparkdemo.module.wiki.model.Page;
  * @author CHENGJIANFENG100
  * @date 2015-09-08
  */
-public interface PageDao {
+public interface PageDao extends ICommonDao {
 
 	public List<Page> getAllPages();
 

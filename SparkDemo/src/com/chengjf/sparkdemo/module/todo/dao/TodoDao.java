@@ -2,6 +2,7 @@ package com.chengjf.sparkdemo.module.todo.dao;
 
 import java.util.List;
 
+import com.chengjf.sparkdemo.dao.ICommonDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
 
 /**
@@ -11,7 +12,7 @@ import com.chengjf.sparkdemo.module.todo.model.Todo;
  * @date 2015-08-29
  *
  */
-public interface TodoDao {
+public interface TodoDao extends ICommonDao {
 
 	public List<Todo> getAllTodos();
 
