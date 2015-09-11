@@ -11,13 +11,13 @@ import java.util.Date;
 public class Revision {
 
 	private String id;
-	private String page_id;
-	private String text_id;
+	private String pageId;
+	private String textId;
 	private String comment;
-	private String user_id;
+	private String userId;
 	private Date timestamp;
-	private boolean is_deleted;
-	private String parent_id;
+	private boolean deleted;
+	private String parentId;
 
 	public String getId() {
 		return id;
@@ -25,22 +25,6 @@ public class Revision {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getPage_id() {
-		return page_id;
-	}
-
-	public void setPage_id(String page_id) {
-		this.page_id = page_id;
-	}
-
-	public String getText_id() {
-		return text_id;
-	}
-
-	public void setText_id(String text_id) {
-		this.text_id = text_id;
 	}
 
 	public String getComment() {
@@ -51,14 +35,6 @@ public class Revision {
 		this.comment = comment;
 	}
 
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-
 	public Date getTimestamp() {
 		return timestamp;
 	}
@@ -67,20 +43,44 @@ public class Revision {
 		this.timestamp = timestamp;
 	}
 
-	public boolean isIs_deleted() {
-		return is_deleted;
+	public String getPageId() {
+		return pageId;
 	}
 
-	public void setIs_deleted(boolean is_deleted) {
-		this.is_deleted = is_deleted;
+	public void setPageId(String pageId) {
+		this.pageId = pageId;
 	}
 
-	public String getParent_id() {
-		return parent_id;
+	public String getTextId() {
+		return textId;
 	}
 
-	public void setParent_id(String parent_id) {
-		this.parent_id = parent_id;
+	public void setTextId(String textId) {
+		this.textId = textId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
 }
