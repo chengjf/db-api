@@ -12,6 +12,8 @@ import spark.Request;
 import spark.Response;
 
 import com.chengjf.sparkdemo.annotation.Controller;
+import com.chengjf.sparkdemo.annotation.Get;
+import com.chengjf.sparkdemo.annotation.TemplateEngine;
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.controller.FreeMarkerController;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
@@ -26,7 +28,7 @@ import com.google.inject.Inject;
  * 
  */
 
-@Controller(template = "template/todo/todoList.ftl", url = "/todo")
+@Controller(url = "/todo")
 public class TodoController extends FreeMarkerController {
 
 	private static final Logger logger = LoggerFactory
@@ -36,8 +38,8 @@ public class TodoController extends FreeMarkerController {
 	public TodoController() {
 	}
 
-	@Override
-	public ModelAndView get(Request req, Response res) {
+	@Get(templateEngine = TemplateEngine.FREEMARKER)
+	public ModelAndView index(Request req, Response res) {
 
 		Map<String, Object> model = new HashMap<String, Object>();
 		ITodoService todoService = MyContext.context
@@ -52,7 +54,7 @@ public class TodoController extends FreeMarkerController {
 				logger.error("获取所有Todo出错！", e);
 			}
 		}
-		return modelAndView(model, this.template);
+		return modelAndView(model, "template/todo/todoList.ftl");
 	}
 
 }

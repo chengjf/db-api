@@ -11,6 +11,9 @@ import spark.Request;
 import spark.Response;
 
 import com.chengjf.sparkdemo.annotation.Controller;
+import com.chengjf.sparkdemo.annotation.Get;
+import com.chengjf.sparkdemo.annotation.Post;
+import com.chengjf.sparkdemo.annotation.TemplateEngine;
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.controller.FreeMarkerController;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
@@ -22,7 +25,7 @@ import com.chengjf.sparkdemo.module.todo.service.ITodoService;
  * @author CHENGJIANFENG100
  * @date 2015-09-10
  */
-@Controller(template = "template/todo/addTodo.ftl", url = "/todo/add")
+@Controller(url = "/todo/add")
 public class TodoAddController extends FreeMarkerController {
 
 	private static final Logger logger = LoggerFactory
@@ -31,14 +34,14 @@ public class TodoAddController extends FreeMarkerController {
 	public TodoAddController() {
 	}
 
-	@Override
+	@Get(templateEngine = TemplateEngine.FREEMARKER)
 	public ModelAndView get(Request req, Response res) {
 
-		return modelAndView(null, this.template);
+		return modelAndView(null, "template/todo/addTodo.ftl");
 	}
 
-	@Override
-	public ModelAndView post(Request req, Response res) {
+	@Post(templateEngine = TemplateEngine.DEFAULT)
+	public Object post(Request req, Response res) {
 		String content = req.queryParams("content");
 
 		Todo todo = new Todo();
@@ -57,6 +60,6 @@ public class TodoAddController extends FreeMarkerController {
 
 		// redirect到查看页
 		res.redirect("/todo");
-		return null;
+		return res;
 	}
 }
