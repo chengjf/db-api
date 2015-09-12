@@ -17,5 +17,4 @@ public @interface Controller {
 
 	public String url();
 
-	public String template() default "";
 }
