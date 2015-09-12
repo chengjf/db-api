@@ -13,6 +13,6 @@ import com.chengjf.sparkdemo.module.todo.model.Todo;
 public interface ITodoService {
 
 	public List<Todo> getAllTodos();
-	
+
 	public boolean addTodo(Todo todo);
 }

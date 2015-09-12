@@ -5,7 +5,7 @@ package com.chengjf.sparkdemo.filter;
  * 
  * @author sharp
  * @date 2015-9-3
- *
+ * 
  */
 public interface MyFilter {
 

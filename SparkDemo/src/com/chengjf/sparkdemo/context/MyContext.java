@@ -7,9 +7,9 @@ import com.google.inject.Injector;
  * 
  * @author sharp
  * @date 2015-9-3
- *
+ * 
  */
 public class MyContext {
-	
-	public static Injector context= null;
+
+	public static Injector context = null;
 }

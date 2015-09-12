@@ -16,7 +16,7 @@ import com.chengjf.sparkdemo.annotation.Controller;
  * 
  * @author sharp
  * @date 2015-9-3
- *
+ * 
  */
 public abstract class FreeMarkerController extends DefaultController implements
 		IController {

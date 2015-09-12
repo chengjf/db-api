@@ -5,7 +5,7 @@ package com.chengjf.sparkdemo.constants;
  * 
  * @author sharp
  * @date 2015-9-3
- *
+ * 
  */
 public class DatabaseConstants {
 	public static final String CONFIG_MYBATIS_CONFIG_FILE = "mybatisConfigFile";

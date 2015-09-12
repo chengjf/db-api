@@ -9,7 +9,7 @@ import com.chengjf.sparkdemo.module.todo.model.Todo;
  * 
  * @author sharp
  * @date 2015-08-29
- *
+ * 
  */
 public interface TodoDao {
 

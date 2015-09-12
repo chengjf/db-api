@@ -11,7 +11,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * 
  * @author sharp
  * @date 2015-08-29
- *
+ * 
  */
 @DatabaseTable(tableName = "todo")
 public class Todo implements IModel {

@@ -23,7 +23,7 @@ import com.google.inject.TypeLiteral;
  * 
  * @author sharp
  * @date 2015-9-3
- *
+ * 
  */
 
 public class Bootstrap {

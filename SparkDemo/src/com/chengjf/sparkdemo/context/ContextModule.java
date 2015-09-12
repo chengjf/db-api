@@ -58,7 +58,6 @@ public class ContextModule extends AbstractModule {
 		binder.bind(MyFilter.class).annotatedWith(Names.named("MyAfterFilter"))
 				.to(MyAfterFilter.class).in(Scopes.SINGLETON);
 
-		
 	}
 
 	/**

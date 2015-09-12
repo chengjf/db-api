@@ -16,7 +16,7 @@ import com.google.inject.Inject;
  * 
  * @author sharp
  * @date 2015-08-29
- *
+ * 
  */
 public class TodoMybatisDao extends CommonMybatisDao implements TodoDao {
 

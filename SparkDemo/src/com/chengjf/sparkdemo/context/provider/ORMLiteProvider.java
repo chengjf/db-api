@@ -22,7 +22,7 @@ public class ORMLiteProvider implements Provider<ConnectionSource> {
 		try {
 			connectionSource = new JdbcConnectionSource(databaseUrl);
 		} catch (SQLException e) {
-			logger.error("ORMLite数据源初始化错误！",e);
+			logger.error("ORMLite数据源初始化错误！", e);
 		}
 		return connectionSource;
 	}

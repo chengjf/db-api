@@ -18,7 +18,7 @@ import com.google.inject.name.Named;
  * 
  * @author sharp
  * @date 2015-9-3
- *
+ * 
  */
 public class MyBeforeFilter implements MyFilter {
 

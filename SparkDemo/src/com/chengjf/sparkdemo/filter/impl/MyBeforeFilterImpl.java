@@ -12,7 +12,7 @@ import spark.Response;
  * 
  * @author sharp
  * @date 2015-9-3
- *
+ * 
  */
 public class MyBeforeFilterImpl extends Filter {
 
