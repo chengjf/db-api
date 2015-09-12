@@ -9,6 +9,13 @@ import com.google.inject.Provider;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 
+/**
+ * ORMLite获取Provider
+ * 
+ * @author sharp
+ * @date 2015-9-12
+ *
+ */
 public class ORMLiteProvider implements Provider<ConnectionSource> {
 
 	private static final Logger logger = LoggerFactory

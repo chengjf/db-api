@@ -7,6 +7,13 @@ import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.module.todo.service.ITodoService;
 
+/**
+ * TodoService
+ * 
+ * @author sharp
+ * @date 2015-9-12
+ *
+ */
 public class TodoService implements ITodoService {
 
 	@Override

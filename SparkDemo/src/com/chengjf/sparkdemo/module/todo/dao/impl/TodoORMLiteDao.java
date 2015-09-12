@@ -15,6 +15,13 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 
+/**
+ * TodoDao的ORMLite实现类
+ * 
+ * @author sharp
+ * @date 2015-9-12
+ *
+ */
 public class TodoORMLiteDao extends CommonORMLiteDao implements TodoDao {
 
 	private static final Logger logger = LoggerFactory
