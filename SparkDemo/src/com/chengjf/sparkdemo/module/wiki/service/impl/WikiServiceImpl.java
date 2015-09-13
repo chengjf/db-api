@@ -1,7 +1,9 @@
 package com.chengjf.sparkdemo.module.wiki.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -92,5 +94,15 @@ public class WikiServiceImpl implements IWikiService {
 		}
 
 		return true;
+	}
+
+	@Override
+	public List<Page> getAllPages() {
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		List<Page> pageList = pageDao.getAllPages();
+		if (pageList == null) {
+			pageList = new ArrayList<Page>();
+		}
+		return pageList;
 	}
 }

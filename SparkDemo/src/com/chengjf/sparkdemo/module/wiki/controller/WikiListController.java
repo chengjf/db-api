@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo.module.todo.controller;
+package com.chengjf.sparkdemo.module.wiki.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,41 +17,40 @@ import com.chengjf.sparkdemo.annotation.TemplateEngine;
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.controller.CommonController;
 import com.chengjf.sparkdemo.controller.ControllerHelper;
-import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.module.todo.service.ITodoService;
+import com.chengjf.sparkdemo.module.wiki.model.Page;
+import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
- * Todo展示
+ * 所有的wiki列表
  * 
  * @author sharp
- * @date 2015-9-3
+ * @date 2015-9-13
  * 
  */
 
-@Controller(url = "/todo")
-public class TodoController extends CommonController {
+@Controller(url = "/wiki")
+public class WikiListController extends CommonController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(TodoController.class);
+			.getLogger(WikiListController.class);
 
 	@Get(templateEngine = TemplateEngine.FREEMARKER)
-	public ModelAndView index(Request req, Response res) {
-
+	public ModelAndView showAllWikis(Request req, Response res) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		ITodoService todoService = MyContext.context
-				.getInstance(ITodoService.class);
+		IWikiService todoService = MyContext.context
+				.getInstance(IWikiService.class);
 		if (todoService == null) {
 			logger.error("未获取到" + ITodoService.class);
 		} else {
 			try {
-				List<Todo> todos = todoService.getAllTodos();
-				model.put("todoList", todos);
+				List<Page> pages = todoService.getAllPages();
+				model.put("pageList", pages);
 			} catch (Exception e) {
-				logger.error("获取所有Todo出错！", e);
+				logger.error("获取所有Page出错！", e);
 			}
 		}
 		return ControllerHelper.modelAndView(model,
-				"template/todo/todoList.ftl");
+				"template/wiki/pageList.ftl");
 	}
-
 }

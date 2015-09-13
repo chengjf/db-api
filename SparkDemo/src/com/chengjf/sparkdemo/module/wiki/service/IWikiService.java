@@ -1,6 +1,9 @@
 package com.chengjf.sparkdemo.module.wiki.service;
 
+import java.util.List;
 import java.util.Map;
+
+import com.chengjf.sparkdemo.module.wiki.model.Page;
 
 /**
  * Wiki服务类
@@ -11,4 +14,6 @@ import java.util.Map;
 public interface IWikiService {
 
 	public boolean addNewWiki(Map<String, Object> parameters);
+
+	public List<Page> getAllPages();
 }
