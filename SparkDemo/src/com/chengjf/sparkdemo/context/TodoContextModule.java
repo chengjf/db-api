@@ -1,11 +1,13 @@
 package com.chengjf.sparkdemo.context;
 
 import com.chengjf.sparkdemo.controller.IController;
+import com.chengjf.sparkdemo.model.IModel;
 import com.chengjf.sparkdemo.module.index.controller.IndexController;
 import com.chengjf.sparkdemo.module.todo.controller.TodoAddController;
 import com.chengjf.sparkdemo.module.todo.controller.TodoController;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
 import com.chengjf.sparkdemo.module.todo.dao.impl.TodoORMLiteDao;
+import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.module.todo.service.ITodoService;
 import com.chengjf.sparkdemo.module.todo.service.impl.TodoService;
 import com.google.inject.AbstractModule;
@@ -37,6 +39,10 @@ public class TodoContextModule extends AbstractModule {
 
 		// Service
 		bind(ITodoService.class).to(TodoService.class).in(Scopes.SINGLETON);
+
+		// Model
+		bind(IModel.class).annotatedWith(Names.named("Todo")).to(Todo.class)
+				.in(Scopes.SINGLETON);
 
 	}
 

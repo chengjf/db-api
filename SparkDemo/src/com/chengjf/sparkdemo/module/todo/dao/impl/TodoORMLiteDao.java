@@ -20,7 +20,7 @@ import com.j256.ormlite.support.ConnectionSource;
  * 
  * @author sharp
  * @date 2015-9-12
- *
+ * 
  */
 public class TodoORMLiteDao extends CommonORMLiteDao implements TodoDao {
 

@@ -1,8 +1,13 @@
 package com.chengjf.sparkdemo.module.wiki.service.impl;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.Callable;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.module.wiki.dao.PageDao;
@@ -12,6 +17,8 @@ import com.chengjf.sparkdemo.module.wiki.model.Page;
 import com.chengjf.sparkdemo.module.wiki.model.Revision;
 import com.chengjf.sparkdemo.module.wiki.model.Text;
 import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
+import com.j256.ormlite.misc.TransactionManager;
+import com.j256.ormlite.support.ConnectionSource;
 
 /**
  * wiki服务实现类
@@ -21,63 +28,69 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
  */
 public class WikiServiceImpl implements IWikiService {
 
+	private static final Logger logger = LoggerFactory
+			.getLogger(WikiServiceImpl.class);
+
 	@Override
 	public boolean addNewWiki(Map<String, Object> parameters) {
 		// STEP 1. 组装Text
-		Text text = new Text();
+		final Text text = new Text();
 		String context = (String) parameters.get("content");
 		String textId = UUID.randomUUID().toString();
-		text.setId(textId);
+		text.setTextId(textId);
 		text.setText(context);
 		text.setType("text");
 
-		// STEP 2. 组装Revision
-		Revision revision = new Revision();
-		String revisionId = UUID.randomUUID().toString();
-		revision.setId(revisionId);
-		revision.setTextId(textId);
-		revision.setDeleted(false);
-		revision.setTimestamp(new Date());
-		revision.setUserId("");
-		revision.setParentId("");
-
-		// STEP 3. 组装Page
-		Page page = new Page();
+		// STEP 2. 组装Page
+		final Page page = new Page();
 		String namespace = (String) parameters.get("namespace");
 		String title = (String) parameters.get("title");
 		String pageId = UUID.randomUUID().toString();
-		page.setId(pageId);
+		page.setPageId(pageId);
 		page.setCounter(0);
 		page.setTitle(title);
 		page.setNamespace(namespace);
-		page.setLatest(revisionId);
+		page.setComment("");
+		page.setCreatedDate(new Date());
 
-		int result = 0;
+		// STEP 3. 组装Revision
+		final Revision revision = new Revision();
+		String revisionId = UUID.randomUUID().toString();
+		revision.setRevisionId(revisionId);
+		revision.setText(text);
+		revision.setPage(page);
+		revision.setDeleted(false);
+		revision.setTimestamp(new Date());
+		revision.setUserId("chengjf");
+		revision.setParentId(null);
+		revision.setLatest(true);
+
 		try {
-			TextDao textDao = MyContext.context.getInstance(TextDao.class);
-			result = textDao.addText(text);
-			if (result == 0) {
-				throw new RuntimeException();
-			}
-			RevisionDao revisionDao = MyContext.context
-					.getInstance(RevisionDao.class);
-			result = revisionDao.addRevision(revision);
-			if (result == 0) {
-				textDao.deleteText(text);
-				throw new RuntimeException();
-			}
-			PageDao pageDao = MyContext.context.getInstance(PageDao.class);
-			result = pageDao.addPage(page);
-			if (result == 0) {
-				textDao.deleteText(text);
-				revisionDao.deleteRevision(revision);
-				throw new RuntimeException();
-			}
-		} catch (Exception e) {
+			TransactionManager.callInTransaction(
+					MyContext.context.getInstance(ConnectionSource.class),
+					new Callable<Void>() {
 
+						@Override
+						public Void call() throws Exception {
+							TextDao textDao = MyContext.context
+									.getInstance(TextDao.class);
+							textDao.addText(text);
+
+							PageDao pageDao = MyContext.context
+									.getInstance(PageDao.class);
+							pageDao.addPage(page);
+
+							RevisionDao revisionDao = MyContext.context
+									.getInstance(RevisionDao.class);
+							revisionDao.addRevision(revision);
+
+							return null;
+						}
+					});
+		} catch (SQLException e) {
+			logger.error("", e);
 		}
 
 		return true;
 	}
-
 }

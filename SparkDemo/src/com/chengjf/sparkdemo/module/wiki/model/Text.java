@@ -1,24 +1,27 @@
 package com.chengjf.sparkdemo.module.wiki.model;
 
+import com.chengjf.sparkdemo.model.IModel;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 /**
  * Wiki内容
  * 
  * @author CHENGJIANFENG100
  * @date 2015-09-08
  */
-public class Text {
 
-	private String id;
+@DatabaseTable(tableName = "text")
+public class Text implements IModel {
+
+	@DatabaseField(columnName = "text_id", canBeNull = false, id = true)
+	private String textId;
+
+	@DatabaseField(columnName = "text", canBeNull = false)
 	private String text;
+
+	@DatabaseField(columnName = "type", canBeNull = true)
 	private String type;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getText() {
 		return text;
@@ -34,6 +37,14 @@ public class Text {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getTextId() {
+		return textId;
+	}
+
+	public void setTextId(String textId) {
+		this.textId = textId;
 	}
 
 }
