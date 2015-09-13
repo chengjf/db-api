@@ -15,7 +15,8 @@ import com.chengjf.sparkdemo.annotation.Controller;
 import com.chengjf.sparkdemo.annotation.Get;
 import com.chengjf.sparkdemo.annotation.TemplateEngine;
 import com.chengjf.sparkdemo.context.MyContext;
-import com.chengjf.sparkdemo.controller.FreeMarkerController;
+import com.chengjf.sparkdemo.controller.CommonController;
+import com.chengjf.sparkdemo.controller.ControllerHelper;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.module.todo.service.ITodoService;
 import com.google.inject.Inject;
@@ -29,7 +30,7 @@ import com.google.inject.Inject;
  */
 
 @Controller(url = "/todo")
-public class TodoController extends FreeMarkerController {
+public class TodoController extends CommonController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(TodoController.class);
@@ -54,7 +55,8 @@ public class TodoController extends FreeMarkerController {
 				logger.error("获取所有Todo出错！", e);
 			}
 		}
-		return modelAndView(model, "template/todo/todoList.ftl");
+		return ControllerHelper.modelAndView(model,
+				"template/todo/todoList.ftl");
 	}
 
 }

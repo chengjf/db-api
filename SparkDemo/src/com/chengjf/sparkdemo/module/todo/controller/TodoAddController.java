@@ -15,7 +15,8 @@ import com.chengjf.sparkdemo.annotation.Get;
 import com.chengjf.sparkdemo.annotation.Post;
 import com.chengjf.sparkdemo.annotation.TemplateEngine;
 import com.chengjf.sparkdemo.context.MyContext;
-import com.chengjf.sparkdemo.controller.FreeMarkerController;
+import com.chengjf.sparkdemo.controller.CommonController;
+import com.chengjf.sparkdemo.controller.ControllerHelper;
 import com.chengjf.sparkdemo.module.todo.model.Todo;
 import com.chengjf.sparkdemo.module.todo.service.ITodoService;
 
@@ -26,7 +27,7 @@ import com.chengjf.sparkdemo.module.todo.service.ITodoService;
  * @date 2015-09-10
  */
 @Controller(url = "/todo/add")
-public class TodoAddController extends FreeMarkerController {
+public class TodoAddController extends CommonController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(TodoAddController.class);
@@ -36,8 +37,7 @@ public class TodoAddController extends FreeMarkerController {
 
 	@Get(templateEngine = TemplateEngine.FREEMARKER)
 	public ModelAndView get(Request req, Response res) {
-
-		return modelAndView(null, "template/todo/addTodo.ftl");
+		return ControllerHelper.modelAndView(null, "template/todo/addTodo.ftl");
 	}
 
 	@Post(templateEngine = TemplateEngine.DEFAULT)
