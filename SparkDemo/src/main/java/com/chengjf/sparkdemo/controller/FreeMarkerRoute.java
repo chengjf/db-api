@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import freemarker.template.Configuration;
-import freemarker.template.Version;
 
 /**
  * 自定义FreeMarkerRoute类，指定了模板路径
@@ -21,8 +20,7 @@ public abstract class FreeMarkerRoute extends
 	private static final Logger logger = LoggerFactory
 			.getLogger(FreeMarkerRoute.class);
 
-	private static Configuration configuration = new Configuration(new Version(
-			"2.3.0"));
+	private static Configuration configuration = new Configuration();
 
 	static {
 		try {

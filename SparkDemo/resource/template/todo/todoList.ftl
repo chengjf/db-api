@@ -18,8 +18,6 @@
 						<td>${item.createdDate?string("yyyy-MM-dd HH:mm:ss")}</td>
 						<td>${item.completed?string('yes', 'no')}</td>
 					</tr>
-				<#else>
-				    Part executed when there are 0 items
 				</#list>
 			</tbody>
 		</table>

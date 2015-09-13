@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="config"/>
-	<classpathentry kind="src" path="resource"/>
-	<classpathentry kind="lib" path="libs/gson-2.3.1.jar"/>
-	<classpathentry kind="lib" path="libs/slf4j-api-1.7.5.jar"/>
-	<classpathentry kind="lib" path="libs/spark-core-1.1.1.jar"/>
-	<classpathentry kind="lib" path="libs/servlet-api-3.0.20100224.jar"/>
-	<classpathentry kind="lib" path="libs/jetty-server-9.0.0.v20130308.jar"/>
-	<classpathentry kind="lib" path="libs/jetty-util-9.0.0.v20130308.jar"/>
-	<classpathentry kind="lib" path="libs/jetty-io-9.0.0.v20130308.jar"/>
-	<classpathentry kind="lib" path="libs/jetty-http-9.0.0.v20130308.jar"/>
-	<classpathentry kind="lib" path="libs/spark-template-freemarker-1.0.jar"/>
-	<classpathentry kind="lib" path="libs/freemarker-2.3.23.jar"/>
-	<classpathentry kind="lib" path="libs/mybatis-3.3.0.jar"/>
-	<classpathentry kind="lib" path="libs/sqlite-jdbc-3.8.9.1.jar"/>
-	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="libs/c3p0-0.9.1.2.jar"/>
-	<classpathentry kind="lib" path="libs/log4j-1.2.16.jar"/>
-	<classpathentry kind="lib" path="libs/slf4j-log4j12-1.7.12.jar"/>
-	<classpathentry kind="lib" path="libs/guava-18.0.jar"/>
-	<classpathentry kind="lib" path="libs/guice-4.0-no_aop.jar"/>
-	<classpathentry kind="lib" path="libs/javax.Inject-1.jar"/>
-	<classpathentry kind="lib" path="libs/ormlite-core-4.49-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="libs/ormlite-jdbc-4.49-SNAPSHOT.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
