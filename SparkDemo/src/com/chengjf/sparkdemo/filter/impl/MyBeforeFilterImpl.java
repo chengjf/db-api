@@ -21,7 +21,11 @@ public class MyBeforeFilterImpl extends Filter {
 
 	@Override
 	public void handle(Request req, Response res) {
-		logger.debug("req: " + req.pathInfo());
+		req.session(true);
+		if (req.session().isNew()) {
+			req.session().attribute("user", "chengjf");
+		}
+		logger.debug("req: " + req.raw().getMethod() + " " + req.pathInfo());
 	}
 
 }
