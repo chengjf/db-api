@@ -1,6 +1,7 @@
 package com.chengjf.sparkdemo.module.wiki.dao.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -41,14 +42,25 @@ public class RevisionORMLiteDao extends CommonORMLiteDao implements RevisionDao 
 
 	@Override
 	public List<Revision> getAllRevisions() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Revision> revisionList = new ArrayList<Revision>();
+		try {
+			revisionList = this.revisionDao.queryForAll();
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return revisionList;
 	}
 
 	@Override
 	public Revision getRevisionById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Revision revision = null;
+		try {
+			revision = this.revisionDao.queryForId(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return revision;
 	}
 
 	@Override

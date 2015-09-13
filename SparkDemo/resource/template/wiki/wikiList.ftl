@@ -8,15 +8,17 @@
 					<td>名称</td>
 					<td>创建日期</td>
 					<td>点击量</td>
+					<td>详细</td>
 				</tr>
 			</thead>
 			<tbody>
-				<#list pageList as item>
+				<#list wikiList as item>
 					<tr>
-						<td>${item.namespace}</td>
-						<td>${item.title}</td>
-						<td>${item.createdDate?string("yyyy-MM-dd")}</td>
-						<td>${item.counter}</td>
+						<td>${item.page.namespace}</td>
+						<td>${item.page.title}</td>
+						<td>${item.page.createdDate?string("yyyy-MM-dd")}</td>
+						<td>${item.page.counter}</td>
+						<td><a href="/wiki/${item.revisionId}">详情</a></td>
 					</tr>
 				<#else>
 				    <!--Part executed when there are 0 items-->

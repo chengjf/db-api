@@ -16,10 +16,10 @@ public class Revision implements IModel {
 	@DatabaseField(columnName = "revision_id", canBeNull = false, id = true)
 	private String revisionId;
 
-	@DatabaseField(canBeNull = false, foreign = true, columnName = "page_id")
+	@DatabaseField(canBeNull = false, foreign = true, columnName = "page_id", foreignAutoRefresh = true)
 	private Page page;
 
-	@DatabaseField(canBeNull = false, foreign = true, columnName = "text_id")
+	@DatabaseField(canBeNull = false, foreign = true, columnName = "text_id", foreignAutoRefresh = true)
 	private Text text;
 
 	@DatabaseField(columnName = "comment", canBeNull = true)

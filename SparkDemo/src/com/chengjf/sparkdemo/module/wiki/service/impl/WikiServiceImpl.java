@@ -3,6 +3,7 @@ package com.chengjf.sparkdemo.module.wiki.service.impl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -100,12 +101,26 @@ public class WikiServiceImpl implements IWikiService {
 	}
 
 	@Override
-	public List<Page> getAllPages() {
-		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
-		List<Page> pageList = pageDao.getAllPages();
+	public List<Revision> getAllWikis() {
+		RevisionDao revisionDao = MyContext.context
+				.getInstance(RevisionDao.class);
+		List<Revision> pageList = revisionDao.getAllRevisions();
+
 		if (pageList == null) {
-			pageList = new ArrayList<Page>();
+			pageList = new ArrayList<Revision>();
 		}
 		return pageList;
+	}
+
+	@Override
+	public Map<String, Object> getWikiByRevisionId(String revisionId) {
+
+		Map<String, Object> wiki = new HashMap<String, Object>();
+		RevisionDao revisionDao = MyContext.context
+				.getInstance(RevisionDao.class);
+		Revision revision = revisionDao.getRevisionById(revisionId);
+		wiki.put("revision", revision);
+
+		return wiki;
 	}
 }
