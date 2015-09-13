@@ -38,32 +38,35 @@ public class WikiServiceImpl implements IWikiService {
 		// STEP 1. 组装Text
 		final Text text = new Text();
 		String context = (String) parameters.get("content");
+		String type = (String) parameters.get("type");
 		String textId = UUID.randomUUID().toString();
 		text.setTextId(textId);
 		text.setText(context);
-		text.setType("text");
+		text.setType(type);
 
 		// STEP 2. 组装Page
 		final Page page = new Page();
 		String namespace = (String) parameters.get("namespace");
 		String title = (String) parameters.get("title");
+		String comment = (String) parameters.get("comment");
 		String pageId = UUID.randomUUID().toString();
 		page.setPageId(pageId);
 		page.setCounter(0);
 		page.setTitle(title);
 		page.setNamespace(namespace);
-		page.setComment("");
+		page.setComment(comment);
 		page.setCreatedDate(new Date());
 
 		// STEP 3. 组装Revision
 		final Revision revision = new Revision();
 		String revisionId = UUID.randomUUID().toString();
+		String userId = (String) parameters.get("userId");
 		revision.setRevisionId(revisionId);
 		revision.setText(text);
 		revision.setPage(page);
 		revision.setDeleted(false);
 		revision.setTimestamp(new Date());
-		revision.setUserId("chengjf");
+		revision.setUserId(userId);
 		revision.setParentId(null);
 		revision.setLatest(true);
 

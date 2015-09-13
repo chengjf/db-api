@@ -32,9 +32,6 @@ public class TodoAddController extends CommonController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(TodoAddController.class);
 
-	public TodoAddController() {
-	}
-
 	@Get(templateEngine = TemplateEngine.FREEMARKER)
 	public ModelAndView get(Request req, Response res) {
 		return ControllerHelper.modelAndView(null, "template/todo/addTodo.ftl");

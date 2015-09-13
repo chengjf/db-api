@@ -56,6 +56,7 @@ public class WikiContextModule extends AbstractModule {
 		bind(TextDao.class).to(TextORMLiteDao.class).in(Scopes.SINGLETON);
 		bind(RevisionDao.class).to(RevisionORMLiteDao.class).in(
 				Scopes.SINGLETON);
+
 	}
 
 }

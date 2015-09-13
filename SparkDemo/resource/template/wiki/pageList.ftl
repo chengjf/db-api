@@ -1,7 +1,7 @@
 <#include "/layout/header.ftl"/> 
 	<div class="content">
 		<table  class="table table-bordered table-striped table-hover">
-			<caption>ALL TODO</caption>
+			<caption>ALL Wiki</caption>
 			<thead>
 				<tr>
 					<td>主题</td>

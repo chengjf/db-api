@@ -44,7 +44,6 @@ public class TodoORMLiteDao extends CommonORMLiteDao implements TodoDao {
 		List<Todo> todoList = new ArrayList<Todo>();
 		try {
 			todoList = this.todoDao.queryForAll();
-			System.err.println(this.todoDao);
 		} catch (SQLException e) {
 			logger.error("", e);
 		}
