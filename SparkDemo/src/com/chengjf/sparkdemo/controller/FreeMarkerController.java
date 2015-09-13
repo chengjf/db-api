@@ -11,8 +11,6 @@ import spark.ModelAndView;
  */
 public abstract class FreeMarkerController extends CommonController {
 
-	protected String template;
-
 	public FreeMarkerController() {
 	}
 
