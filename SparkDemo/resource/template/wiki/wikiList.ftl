@@ -20,8 +20,6 @@
 						<td>${item.page.counter}</td>
 						<td><a href="/wiki/${item.revisionId}">详情</a></td>
 					</tr>
-				<#else>
-				    <!--Part executed when there are 0 items-->
 				</#list>
 			</tbody>
 		</table>

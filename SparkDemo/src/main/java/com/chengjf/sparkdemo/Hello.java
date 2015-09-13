@@ -12,5 +12,6 @@ public class Hello {
 
 		Bootstrap bootstrap = new Bootstrap();
 		bootstrap.boot();
+
 	}
 }
