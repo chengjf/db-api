@@ -97,6 +97,9 @@ public class Bootstrap {
 		}
 	}
 
+	/**
+	 * 初始化数据库
+	 */
 	private void initDatabase() {
 		List<Binding<IModel>> list = injector
 				.findBindingsByType(new TypeLiteral<IModel>() {
@@ -108,6 +111,11 @@ public class Bootstrap {
 
 	}
 
+	/**
+	 * 建表
+	 * 
+	 * @param t
+	 */
 	private <T> void createTable(Class<T> t) {
 		try {
 			ConnectionSource connectionSource = MyContext.context
