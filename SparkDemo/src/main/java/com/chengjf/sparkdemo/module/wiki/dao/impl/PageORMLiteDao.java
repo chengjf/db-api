@@ -70,8 +70,13 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 
 	@Override
 	public int updatePage(Page page) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = this.pageDao.update(page);
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return result;
 	}
 
 	@Override

@@ -123,4 +123,18 @@ public class WikiServiceImpl implements IWikiService {
 
 		return wiki;
 	}
+
+	@Override
+	public int addClickCount(String revisionId) {
+		RevisionDao revisionDao = MyContext.context
+				.getInstance(RevisionDao.class);
+		Revision revision = revisionDao.getRevisionById(revisionId);
+		Page page = revision.getPage();
+		int counter = page.getCounter() + 1;
+		page.setCounter(counter);
+
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		pageDao.updatePage(page);
+		return counter;
+	}
 }

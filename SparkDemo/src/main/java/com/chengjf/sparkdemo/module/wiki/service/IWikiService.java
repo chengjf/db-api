@@ -18,4 +18,6 @@ public interface IWikiService {
 	public List<Revision> getAllWikis();
 
 	public Map<String, Object> getWikiByRevisionId(String revisionId);
+
+	public int addClickCount(String revisionId);
 }

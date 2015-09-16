@@ -31,6 +31,7 @@ public class WikiShowController extends CommonController {
 
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
+		wikiService.addClickCount(id);
 		Map<String, Object> model = wikiService.getWikiByRevisionId(id);
 		return ControllerHelper.modelAndView(model,
 				"/template/wiki/showWiki.ftl");
