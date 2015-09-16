@@ -36,15 +36,15 @@
 		
 		
 		<link rel="stylesheet" href="/editor/css/editormd.css">
-		<link type="text/css" rel="stylesheet" href="/editor/lib/codemirror/codemirror.min.css">
-		<link type="text/css" rel="stylesheet" href="/editor/lib/codemirror/addon/dialog/dialog.css">
-		<link type="text/css" rel="stylesheet" href="/editor/lib/codemirror/addon/search/matchesonscrollbar.css">
+		<link type="text/css" rel="stylesheet" href="/editor/libs/codemirror/codemirror.min.css">
+		<link type="text/css" rel="stylesheet" href="/editor/libs/codemirror/addon/dialog/dialog.css">
+		<link type="text/css" rel="stylesheet" href="/editor/libs/codemirror/addon/search/matchesonscrollbar.css">
 		
-		<script id="-lib-codemirror-codemirror-min" type="text/javascript" src="/editor/lib/codemirror/codemirror.min.js"></script>
-		<script id="-lib-codemirror-modes-min" type="text/javascript" src="/editor/lib/codemirror/modes.min.js"></script>
-		<script id="-lib-codemirror-addons-min" type="text/javascript" src="/editor/lib/codemirror/addons.min.js"></script>
-		<script id="-lib-marked-min" type="text/javascript" src="/editor/lib/marked.min.js"></script>
-		<script id="-lib-prettify-min" type="text/javascript" src="/editor/lib/prettify.min.js"></script>
+		<script id="-lib-codemirror-codemirror-min" type="text/javascript" src="/editor/libs/codemirror/codemirror.min.js"></script>
+		<script id="-lib-codemirror-modes-min" type="text/javascript" src="/editor/libs/codemirror/modes.min.js"></script>
+		<script id="-lib-codemirror-addons-min" type="text/javascript" src="/editor/libs/codemirror/addons.min.js"></script>
+		<script id="-lib-marked-min" type="text/javascript" src="/editor/libs/marked.min.js"></script>
+		<script id="-lib-prettify-min" type="text/javascript" src="/editor/libs/prettify.min.js"></script>
 		
 		<script type="text/javascript" src="/editor/editormd.min.js"></script>
 		<script type="text/javascript">
@@ -56,7 +56,7 @@
                     width   : "70%",
                     height  : 640,
                     syncScrolling : "single",
-                    path    : "/editor/lib/"
+                    path    : "/editor/libs/"
                 });
             });
         
