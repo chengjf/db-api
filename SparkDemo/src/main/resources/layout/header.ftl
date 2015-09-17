@@ -3,10 +3,10 @@
 <head>
 	<title>SparkDemo</title>
 	<meta charset="utf-8"/>
-	<link href="${base}/css/bootstrap.min.css?v=20150604" rel="stylesheet"/>
-	<link href="/css/style.css" rel="stylesheet"/>
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
+	<link href="${staticFilePath}/css/bootstrap.min.css?v=20150604" rel="stylesheet"/>
+	<link href="${staticFilePath}/css/style.css" rel="stylesheet"/>
+	<script src="${staticFilePath}/js/jquery.min.js"></script>
+	<script src="${staticFilePath}/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -34,13 +34,13 @@
 						</a>
 						<ul id="todo" class="nav nav-list collapse secondmenu" style="height: 0px;">
 							<li>
-								<a href="/todo">
+								<a href="${baseUrl}/todo">
 									<i class="glyphicon glyphicon-user"></i>
 									查看代办事项
 								</a>
 							</li>
 							<li>
-								<a href="/todo/add">
+								<a href="${baseUrl}/todo/add">
 									<i class="glyphicon glyphicon-th-list"></i>
 									添加代办事项
 								</a>
@@ -55,13 +55,13 @@
 						</a>
 						<ul id="wiki" class="nav nav-list collapse secondmenu" style="height: 0px;">
 							<li>
-								<a href="/wiki">
+								<a href="${baseUrl}/wiki">
 									<i class="glyphicon glyphicon-user"></i>
 									查看wiki
 								</a>
 							</li>
 							<li>
-								<a href="/wiki/add">
+								<a href="${baseUrl}/wiki/add">
 									<i class="glyphicon glyphicon-th-list"></i>
 									添加wiki
 								</a>

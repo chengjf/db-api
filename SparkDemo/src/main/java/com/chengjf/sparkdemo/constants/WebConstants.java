@@ -13,9 +13,9 @@ public class WebConstants {
 	public static final String AFTER_FILTER = "afterFilter";
 
 	public static final String STATIC_FILE_PATH = "staticFilePath";
-	
+
 	public static final String BASE_URL = "baseUrl";
-	
+
 	public static final String TEMPLATE_PATH = "templatePath";
 
 }

@@ -56,7 +56,7 @@ public class TodoAddController extends CommonController {
 		}
 
 		// redirect到查看页
-		res.redirect("/todo");
+		res.redirect(ControllerHelper.getRedirectUrl("/todo"));
 		return res;
 	}
 }

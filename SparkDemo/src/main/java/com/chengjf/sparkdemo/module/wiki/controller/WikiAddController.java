@@ -35,7 +35,7 @@ public class WikiAddController extends CommonController {
 
 	@Get(templateEngine = TemplateEngine.FREEMARKER)
 	public ModelAndView get(Request req, Response res) {
-		return ControllerHelper.modelAndView(null, "template/wiki/addwiki.ftl");
+		return ControllerHelper.modelAndView(null, "template/wiki/addWiki.ftl");
 	}
 
 	@Post(templateEngine = TemplateEngine.DEFAULT)
@@ -71,7 +71,7 @@ public class WikiAddController extends CommonController {
 		}
 
 		// redirect到查看页
-		res.redirect("/wiki");
+		res.redirect(ControllerHelper.getRedirectUrl("/wiki"));
 		return res;
 	}
 }

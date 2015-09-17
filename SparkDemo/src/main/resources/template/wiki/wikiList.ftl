@@ -18,7 +18,7 @@
 						<td>${item.page.title}</td>
 						<td>${item.page.createdDate?string("yyyy-MM-dd")}</td>
 						<td>${item.page.counter}</td>
-						<td><a href="/wiki/${item.revisionId}">详情</a></td>
+						<td><a href="${baseUrl}/wiki/${item.revisionId}">详情</a></td>
 					</tr>
 				</#list>
 			</tbody>
