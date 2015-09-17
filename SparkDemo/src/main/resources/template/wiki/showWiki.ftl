@@ -26,7 +26,7 @@
 			<div class="form-group">
 				<label for="createdDate" class="col-sm-2 control-label">创建时间</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="comment" name="comment" placeholder="创建时间" disabled value=${revision.page.createdDate?string("yyyy-MM-dd HH:mm:ss")}></div>
+					<input type="text" class="form-control" id="comment" name="comment" placeholder="创建时间" disabled value=${revision.page.createdDate?datetime}></div>
 			</div>
 		
 			<div class="form-group">

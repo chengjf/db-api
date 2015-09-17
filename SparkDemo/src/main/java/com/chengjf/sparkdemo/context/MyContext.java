@@ -1,5 +1,7 @@
 package com.chengjf.sparkdemo.context;
 
+import java.util.Properties;
+
 import com.google.inject.Injector;
 
 /**
@@ -12,4 +14,6 @@ import com.google.inject.Injector;
 public class MyContext {
 
 	public static Injector context = null;
+
+	public static Properties properties = null;
 }

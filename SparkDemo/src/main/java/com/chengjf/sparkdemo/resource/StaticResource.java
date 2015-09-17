@@ -2,9 +2,10 @@ package com.chengjf.sparkdemo.resource;
 
 import static spark.Spark.staticFileLocation;
 
+import com.chengjf.sparkdemo.configuration.Configuration;
 import com.chengjf.sparkdemo.constants.WebConstants;
+import com.chengjf.sparkdemo.context.MyContext;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 /**
  * 静态资源配置
@@ -17,8 +18,9 @@ public class StaticResource {
 	private String path;
 
 	@Inject
-	public StaticResource(@Named(WebConstants.STATIC_FILE_PATH) String path) {
-		this.path = path;
+	public StaticResource() {
+		this.path = MyContext.context.getInstance(Configuration.class)
+				.getConfig(WebConstants.STATIC_FILE_PATH);
 	}
 
 	public void execute() {

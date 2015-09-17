@@ -1,6 +1,13 @@
 package com.chengjf.sparkdemo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import spark.ModelAndView;
+
+import com.chengjf.sparkdemo.configuration.Configuration;
+import com.chengjf.sparkdemo.constants.WebConstants;
+import com.chengjf.sparkdemo.context.MyContext;
 
 /**
  * 
@@ -12,7 +19,17 @@ import spark.ModelAndView;
  */
 public class ControllerHelper {
 
-	public static ModelAndView modelAndView(Object model, String view) {
+	public static ModelAndView modelAndView(Map<String, Object> model,
+			String view) {
+		if (model == null) {
+			model = new HashMap<String, Object>();
+		}
+
+		Configuration configuration = MyContext.context
+				.getInstance(Configuration.class);
+		String baseUrl = configuration.getConfig(WebConstants.BASE_URL);
+
+		model.put("base", baseUrl);
 		ModelAndView mv = new ModelAndView(model, view);
 		return mv;
 	}

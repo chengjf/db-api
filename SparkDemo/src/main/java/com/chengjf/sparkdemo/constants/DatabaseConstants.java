@@ -9,4 +9,5 @@ package com.chengjf.sparkdemo.constants;
  */
 public class DatabaseConstants {
 	public static final String CONFIG_MYBATIS_CONFIG_FILE = "mybatisConfigFile";
+	public static final String DATABASE_URL = "databaseUrl";
 }

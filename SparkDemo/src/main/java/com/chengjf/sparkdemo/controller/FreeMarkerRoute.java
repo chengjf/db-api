@@ -1,11 +1,12 @@
 package com.chengjf.sparkdemo.controller;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.chengjf.sparkdemo.constants.WebConstants;
+import com.chengjf.sparkdemo.context.MyContext;
+
+import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 
 /**
@@ -24,9 +25,17 @@ public abstract class FreeMarkerRoute extends
 
 	static {
 		try {
-			configuration.setDirectoryForTemplateLoading(new File("resource"));
-		} catch (IOException e) {
+
+			com.chengjf.sparkdemo.configuration.Configuration config = MyContext.context
+					.getInstance(com.chengjf.sparkdemo.configuration.Configuration.class);
+			String templatePath = config.getConfig(WebConstants.TEMPLATE_PATH);
+
+			configuration.setTemplateLoader(new ClassTemplateLoader(
+					FreeMarkerRoute.class, templatePath));
+
+		} catch (Exception e) {
 			logger.error("FreeMarker设置template路径出错！", e);
+			System.exit(1);
 		}
 	}
 

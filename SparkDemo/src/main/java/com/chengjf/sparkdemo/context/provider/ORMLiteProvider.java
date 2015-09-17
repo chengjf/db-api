@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.chengjf.sparkdemo.configuration.Configuration;
+import com.chengjf.sparkdemo.constants.DatabaseConstants;
+import com.chengjf.sparkdemo.context.MyContext;
 import com.google.inject.Provider;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
@@ -23,7 +26,9 @@ public class ORMLiteProvider implements Provider<ConnectionSource> {
 
 	@Override
 	public ConnectionSource get() {
-		String databaseUrl = "jdbc:sqlite:./resource/app.db";
+		Configuration config = MyContext.context
+				.getInstance(Configuration.class);
+		String databaseUrl = config.getConfig(DatabaseConstants.DATABASE_URL);
 		// create a connection source to our database
 		ConnectionSource connectionSource = null;
 		try {
