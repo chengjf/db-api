@@ -21,11 +21,41 @@ public class Configuration {
 
 	public Properties config;
 
+	public static final String configFilePath = "config.properties";
+	public static final String devConfigFilePath = "dev-config.properties";
+	public static final String productionConfigFilePath = "production-config.properties";
+	public static final String isDevKey = "isDev";
+
 	public Configuration() {
 		config = new Properties();
+		loadPropertiesFile(configFilePath);
+		boolean isDev = true;
+
+		if (config.containsKey(isDevKey)) {
+			isDev = Boolean.valueOf((String) config.get(isDevKey));
+		}
+		if (isDev) {
+			loadPropertiesFile(devConfigFilePath);
+			logger.debug("采用开发环境配置！" + config);
+		} else {
+			loadPropertiesFile(productionConfigFilePath);
+			logger.debug("采用生产环境配置！" + config);
+		}
+
+	}
+
+	public String getConfig(String key) {
+		return this.config.getProperty(key);
+	}
+
+	public void setConfig(String key, String value) {
+		this.config.setProperty(key, value);
+	}
+
+	public void loadPropertiesFile(String filePath) {
 		InputStream inputStream = null;
 		try {
-			inputStream = Resources.getResourceAsStream("config.properties");
+			inputStream = Resources.getResourceAsStream(filePath);
 			config.load(inputStream);
 		} catch (IOException e) {
 			logger.error("config.properties配置文件读取出错！", e);
@@ -38,13 +68,5 @@ public class Configuration {
 				}
 			}
 		}
-	}
-
-	public String getConfig(String key) {
-		return this.config.getProperty(key);
-	}
-
-	public void setConfig(String key, String value) {
-		this.config.setProperty(key, value);
 	}
 }

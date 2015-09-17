@@ -3,10 +3,10 @@
 <head>
 	<title>SparkDemo</title>
 	<meta charset="utf-8"/>
-	<link href="${staticFilePath}/css/bootstrap.min.css?v=20150604" rel="stylesheet"/>
-	<link href="${staticFilePath}/css/style.css" rel="stylesheet"/>
-	<script src="${staticFilePath}/js/jquery.min.js"></script>
-	<script src="${staticFilePath}/js/bootstrap.min.js"></script>
+	<link href="${baseUrl}/css/bootstrap.min.css?v=20150604" rel="stylesheet"/>
+	<link href="${baseUrl}/css/style.css" rel="stylesheet"/>
+	<script src="${baseUrl}/js/jquery.min.js"></script>
+	<script src="${baseUrl}/js/bootstrap.min.js"></script>
 
 </head>
 <body>

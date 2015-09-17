@@ -35,18 +35,18 @@
 		</form>
 		
 		
-		<link rel="stylesheet" href="${staticFilePath}/editor/css/editormd.css">
-		<link type="text/css" rel="stylesheet" href="${staticFilePath}/editor/libs/codemirror/codemirror.min.css">
-		<link type="text/css" rel="stylesheet" href="${staticFilePath}/editor/libs/codemirror/addon/dialog/dialog.css">
-		<link type="text/css" rel="stylesheet" href="${staticFilePath}/editor/libs/codemirror/addon/search/matchesonscrollbar.css">
+		<link rel="stylesheet" href="${baseUrl}/editor/css/editormd.css">
+		<link type="text/css" rel="stylesheet" href="${baseUrl}/editor/libs/codemirror/codemirror.min.css">
+		<link type="text/css" rel="stylesheet" href="${baseUrl}/editor/libs/codemirror/addon/dialog/dialog.css">
+		<link type="text/css" rel="stylesheet" href="${baseUrl}/editor/libs/codemirror/addon/search/matchesonscrollbar.css">
 		
-		<script id="-lib-codemirror-codemirror-min" type="text/javascript" src="${staticFilePath}/editor/libs/codemirror/codemirror.min.js"></script>
-		<script id="-lib-codemirror-modes-min" type="text/javascript" src="${staticFilePath}/editor/libs/codemirror/modes.min.js"></script>
-		<script id="-lib-codemirror-addons-min" type="text/javascript" src="${staticFilePath}/editor/libs/codemirror/addons.min.js"></script>
-		<script id="-lib-marked-min" type="text/javascript" src="${staticFilePath}/editor/libs/marked.min.js"></script>
-		<script id="-lib-prettify-min" type="text/javascript" src="${staticFilePath}/editor/libs/prettify.min.js"></script>
+		<script id="-lib-codemirror-codemirror-min" type="text/javascript" src="${baseUrl}/editor/libs/codemirror/codemirror.min.js"></script>
+		<script id="-lib-codemirror-modes-min" type="text/javascript" src="${baseUrl}/editor/libs/codemirror/modes.min.js"></script>
+		<script id="-lib-codemirror-addons-min" type="text/javascript" src="${baseUrl}/editor/libs/codemirror/addons.min.js"></script>
+		<script id="-lib-marked-min" type="text/javascript" src="${baseUrl}/editor/libs/marked.min.js"></script>
+		<script id="-lib-prettify-min" type="text/javascript" src="${baseUrl}/editor/libs/prettify.min.js"></script>
 		
-		<script type="text/javascript" src="${staticFilePath}/editor/editormd.min.js"></script>
+		<script type="text/javascript" src="${baseUrl}/editor/editormd.min.js"></script>
 		<script type="text/javascript">
 			
 			var testEditor;
@@ -56,7 +56,7 @@
                     width   : "70%",
                     height  : 640,
                     syncScrolling : "single",
-                    path    : "${staticFilePath}/editor/libs/"
+                    path    : "${baseUrl}/editor/libs/"
                 });
             });
         

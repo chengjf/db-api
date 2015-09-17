@@ -1,7 +1,9 @@
 package com.chengjf.sparkdemo;
 
 import static spark.Spark.externalStaticFileLocation;
-import static spark.Spark.staticFileLocation;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 import org.eclipse.jetty.util.resource.Resource;
 
@@ -14,15 +16,21 @@ public class HelloFilter extends SparkFilter {
 		// bootstrap.initResource();
 		super();
 		// spark要求静态资源初始化必须在应用初始化之前
-		staticFileLocation("static");
-		externalStaticFileLocation("D:\\Code\\db-api\\SparkDemo\\src\\main\\webapp\\static");
-
+		System.err
+				.println("D:\\Code\\db-api\\SparkDemo\\src\\main\\webapp\\static\\");
+		Resource resource;
 		try {
-			Resource resource = Resource.newResource("static");
+			resource = Resource
+					.newResource("D:\\Code\\db-api\\SparkDemo\\src\\main\\webapp\\static\\");
 			System.err.println(resource);
-		} catch (Exception e) {
-
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		externalStaticFileLocation("D:\\Code\\db-api\\SparkDemo\\src\\main\\webapp\\static\\");
 
 	}
 }
