@@ -32,6 +32,8 @@ public abstract class FreeMarkerRoute extends
 
 			configuration.setTemplateLoader(new ClassTemplateLoader(
 					FreeMarkerRoute.class, templatePath));
+			// 设置编码，防止输出乱码
+			configuration.setDefaultEncoding("UTF-8");
 
 		} catch (Exception e) {
 			logger.error("FreeMarker设置template路径出错！", e);

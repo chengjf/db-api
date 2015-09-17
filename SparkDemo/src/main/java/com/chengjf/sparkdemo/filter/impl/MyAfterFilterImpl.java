@@ -20,7 +20,8 @@ public class MyAfterFilterImpl extends Filter {
 
 	@Override
 	public void handle(Request req, Response res) {
-		logger.debug("res: " + res.body());
+		logger.debug("res: " + res.raw());
+		res.raw().setCharacterEncoding("UTF-8");
 	}
 
 }

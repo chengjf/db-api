@@ -25,6 +25,7 @@ public class MyBeforeFilterImpl extends Filter {
 		if (req.session().isNew()) {
 			req.session().attribute("user", "chengjf");
 		}
+		res.raw().setCharacterEncoding("UTF-8");
 		logger.debug("req: " + req.raw().getMethod() + " " + req.pathInfo());
 	}
 
