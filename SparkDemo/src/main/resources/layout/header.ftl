@@ -1,12 +1,13 @@
-<!doctype html>
-<html>
+<!doctype  html>
+<html lang="zh-CN">
 <head>
 	<title>SparkDemo</title>
 	<meta charset="utf-8"/>
-	<link href="${baseUrl}/css/bootstrap.min.css?v=20150604" rel="stylesheet"/>
-	<link href="${baseUrl}/css/style.css" rel="stylesheet"/>
-	<script src="${baseUrl}/js/jquery.min.js"></script>
-	<script src="${baseUrl}/js/bootstrap.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href="${baseStaticFileUrl}/css/bootstrap.min.css?v=20150604" rel="stylesheet"/>
+	<link href="${baseStaticFileUrl}/css/style.css" rel="stylesheet"/>
+	<script src="${baseStaticFileUrl}/js/jquery.min.js"></script>
+	<script src="${baseStaticFileUrl}/js/bootstrap.min.js"></script>
 
 </head>
 <body>
