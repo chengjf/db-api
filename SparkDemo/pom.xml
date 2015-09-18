@@ -95,7 +95,11 @@
 			<artifactId>jetty-util</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
-
+		<dependency>
+		  <groupId>com.netflix.governator</groupId>
+		  <artifactId>governator</artifactId>
+		  <version>1.8.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
