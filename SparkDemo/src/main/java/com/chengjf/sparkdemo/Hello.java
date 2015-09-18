@@ -1,5 +1,7 @@
 package com.chengjf.sparkdemo;
 
+import com.chengjf.sparkdemo.configuration.Configuration;
+
 /**
  * 系统入口
  * 
@@ -9,6 +11,8 @@ package com.chengjf.sparkdemo;
 public class Hello {
 
 	public static void main(String[] args) {
+
+		Configuration.isDev = true;
 
 		Bootstrap bootstrap = new Bootstrap();
 		// 静态资源初始化

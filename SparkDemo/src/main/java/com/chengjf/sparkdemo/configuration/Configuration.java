@@ -26,14 +26,12 @@ public class Configuration {
 	public static final String productionConfigFilePath = "production-config.properties";
 	public static final String isDevKey = "isDev";
 
+	public static boolean isDev = true;
+	
 	public Configuration() {
 		config = new Properties();
 		loadPropertiesFile(configFilePath);
-		boolean isDev = true;
 
-		if (config.containsKey(isDevKey)) {
-			isDev = Boolean.valueOf((String) config.get(isDevKey));
-		}
 		if (isDev) {
 			loadPropertiesFile(devConfigFilePath);
 			logger.debug("采用开发环境配置！" + config);

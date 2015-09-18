@@ -16,6 +16,7 @@ public class WebConstants {
 	public static final String EXTERNAL_STATIC_FILE_LOCATION = "externalStaticFileLocation";
 
 	public static final String BASE_URL = "baseUrl";
+	public static final String BASE_STATIC_FILE_URL = "baseStaticFileUrl";
 
 	public static final String TEMPLATE_PATH = "templatePath";
 

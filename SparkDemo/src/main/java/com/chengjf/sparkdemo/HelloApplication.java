@@ -1,5 +1,7 @@
 package com.chengjf.sparkdemo;
 
+import com.chengjf.sparkdemo.configuration.Configuration;
+
 import spark.servlet.SparkApplication;
 
 /**
@@ -13,6 +15,7 @@ public class HelloApplication implements SparkApplication {
 	private Bootstrap bootstrap;
 
 	public HelloApplication() {
+		Configuration.isDev = false;
 		this.bootstrap = new Bootstrap();
 	}
 

@@ -29,6 +29,10 @@ public class ControllerHelper {
 				.getInstance(Configuration.class);
 		String baseUrl = configuration.getConfig(WebConstants.BASE_URL);
 		model.put("baseUrl", baseUrl);
+
+		String baseStaticFileUrl = configuration
+				.getConfig(WebConstants.BASE_STATIC_FILE_URL);
+		model.put("baseStaticFileUrl", baseUrl + baseStaticFileUrl);
 		ModelAndView mv = new ModelAndView(model, view);
 		return mv;
 	}
