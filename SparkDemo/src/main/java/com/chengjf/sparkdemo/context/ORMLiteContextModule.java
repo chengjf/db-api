@@ -17,7 +17,6 @@ public class ORMLiteContextModule extends AbstractModule {
 	protected void configure() {
 		bind(ConnectionSource.class).toProvider(ORMLiteProvider.class).in(
 				Scopes.SINGLETON);
-		;
 	}
 
 }

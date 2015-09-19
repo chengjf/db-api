@@ -38,16 +38,14 @@ public class Bootstrap {
 	private Injector injector;
 
 	public Bootstrap() {
-		logger.debug("init......");
+		logger.debug("系统开始初始化......");
 		this.injector = Guice.createInjector(new ContextModule(),
 				new BizModule());
 		MyContext.context = this.injector;
 	}
 
 	public void boot() {
-		logger.debug("boot start...");
-
-		// initResource();
+		logger.debug("系统开始启动......");
 
 		initDatabase();
 
@@ -55,28 +53,32 @@ public class Bootstrap {
 
 		initController();
 
-		logger.debug("boot end...");
+		logger.debug("系统启动完毕......");
 	}
 
 	/**
 	 * 初始化资源
 	 */
 	public void initResource() {
+		logger.debug("Spark框架静态资源初始化开始......");
 		StaticResource resource = this.injector
 				.getInstance(StaticResource.class);
 		resource.execute();
+		logger.debug("Spark框架静态资源初始化结束......");
 	}
 
 	/**
 	 * 初始化Filter
 	 */
 	private void initFilter() {
+		logger.debug("Spark框架Filter初始化开始......");
 		List<Binding<MyFilter>> list = injector
 				.findBindingsByType(new TypeLiteral<MyFilter>() {
 				});
 		for (Binding<MyFilter> bind : list) {
 			MyFilter filter = injector.getInstance(bind.getKey());
 			filter.start();
+			logger.debug("Spark框架Filter初始化结束......");
 		}
 	}
 
@@ -84,6 +86,7 @@ public class Bootstrap {
 	 * 初始化Controller
 	 */
 	private void initController() {
+		logger.debug("Controller初始化开始......");
 		List<Binding<IController>> list = injector
 				.findBindingsByType(new TypeLiteral<IController>() {
 				});
@@ -91,12 +94,14 @@ public class Bootstrap {
 			IController controller = injector.getInstance(bind.getKey());
 			controller.start();
 		}
+		logger.debug("Controller初始化结束......");
 	}
 
 	/**
 	 * 初始化数据库
 	 */
 	private void initDatabase() {
+		logger.debug("数据库开始初始化......");
 		List<Binding<IModel>> list = injector
 				.findBindingsByType(new TypeLiteral<IModel>() {
 				});
@@ -104,7 +109,7 @@ public class Bootstrap {
 			IModel model = injector.getInstance(bind.getKey());
 			createTable(model.getClass());
 		}
-
+		logger.debug("数据库初始化完毕......");
 	}
 
 	/**

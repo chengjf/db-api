@@ -4,7 +4,6 @@ import java.util.List;
 
 import spark.Filter;
 
-import com.chengjf.sparkdemo.configuration.Configuration;
 import com.chengjf.sparkdemo.constants.WebConstants;
 import com.chengjf.sparkdemo.context.provider.AfterFilterProvider;
 import com.chengjf.sparkdemo.context.provider.BeforeFilterProvider;
@@ -29,7 +28,7 @@ public class ContextModule extends AbstractModule {
 	protected void configure() {
 
 		// 配置管理
-		bind(Configuration.class).in(Scopes.SINGLETON);
+		install(new ConfigurationModule());
 
 		// 静态资源管理
 		bind(StaticResource.class).in(Scopes.SINGLETON);
@@ -49,5 +48,4 @@ public class ContextModule extends AbstractModule {
 				.to(MyAfterFilter.class).in(Scopes.SINGLETON);
 
 	}
-
 }

@@ -3,7 +3,7 @@ package com.chengjf.sparkdemo.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.chengjf.sparkdemo.constants.WebConstants;
+import com.chengjf.sparkdemo.configuration.ConfigurationBean;
 import com.chengjf.sparkdemo.context.MyContext;
 
 import freemarker.cache.ClassTemplateLoader;
@@ -26,9 +26,9 @@ public abstract class FreeMarkerRoute extends
 	static {
 		try {
 
-			com.chengjf.sparkdemo.configuration.Configuration config = MyContext.context
-					.getInstance(com.chengjf.sparkdemo.configuration.Configuration.class);
-			String templatePath = config.getConfig(WebConstants.TEMPLATE_PATH);
+			ConfigurationBean config = MyContext.context
+					.getInstance(ConfigurationBean.class);
+			String templatePath = config.templatePath;
 
 			configuration.setTemplateLoader(new ClassTemplateLoader(
 					FreeMarkerRoute.class, templatePath));

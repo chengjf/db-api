@@ -1,8 +1,8 @@
 package com.chengjf.sparkdemo;
 
-import com.chengjf.sparkdemo.configuration.Configuration;
-
 import spark.servlet.SparkApplication;
+
+import com.chengjf.sparkdemo.context.ConfigurationModule;
 
 /**
  * 用于Servlet启动
@@ -15,7 +15,7 @@ public class HelloApplication implements SparkApplication {
 	private Bootstrap bootstrap;
 
 	public HelloApplication() {
-		Configuration.isDev = false;
+		ConfigurationModule.isDev = false;
 		this.bootstrap = new Bootstrap();
 	}
 

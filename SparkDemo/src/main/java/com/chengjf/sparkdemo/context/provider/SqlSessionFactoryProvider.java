@@ -29,7 +29,7 @@ public class SqlSessionFactoryProvider implements Provider<SqlSessionFactory> {
 
 	@Inject
 	public void setConfigFilePath(
-			@Named(DatabaseConstants.CONFIG_MYBATIS_CONFIG_FILE) String path) {
+			@Named(DatabaseConstants.MYBATIS_CONFIG_FILE) String path) {
 		this.configFilePath = path;
 	}
 

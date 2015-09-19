@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.chengjf.sparkdemo.configuration.Configuration;
 import com.chengjf.sparkdemo.constants.DatabaseConstants;
-import com.chengjf.sparkdemo.context.MyContext;
+import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.name.Named;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 
@@ -24,12 +24,16 @@ public class ORMLiteProvider implements Provider<ConnectionSource> {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ORMLiteProvider.class);
 
+	private String databaseUrl;
+
+	@Inject
+	public ORMLiteProvider(
+			@Named(DatabaseConstants.DATABASE_URL) String databaseUrl) {
+		this.databaseUrl = databaseUrl;
+	}
+
 	@Override
 	public ConnectionSource get() {
-		Configuration config = MyContext.context
-				.getInstance(Configuration.class);
-		String databaseUrl = config.getConfig(DatabaseConstants.DATABASE_URL);
-		// create a connection source to our database
 		ConnectionSource connectionSource = null;
 		try {
 			connectionSource = new JdbcConnectionSource(databaseUrl);

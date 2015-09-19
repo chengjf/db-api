@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
  * @author CHENGJIANFENG100
  * @date 22015-09-17
  */
+@Deprecated
 public class Configuration {
 
 	private static final Logger logger = LoggerFactory
@@ -27,7 +28,7 @@ public class Configuration {
 	public static final String isDevKey = "isDev";
 
 	public static boolean isDev = true;
-	
+
 	public Configuration() {
 		config = new Properties();
 		loadPropertiesFile(configFilePath);

@@ -5,8 +5,7 @@ import java.util.Map;
 
 import spark.ModelAndView;
 
-import com.chengjf.sparkdemo.configuration.Configuration;
-import com.chengjf.sparkdemo.constants.WebConstants;
+import com.chengjf.sparkdemo.configuration.ConfigurationBean;
 import com.chengjf.sparkdemo.context.MyContext;
 
 /**
@@ -25,22 +24,22 @@ public class ControllerHelper {
 			model = new HashMap<String, Object>();
 		}
 
-		Configuration configuration = MyContext.context
-				.getInstance(Configuration.class);
-		String baseUrl = configuration.getConfig(WebConstants.BASE_URL);
+		ConfigurationBean configuration = MyContext.context
+				.getInstance(ConfigurationBean.class);
+		String baseUrl = configuration.baseUrl;
 		model.put("baseUrl", baseUrl);
 
-		String baseStaticFileUrl = configuration
-				.getConfig(WebConstants.BASE_STATIC_FILE_URL);
+		String baseStaticFileUrl = configuration.baseStaticFileUrl;
+
 		model.put("baseStaticFileUrl", baseUrl + baseStaticFileUrl);
 		ModelAndView mv = new ModelAndView(model, view);
 		return mv;
 	}
 
 	public static String getRedirectUrl(String url) {
-		Configuration configuration = MyContext.context
-				.getInstance(Configuration.class);
-		String baseUrl = configuration.getConfig(WebConstants.BASE_URL);
+		ConfigurationBean configuration = MyContext.context
+				.getInstance(ConfigurationBean.class);
+		String baseUrl = configuration.baseUrl;
 		return baseUrl + url;
 	}
 
