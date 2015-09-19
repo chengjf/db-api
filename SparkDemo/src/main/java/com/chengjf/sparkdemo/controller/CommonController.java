@@ -523,6 +523,11 @@ public abstract class CommonController implements IController {
 		// init current_path
 		model.put(WikiConstants.CURRENT_PATH, req.pathInfo());
 
+		logger.debug(WikiConstants.CURRENT_USER + " is "
+				+ req.session().attribute(WikiConstants.CURRENT_USER));
+		logger.debug(WikiConstants.CURRENT_URL + " is " + req.url());
+		logger.debug(WikiConstants.CURRENT_PATH + " is " + req.raw().getPathInfo());
+
 		return model;
 
 	}

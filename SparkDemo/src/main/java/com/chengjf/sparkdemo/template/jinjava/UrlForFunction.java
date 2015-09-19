@@ -26,6 +26,11 @@ public class UrlForFunction {
 		StringBuffer url = new StringBuffer();
 		ConfigurationBean bean = MyContext.context
 				.getInstance(ConfigurationBean.class);
+
+		if (!"".equals(bean.baseUrl)) {
+			url.append(bean.baseUrl);
+			url.append("/");
+		}
 		url.append(bean.baseStaticFileUrl);
 		url.append("/");
 		url.append(reqUrl);
@@ -35,6 +40,12 @@ public class UrlForFunction {
 	public static String urlForThis(String reqUrl, String pageUrl) {
 
 		StringBuffer url = new StringBuffer();
+		ConfigurationBean bean = MyContext.context
+				.getInstance(ConfigurationBean.class);
+		if (!"".equals(bean.baseUrl)) {
+			url.append(bean.baseUrl);
+			url.append("/");
+		}
 		url.append(reqUrl);
 		url.append("/");
 		url.append(pageUrl);

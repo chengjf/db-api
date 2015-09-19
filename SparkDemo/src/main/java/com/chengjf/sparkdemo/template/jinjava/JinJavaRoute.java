@@ -83,7 +83,9 @@ public abstract class JinJavaRoute extends TemplateViewRoute {
 			jinjava.getGlobalContext().registerFunction(
 					new ELFunctionDefinition("", "url_for_this", method));
 
-		} catch (NoSuchMethodException | SecurityException e) {
+		} catch (NoSuchMethodException e) {
+			logger.error("JinJava模板添加函数出错！", e);
+		} catch (SecurityException e) {
 			logger.error("JinJava模板添加函数出错！", e);
 		}
 
