@@ -1,5 +1,5 @@
 <#include "/layout/header.ftl"/> 
-	<form class="form-horizontal" id="wiki-form" action='/wiki/add' method="post">
+	<form class="form-horizontal" id="wiki-form" action='${baseUrl}/wiki/add' method="post">
 			<div class="form-group">
 				<label for="namespace" class="col-sm-2 control-label">主题</label>
 				<div class="col-sm-8">
