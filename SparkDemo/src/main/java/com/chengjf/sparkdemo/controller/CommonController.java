@@ -3,6 +3,8 @@ package com.chengjf.sparkdemo.controller;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,8 @@ import com.chengjf.sparkdemo.annotation.Post;
 import com.chengjf.sparkdemo.annotation.Put;
 import com.chengjf.sparkdemo.annotation.TemplateEngine;
 import com.chengjf.sparkdemo.annotation.Trace;
+import com.chengjf.sparkdemo.constants.WikiConstants;
+import com.chengjf.sparkdemo.template.jinjava.JinJavaRoute;
 
 /**
  * 
@@ -118,7 +122,18 @@ public abstract class CommonController implements IController {
 				}
 			});
 			break;
+		case JINJAVA:
+			spark.Spark.get(new JinJavaRoute(this.url) {
 
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
 		default:
 			spark.Spark.get(new Route(this.url) {
 
@@ -139,6 +154,18 @@ public abstract class CommonController implements IController {
 		switch (engine) {
 		case FREEMARKER:
 			spark.Spark.post(new FreeMarkerRoute(this.url) {
+
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
+		case JINJAVA:
+			spark.Spark.post(new JinJavaRoute(this.url) {
 
 				@Override
 				public ModelAndView handle(Request req, Response res) {
@@ -180,6 +207,18 @@ public abstract class CommonController implements IController {
 				}
 			});
 			break;
+		case JINJAVA:
+			spark.Spark.put(new JinJavaRoute(this.url) {
+
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
 
 		default:
 			spark.Spark.put(new Route(this.url) {
@@ -201,6 +240,18 @@ public abstract class CommonController implements IController {
 		switch (engine) {
 		case FREEMARKER:
 			spark.Spark.patch(new FreeMarkerRoute(this.url) {
+
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
+		case JINJAVA:
+			spark.Spark.patch(new JinJavaRoute(this.url) {
 
 				@Override
 				public ModelAndView handle(Request req, Response res) {
@@ -242,6 +293,18 @@ public abstract class CommonController implements IController {
 				}
 			});
 			break;
+		case JINJAVA:
+			spark.Spark.delete(new JinJavaRoute(this.url) {
+
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
 
 		default:
 			spark.Spark.delete(new Route(this.url) {
@@ -263,6 +326,18 @@ public abstract class CommonController implements IController {
 		switch (engine) {
 		case FREEMARKER:
 			spark.Spark.head(new FreeMarkerRoute(this.url) {
+
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
+		case JINJAVA:
+			spark.Spark.head(new JinJavaRoute(this.url) {
 
 				@Override
 				public ModelAndView handle(Request req, Response res) {
@@ -304,6 +379,18 @@ public abstract class CommonController implements IController {
 				}
 			});
 			break;
+		case JINJAVA:
+			spark.Spark.trace(new JinJavaRoute(this.url) {
+
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
 
 		default:
 			spark.Spark.trace(new Route(this.url) {
@@ -335,6 +422,18 @@ public abstract class CommonController implements IController {
 				}
 			});
 			break;
+		case JINJAVA:
+			spark.Spark.connect(new JinJavaRoute(this.url) {
+
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
 
 		default:
 			spark.Spark.connect(new Route(this.url) {
@@ -356,6 +455,18 @@ public abstract class CommonController implements IController {
 		switch (engine) {
 		case FREEMARKER:
 			spark.Spark.options(new FreeMarkerRoute(this.url) {
+
+				@Override
+				public ModelAndView handle(Request req, Response res) {
+					ModelAndView modelAndView = null;
+					modelAndView = methodInvoke(method, ModelAndView.class,
+							req, res);
+					return modelAndView;
+				}
+			});
+			break;
+		case JINJAVA:
+			spark.Spark.options(new JinJavaRoute(this.url) {
 
 				@Override
 				public ModelAndView handle(Request req, Response res) {
@@ -398,5 +509,21 @@ public abstract class CommonController implements IController {
 			logger.error("class is " + clazz + " method is " + method, e);
 		}
 		return t;
+	}
+
+	protected final Map<String, Object> getModel(Request req, Response res) {
+		Map<String, Object> model = new HashMap<String, Object>();
+
+		// init current_user
+		model.put(WikiConstants.CURRENT_USER,
+				req.session().attribute(WikiConstants.CURRENT_USER));
+
+		// init current_url
+		model.put(WikiConstants.CURRENT_URL, req.url());
+		// init current_path
+		model.put(WikiConstants.CURRENT_PATH, req.pathInfo());
+
+		return model;
+
 	}
 }

@@ -68,4 +68,10 @@ public class PageMybatisDao extends CommonMybatisDao implements PageDao {
 		return result;
 	}
 
+	@Override
+	public Page getPageByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

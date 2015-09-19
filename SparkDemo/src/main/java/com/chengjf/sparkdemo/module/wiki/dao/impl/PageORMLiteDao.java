@@ -1,6 +1,5 @@
 package com.chengjf.sparkdemo.module.wiki.dao.impl;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 		super(connectionSource);
 		try {
 			this.pageDao = DaoManager.createDao(connectionSource, Page.class);
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error("", e);
 		}
 
@@ -45,7 +44,7 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 		List<Page> pageList = new ArrayList<Page>();
 		try {
 			pageList = this.pageDao.queryForAll();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error("", e);
 		}
 		return pageList;
@@ -53,8 +52,14 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 
 	@Override
 	public Page getPageById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Page page = null;
+		try {
+			page = this.pageDao.queryForId(id);
+		} catch (Exception e) {
+			logger.error("", e);
+		}
+
+		return page;
 	}
 
 	@Override
@@ -62,7 +67,7 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 		int result = 0;
 		try {
 			result = this.pageDao.create(page);
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error("", e);
 		}
 		return result;
@@ -73,7 +78,7 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 		int result = 0;
 		try {
 			result = this.pageDao.update(page);
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error("", e);
 		}
 		return result;
@@ -89,6 +94,17 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 	public int deletePageById(String id) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Page getPageByName(String name) {
+		Page page = null;
+		try {
+			page = this.pageDao.queryForEq("name", name).get(0);
+		} catch (Exception e) {
+			logger.error("", e);
+		}
+		return page;
 	}
 
 }

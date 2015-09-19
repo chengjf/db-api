@@ -16,8 +16,8 @@ public class Revision implements IModel {
 	@DatabaseField(columnName = "revision_id", canBeNull = false, id = true)
 	private String revisionId;
 
-	@DatabaseField(canBeNull = false, foreign = true, columnName = "page_id", foreignAutoRefresh = true)
-	private Page page;
+	@DatabaseField(canBeNull = false, columnName = "page_id")
+	private String pageId;
 
 	@DatabaseField(canBeNull = false, foreign = true, columnName = "text_id", foreignAutoRefresh = true)
 	private Text text;
@@ -88,14 +88,6 @@ public class Revision implements IModel {
 		this.latest = latest;
 	}
 
-	public Page getPage() {
-		return page;
-	}
-
-	public void setPage(Page page) {
-		this.page = page;
-	}
-
 	public Text getText() {
 		return text;
 	}
@@ -110,6 +102,14 @@ public class Revision implements IModel {
 
 	public void setRevisionId(String revisionId) {
 		this.revisionId = revisionId;
+	}
+
+	public String getPageId() {
+		return pageId;
+	}
+
+	public void setPageId(String pageId) {
+		this.pageId = pageId;
 	}
 
 }

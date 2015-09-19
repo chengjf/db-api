@@ -3,6 +3,7 @@ package com.chengjf.sparkdemo.module.wiki.service;
 import java.util.List;
 import java.util.Map;
 
+import com.chengjf.sparkdemo.module.wiki.model.Page;
 import com.chengjf.sparkdemo.module.wiki.model.Revision;
 
 /**
@@ -19,5 +20,7 @@ public interface IWikiService {
 
 	public Map<String, Object> getWikiByRevisionId(String revisionId);
 
-	public int addClickCount(String revisionId);
+	public int addClickCount(String pageId);
+
+	public Page getPageByName(String name);
 }

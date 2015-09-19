@@ -26,12 +26,13 @@ public class ControllerHelper {
 
 		ConfigurationBean configuration = MyContext.context
 				.getInstance(ConfigurationBean.class);
+
 		String baseUrl = configuration.baseUrl;
 		model.put("baseUrl", baseUrl);
 
 		String baseStaticFileUrl = configuration.baseStaticFileUrl;
-
 		model.put("baseStaticFileUrl", baseUrl + baseStaticFileUrl);
+
 		ModelAndView mv = new ModelAndView(model, view);
 		return mv;
 	}

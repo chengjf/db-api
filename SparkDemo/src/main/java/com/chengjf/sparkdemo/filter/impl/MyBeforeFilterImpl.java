@@ -7,6 +7,8 @@ import spark.Filter;
 import spark.Request;
 import spark.Response;
 
+import com.chengjf.sparkdemo.constants.WikiConstants;
+
 /**
  * 前置过滤器实现
  * 
@@ -23,7 +25,7 @@ public class MyBeforeFilterImpl extends Filter {
 	public void handle(Request req, Response res) {
 		req.session(true);
 		if (req.session().isNew()) {
-			req.session().attribute("user", "chengjf");
+			req.session().attribute(WikiConstants.CURRENT_USER, "chengjf");
 		}
 		res.raw().setCharacterEncoding("UTF-8");
 		logger.debug("req: " + req.raw().getMethod() + " " + req.pathInfo());

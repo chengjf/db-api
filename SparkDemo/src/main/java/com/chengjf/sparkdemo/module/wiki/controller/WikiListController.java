@@ -1,6 +1,5 @@
 package com.chengjf.sparkdemo.module.wiki.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,15 +27,15 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
  * 
  */
 
-@Controller(url = "/wiki")
+@Controller(url = "/wiki/showAll")
 public class WikiListController extends CommonController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(WikiListController.class);
 
-	@Get(templateEngine = TemplateEngine.FREEMARKER)
+	@Get(templateEngine = TemplateEngine.JINJAVA)
 	public ModelAndView showAllWikis(Request req, Response res) {
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = getModel(req, res);
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
 		if (wikiService == null) {
@@ -49,7 +48,6 @@ public class WikiListController extends CommonController {
 				logger.error("获取所有Page出错！", e);
 			}
 		}
-		return ControllerHelper.modelAndView(model,
-				"template/wiki/wikiList.ftl");
+		return ControllerHelper.modelAndView(model, "template/wiki/page.html");
 	}
 }

@@ -22,7 +22,7 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
  * 
  */
 
-@Controller(url = "/wiki/:id")
+@Controller(url = "/wiki/show/:id")
 public class WikiShowController extends CommonController {
 
 	@Get(templateEngine = TemplateEngine.FREEMARKER)

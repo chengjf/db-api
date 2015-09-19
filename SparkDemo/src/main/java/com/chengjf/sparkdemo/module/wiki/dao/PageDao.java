@@ -23,4 +23,6 @@ public interface PageDao {
 	public int deletePage(Page page);
 
 	public int deletePageById(String id);
+
+	public Page getPageByName(String name);
 }

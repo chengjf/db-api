@@ -9,5 +9,5 @@ package com.chengjf.sparkdemo.annotation;
  */
 public enum TemplateEngine {
 
-	FREEMARKER, DEFAULT
+	FREEMARKER, JINJAVA, DEFAULT
 }

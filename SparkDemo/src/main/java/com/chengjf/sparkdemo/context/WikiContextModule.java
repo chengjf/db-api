@@ -3,6 +3,9 @@ package com.chengjf.sparkdemo.context;
 import com.chengjf.sparkdemo.controller.IController;
 import com.chengjf.sparkdemo.model.IModel;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiAddController;
+import com.chengjf.sparkdemo.module.wiki.controller.WikiCreateController;
+import com.chengjf.sparkdemo.module.wiki.controller.WikiEditController;
+import com.chengjf.sparkdemo.module.wiki.controller.WikiIndexController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiListController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiShowController;
 import com.chengjf.sparkdemo.module.wiki.dao.PageDao;
@@ -47,7 +50,15 @@ public class WikiContextModule extends AbstractModule {
 		bind(IController.class)
 				.annotatedWith(Names.named("WikiShowControllerg"))
 				.to(WikiShowController.class).in(Scopes.SINGLETON);
-
+		bind(IController.class)
+				.annotatedWith(Names.named("WikiIndexController"))
+				.to(WikiIndexController.class).in(Scopes.SINGLETON);
+		bind(IController.class)
+				.annotatedWith(Names.named("WikiEditController"))
+				.to(WikiEditController.class).in(Scopes.SINGLETON);
+		bind(IController.class)
+				.annotatedWith(Names.named("WikiCreateController"))
+				.to(WikiCreateController.class).in(Scopes.SINGLETON);
 		// Service
 		bind(IWikiService.class).to(WikiServiceImpl.class).in(Scopes.SINGLETON);
 

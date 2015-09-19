@@ -14,6 +14,7 @@ import com.chengjf.sparkdemo.annotation.Controller;
 import com.chengjf.sparkdemo.annotation.Get;
 import com.chengjf.sparkdemo.annotation.Post;
 import com.chengjf.sparkdemo.annotation.TemplateEngine;
+import com.chengjf.sparkdemo.constants.WikiConstants;
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.controller.CommonController;
 import com.chengjf.sparkdemo.controller.ControllerHelper;
@@ -27,7 +28,7 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
  * 
  */
 
-@Controller(url = "/wiki/add")
+@Controller(url = "/wiki/")
 public class WikiAddController extends CommonController {
 
 	private static final Logger logger = LoggerFactory
@@ -53,7 +54,7 @@ public class WikiAddController extends CommonController {
 		// page_comment
 		String comment = req.queryParams("comment");
 		// user id
-		String userId = req.session().attribute("userId");
+		String userId = req.session().attribute(WikiConstants.CURRENT_USER);
 
 		parameters.put("content", content);
 		parameters.put("type", type);

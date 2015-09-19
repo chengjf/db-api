@@ -64,12 +64,15 @@ public class WikiServiceImpl implements IWikiService {
 		String userId = (String) parameters.get("userId");
 		revision.setRevisionId(revisionId);
 		revision.setText(text);
-		revision.setPage(page);
+		revision.setPageId(pageId);
 		revision.setDeleted(false);
 		revision.setTimestamp(new Date());
 		revision.setUserId(userId);
 		revision.setParentId(null);
 		revision.setLatest(true);
+
+		// 将revision放入Page
+		page.setRevision(revision);
 
 		try {
 			TransactionManager.callInTransaction(
@@ -125,16 +128,21 @@ public class WikiServiceImpl implements IWikiService {
 	}
 
 	@Override
-	public int addClickCount(String revisionId) {
-		RevisionDao revisionDao = MyContext.context
-				.getInstance(RevisionDao.class);
-		Revision revision = revisionDao.getRevisionById(revisionId);
-		Page page = revision.getPage();
+	public int addClickCount(String pageId) {
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+
+		Page page = pageDao.getPageById(pageId);
 		int counter = page.getCounter() + 1;
 		page.setCounter(counter);
 
-		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
 		pageDao.updatePage(page);
 		return counter;
+	}
+
+	@Override
+	public Page getPageByName(String name) {
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		Page page = pageDao.getPageByName(name);
+		return page;
 	}
 }

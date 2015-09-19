@@ -34,6 +34,9 @@ public class Page implements IModel {
 	@DatabaseField(columnName = "created_date", canBeNull = false)
 	private Date createdDate;
 
+	@DatabaseField(canBeNull = false, foreign = true, columnName = "revision_id", foreignAutoRefresh = true)
+	private Revision revision;
+
 	public String getNamespace() {
 		return namespace;
 	}
@@ -80,6 +83,14 @@ public class Page implements IModel {
 
 	public void setPageId(String pageId) {
 		this.pageId = pageId;
+	}
+
+	public Revision getRevision() {
+		return revision;
+	}
+
+	public void setRevision(Revision revision) {
+		this.revision = revision;
 	}
 
 }
