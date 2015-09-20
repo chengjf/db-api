@@ -1,5 +1,7 @@
 package com.chengjf.sparkdemo.module.wiki.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,13 @@ public class WikiTagController extends CommonController {
 	public ModelAndView showTag(Request req, Response res) {
 		Map<String, Object> model = getModel(req, res);
 		String tag = req.params(":tag");
+
+		try {
+			tag = URLDecoder.decode(tag, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			logger.error("URL参数解码失败！", e);
+		}
+
 		model.put("tag", tag);
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
