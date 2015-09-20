@@ -1,5 +1,7 @@
 package com.chengjf.sparkdemo.module.wiki.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +39,11 @@ public class WikiEditController extends CommonController {
 		Map<String, Object> model = getModel(req, res);
 
 		String url = req.params(":url");
+		try {
+			url = URLDecoder.decode(url, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			logger.error("URL参数解码失败！", e);
+		}
 
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
@@ -49,9 +56,10 @@ public class WikiEditController extends CommonController {
 					page = wikiService.getPageByName(url);
 				}
 				if (page == null) {
-				} else {
-					model.put("page", page);
+					page = new Page();
+					page.setTitle(url);
 				}
+				model.put("page", page);
 			} catch (Exception e) {
 				logger.error("获取所有Page出错！", e);
 			}
