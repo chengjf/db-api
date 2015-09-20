@@ -42,12 +42,14 @@ public class UrlForFunction {
 		StringBuffer url = new StringBuffer();
 		ConfigurationBean bean = MyContext.context
 				.getInstance(ConfigurationBean.class);
-		if (!"".equals(bean.baseUrl)) {
-			url.append(bean.baseUrl);
+
+		url.append(bean.baseUrl);
+		url.append("/");
+
+		if (!"".equals(reqUrl)) {
+			url.append(reqUrl);
 			url.append("/");
 		}
-		url.append(reqUrl);
-		url.append("/");
 		url.append(pageUrl);
 		return url.toString();
 	}

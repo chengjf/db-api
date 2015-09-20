@@ -25,29 +25,29 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
  * @date 2015-9-20
  * 
  */
-@Controller(url = "/wiki/index")
-public class WikiIndexController extends CommonController {
+@Controller(url = "/wiki/tag/:tag")
+public class WikiTagController extends CommonController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(WikiIndexController.class);
+			.getLogger(WikiTagController.class);
 
 	@Get(templateEngine = TemplateEngine.JINJAVA)
-	public ModelAndView index(Request req, Response res) {
+	public ModelAndView showTag(Request req, Response res) {
 		Map<String, Object> model = getModel(req, res);
+		String tag = req.params(":tag");
+		model.put("tag", tag);
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
 		if (wikiService == null) {
 			logger.error("未获取到" + IWikiService.class);
 		} else {
 			try {
-				List<Page> pages = wikiService.getAllPages();
-
+				List<Page> pages = wikiService.getPagesByTag(tag);
 				model.put("pages", pages);
 			} catch (Exception e) {
 				logger.error("获取所有Page出错！", e);
 			}
 		}
-		return ControllerHelper.modelAndView(model, "template/wiki/index.html");
+		return ControllerHelper.modelAndView(model, "template/wiki/tag.html");
 	}
-
 }

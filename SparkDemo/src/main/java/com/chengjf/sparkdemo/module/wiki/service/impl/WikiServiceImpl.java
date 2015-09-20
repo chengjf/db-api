@@ -145,4 +145,37 @@ public class WikiServiceImpl implements IWikiService {
 		Page page = pageDao.getPageByName(name);
 		return page;
 	}
+
+	@Override
+	public List<Page> getAllPages() {
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		List<Page> pages = pageDao.getAllPages();
+		if (pages == null) {
+			pages = new ArrayList<Page>();
+		}
+		return pages;
+	}
+
+	@Override
+	public Page getPageById(String id) {
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		Page page = pageDao.getPageById(id);
+		return page;
+	}
+
+	@Override
+	public List<Page> getPagesByTag(String tag) {
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		List<Page> pages = pageDao.getAllPages();
+		List<Page> tagPages = new ArrayList<Page>();
+		if (pages == null) {
+			pages = new ArrayList<Page>();
+		}
+		for (Page page : pages) {
+			if (page.getComment().contains(tag)) {
+				tagPages.add(page);
+			}
+		}
+		return tagPages;
+	}
 }

@@ -1,6 +1,5 @@
 package com.chengjf.sparkdemo.module.wiki.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -13,6 +12,7 @@ import spark.Response;
 import com.chengjf.sparkdemo.annotation.Controller;
 import com.chengjf.sparkdemo.annotation.Get;
 import com.chengjf.sparkdemo.annotation.TemplateEngine;
+import com.chengjf.sparkdemo.constants.WikiConstants;
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.controller.CommonController;
 import com.chengjf.sparkdemo.controller.ControllerHelper;
@@ -22,17 +22,18 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 /**
  * 
  * @author sharp
- * @date 2015-9-20
+ * @date 2015-9-19
  * 
  */
-@Controller(url = "/wiki/index")
-public class WikiIndexController extends CommonController {
+
+@Controller(url = "/wiki")
+public class WikiHomeController extends CommonController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(WikiIndexController.class);
+			.getLogger(WikiHomeController.class);
 
 	@Get(templateEngine = TemplateEngine.JINJAVA)
-	public ModelAndView index(Request req, Response res) {
+	public ModelAndView home(Request req, Response res) {
 		Map<String, Object> model = getModel(req, res);
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
@@ -40,14 +41,17 @@ public class WikiIndexController extends CommonController {
 			logger.error("未获取到" + IWikiService.class);
 		} else {
 			try {
-				List<Page> pages = wikiService.getAllPages();
-
-				model.put("pages", pages);
+				Page page = wikiService.getPageByName(WikiConstants.HOME_PAGE);
+				if (page == null) {
+					return ControllerHelper.modelAndView(model,
+							"template/wiki/home.html");
+				} else {
+					model.put("page", page);
+				}
 			} catch (Exception e) {
 				logger.error("获取所有Page出错！", e);
 			}
 		}
-		return ControllerHelper.modelAndView(model, "template/wiki/index.html");
+		return ControllerHelper.modelAndView(model, "template/wiki/page.html");
 	}
-
 }

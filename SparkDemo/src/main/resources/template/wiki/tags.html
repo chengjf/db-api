@@ -1,0 +1,26 @@
+{% extends "template/wiki/base.html" %}
+
+{% block title %}Index by Tags{% endblock title %}
+
+{% block content %}
+{% if tags %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Tag</th>
+				<th>Number of Articles</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for key,value in tags.items() %}
+				<tr>
+					<td><a href="{{ url_for('wiki/tag/' + key) }}">{{ key }}</a></td>
+					<td>{{ value|length }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no tags in use so far.</p>
+{% endif %}
+{% endblock content %}

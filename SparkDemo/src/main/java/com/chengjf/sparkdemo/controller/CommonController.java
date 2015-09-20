@@ -526,7 +526,8 @@ public abstract class CommonController implements IController {
 		logger.debug(WikiConstants.CURRENT_USER + " is "
 				+ req.session().attribute(WikiConstants.CURRENT_USER));
 		logger.debug(WikiConstants.CURRENT_URL + " is " + req.url());
-		logger.debug(WikiConstants.CURRENT_PATH + " is " + req.raw().getPathInfo());
+		logger.debug(WikiConstants.CURRENT_PATH + " is "
+				+ req.raw().getPathInfo());
 
 		return model;
 

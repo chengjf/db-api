@@ -1,0 +1,34 @@
+{% extends "template/wiki/base.html" %}
+
+{% block title %}Page Index{% endblock title %}
+
+{% block content %}
+{% if pages %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>URL</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for page in pages %}
+				<tr>
+					<td><a href="{{ url_for('wiki/display/'+page.page_id) }}">{{ page.title }}</a></td>
+					<td><a href="{{ url_for('wiki/display/'+page.page_id) }}">{{ page.url }}</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no pages yet.</p>
+{% endif %}
+{% endblock content %}
+
+{% block sidebar %}
+<ul class="nav nav-tabs nav-stacked">
+	<li><a href="{{ url_for('create') }}">New Page</a></li>
+	<li><a href="{{ url_for('tags') }}">Tag List</a></li>
+	<li><a href="{{ url_for('search') }}">Search</a></li>
+</ul>
+{% endblock sidebar %}

@@ -1,6 +1,5 @@
 package com.chengjf.sparkdemo.module.wiki.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -25,29 +24,37 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
  * @date 2015-9-20
  * 
  */
-@Controller(url = "/wiki/index")
-public class WikiIndexController extends CommonController {
+@Controller(url = "/wiki/display/:id")
+public class WikiDisplayController extends CommonController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(WikiIndexController.class);
+			.getLogger(WikiDisplayController.class);
 
 	@Get(templateEngine = TemplateEngine.JINJAVA)
-	public ModelAndView index(Request req, Response res) {
+	public ModelAndView showPage(Request req, Response res) {
 		Map<String, Object> model = getModel(req, res);
+
+		String id = req.params(":id");
+
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
 		if (wikiService == null) {
 			logger.error("未获取到" + IWikiService.class);
 		} else {
 			try {
-				List<Page> pages = wikiService.getAllPages();
-
-				model.put("pages", pages);
+				Page page = wikiService.getPageById(id);
+				if (page == null) {
+					page = wikiService.getPageByName(id);
+				}
+				if (page == null) {
+					res.status(404);
+				} else {
+					model.put("page", page);
+				}
 			} catch (Exception e) {
 				logger.error("获取所有Page出错！", e);
 			}
 		}
-		return ControllerHelper.modelAndView(model, "template/wiki/index.html");
+		return ControllerHelper.modelAndView(model, "template/wiki/page.html");
 	}
-
 }

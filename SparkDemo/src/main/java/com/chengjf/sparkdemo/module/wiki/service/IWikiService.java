@@ -23,4 +23,10 @@ public interface IWikiService {
 	public int addClickCount(String pageId);
 
 	public Page getPageByName(String name);
+
+	public List<Page> getAllPages();
+
+	public Page getPageById(String id);
+
+	public List<Page> getPagesByTag(String tag);
 }

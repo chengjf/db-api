@@ -13,7 +13,7 @@ public class BizModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		install(new ORMLiteContextModule());
-		install(new TodoContextModule());
+		// install(new TodoContextModule());
 		install(new WikiContextModule());
 
 	}

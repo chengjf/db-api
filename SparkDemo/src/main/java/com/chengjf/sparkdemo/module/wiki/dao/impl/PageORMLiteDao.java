@@ -100,7 +100,7 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 	public Page getPageByName(String name) {
 		Page page = null;
 		try {
-			page = this.pageDao.queryForEq("name", name).get(0);
+			page = this.pageDao.queryForEq("title", name).get(0);
 		} catch (Exception e) {
 			logger.error("", e);
 		}
