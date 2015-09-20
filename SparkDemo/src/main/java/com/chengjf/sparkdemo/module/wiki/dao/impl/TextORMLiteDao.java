@@ -33,6 +33,7 @@ public class TextORMLiteDao extends CommonORMLiteDao implements TextDao {
 		super(connectionSource);
 		try {
 			this.textDao = DaoManager.createDao(connectionSource, Text.class);
+			textDao.setObjectCache(true);
 		} catch (SQLException e) {
 			logger.error("", e);
 		}

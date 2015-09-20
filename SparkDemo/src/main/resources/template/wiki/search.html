@@ -1,0 +1,32 @@
+{% extends "template/wiki/base.html" %}
+
+{% block title %}
+{% if search %}
+	Results for "{{ search }}"
+{% else %}
+	Search
+{% endif %}
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+	<div class="span8 offset1">
+		<form class="form-inline well" method="POST">
+			<input type="text" class="form-control" id="term" name="term" placeholder="Search for.. (regex accepted)">
+			<input type="submit" class="btn btn-success pull-right" value="Search!">
+		</form>
+	</div>
+</div>
+
+{% if search %}
+	{% if results %}
+		<ul>
+			{% for result in results %}
+				<li><a href="{{ url_for('wiki/display/' + result.pageId) }}">{{ result.title }}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No results for your search.</p>
+	{% endif %}
+{% endif %}
+{% endblock content %}

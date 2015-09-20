@@ -500,13 +500,13 @@ public abstract class CommonController implements IController {
 			Object obj = method.invoke(this, req, res);
 			t = (T) obj;
 		} catch (IllegalAccessException e) {
-			logger.error("class is " + clazz + " method is " + method, e);
+			logger.error("class is " + clazz + ", method is " + method, e);
 		} catch (IllegalArgumentException e) {
-			logger.error("class is " + clazz + " method is " + method, e);
+			logger.error("class is " + clazz + ", method is " + method, e);
 		} catch (InvocationTargetException e) {
-			logger.error("class is " + clazz + " method is " + method, e);
+			logger.error("class is " + clazz + ", method is " + method, e);
 		} catch (ClassCastException e) {
-			logger.error("class is " + clazz + " method is " + method, e);
+			logger.error("class is " + clazz + ", method is " + method, e);
 		}
 		return t;
 	}

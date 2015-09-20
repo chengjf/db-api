@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.chengjf.sparkdemo.module.wiki.model.Page;
+import com.chengjf.sparkdemo.module.wiki.model.Page.PageAttr;
 import com.chengjf.sparkdemo.module.wiki.model.Revision;
 
 /**
@@ -14,7 +15,7 @@ import com.chengjf.sparkdemo.module.wiki.model.Revision;
  */
 public interface IWikiService {
 
-	public boolean addNewWiki(Map<String, Object> parameters);
+	public Page addNewWiki(Map<String, Object> parameters);
 
 	public List<Revision> getAllWikis();
 
@@ -29,4 +30,8 @@ public interface IWikiService {
 	public Page getPageById(String id);
 
 	public List<Page> getPagesByTag(String tag);
+
+	public List<Page> searchPage(String term, List<PageAttr> attrs);
+	
+	public Page updatePage(Map<String, Object> parameters);
 }

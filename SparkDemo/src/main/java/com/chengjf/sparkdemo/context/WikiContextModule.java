@@ -7,6 +7,7 @@ import com.chengjf.sparkdemo.module.wiki.controller.WikiDisplayController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiEditController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiHomeController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiIndexController;
+import com.chengjf.sparkdemo.module.wiki.controller.WikiSearchController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiTagController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiTagsController;
 import com.chengjf.sparkdemo.module.wiki.dao.PageDao;
@@ -71,6 +72,9 @@ public class WikiContextModule extends AbstractModule {
 				.to(WikiTagsController.class).in(Scopes.SINGLETON);
 		bind(IController.class).annotatedWith(Names.named("WikiTagController"))
 				.to(WikiTagController.class).in(Scopes.SINGLETON);
+		bind(IController.class)
+				.annotatedWith(Names.named("WikiSearchController"))
+				.to(WikiSearchController.class).in(Scopes.SINGLETON);
 		// Service
 		bind(IWikiService.class).to(WikiServiceImpl.class).in(Scopes.SINGLETON);
 

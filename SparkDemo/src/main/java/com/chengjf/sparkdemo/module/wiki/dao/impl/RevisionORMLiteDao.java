@@ -35,6 +35,7 @@ public class RevisionORMLiteDao extends CommonORMLiteDao implements RevisionDao 
 		try {
 			this.revisionDao = DaoManager.createDao(connectionSource,
 					Revision.class);
+			revisionDao.setObjectCache(true);
 		} catch (SQLException e) {
 			logger.error("", e);
 		}

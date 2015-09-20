@@ -1,6 +1,7 @@
 package com.chengjf.sparkdemo.module.wiki.model;
 
 import com.chengjf.sparkdemo.model.IModel;
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -14,10 +15,10 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "text")
 public class Text implements IModel {
 
-	@DatabaseField(columnName = "text_id", canBeNull = false, id = true)
+	@DatabaseField(columnName = "text_id", canBeNull = false, id = true, index = true)
 	private String textId;
 
-	@DatabaseField(columnName = "text", canBeNull = false)
+	@DatabaseField(columnName = "text", canBeNull = false, dataType = DataType.LONG_STRING)
 	private String text;
 
 	@DatabaseField(columnName = "type", canBeNull = true)

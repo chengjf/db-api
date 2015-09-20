@@ -33,6 +33,7 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 		super(connectionSource);
 		try {
 			this.pageDao = DaoManager.createDao(connectionSource, Page.class);
+			pageDao.setObjectCache(true);
 		} catch (Exception e) {
 			logger.error("", e);
 		}

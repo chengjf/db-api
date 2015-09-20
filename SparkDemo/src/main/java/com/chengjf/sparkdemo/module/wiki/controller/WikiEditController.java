@@ -18,6 +18,7 @@ import com.chengjf.sparkdemo.constants.WikiConstants;
 import com.chengjf.sparkdemo.context.MyContext;
 import com.chengjf.sparkdemo.controller.CommonController;
 import com.chengjf.sparkdemo.controller.ControllerHelper;
+import com.chengjf.sparkdemo.module.wiki.model.Page;
 import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
@@ -32,14 +33,39 @@ public class WikiEditController extends CommonController {
 			.getLogger(WikiEditController.class);
 
 	@Get(templateEngine = TemplateEngine.JINJAVA)
-	public ModelAndView get(Request req, Response res) {
-		return ControllerHelper.modelAndView(null, "template/wiki/editor.html");
+	public ModelAndView editGet(Request req, Response res) {
+		Map<String, Object> model = getModel(req, res);
+
+		String url = req.params(":url");
+
+		IWikiService wikiService = MyContext.context
+				.getInstance(IWikiService.class);
+		if (wikiService == null) {
+			logger.error("未获取到" + IWikiService.class);
+		} else {
+			try {
+				Page page = wikiService.getPageById(url);
+				if (page == null) {
+					page = wikiService.getPageByName(url);
+				}
+				if (page == null) {
+				} else {
+					model.put("page", page);
+				}
+			} catch (Exception e) {
+				logger.error("获取所有Page出错！", e);
+			}
+		}
+
+		return ControllerHelper
+				.modelAndView(model, "template/wiki/editor.html");
 	}
 
 	@Post(templateEngine = TemplateEngine.DEFAULT)
-	public Object post(Request req, Response res) {
+	public Object editPost(Request req, Response res) {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		// 需要的参数
+		String pageId = req.queryParams("pageId");
 		// content
 		String content = req.queryParams("content");
 		// type
@@ -53,6 +79,7 @@ public class WikiEditController extends CommonController {
 		// user id
 		String userId = req.session().attribute(WikiConstants.CURRENT_USER);
 
+		parameters.put("pageId", pageId);
 		parameters.put("content", content);
 		parameters.put("type", type);
 		parameters.put("namespace", namespace);
@@ -62,14 +89,26 @@ public class WikiEditController extends CommonController {
 
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
+		Page page = null;
 		if (wikiService == null) {
 			logger.error("未获取到" + IWikiService.class);
 		} else {
-			wikiService.addNewWiki(parameters);
+			if ("".equals(pageId)) {
+				page = wikiService.addNewWiki(parameters);
+			} else {
+				page = wikiService.updatePage(parameters);
+			}
 		}
+		if (page == null) {
+			logger.error("编辑失败！");
+		} else {
+			String pageIID = page.getPageId();
 
-		// redirect到查看页
-		res.redirect(ControllerHelper.getRedirectUrl("/wiki"));
+			// redirect到查看页
+			String redirectUrl = ControllerHelper
+					.getRedirectUrl("/wiki/display/" + pageIID);
+			res.redirect(redirectUrl);
+		}
 		return res;
 	}
 }

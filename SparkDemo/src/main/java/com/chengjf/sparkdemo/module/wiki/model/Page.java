@@ -16,13 +16,17 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "page")
 public class Page implements IModel {
 
-	@DatabaseField(columnName = "page_id", canBeNull = false, id = true)
+	public enum PageAttr {
+		TITLE, TAGS, CONTENT
+	}
+
+	@DatabaseField(columnName = "page_id", canBeNull = false, id = true, index = true)
 	private String pageId;
 
 	@DatabaseField(columnName = "namespace", canBeNull = false)
 	private String namespace;
 
-	@DatabaseField(columnName = "title", canBeNull = false)
+	@DatabaseField(columnName = "title", canBeNull = false, index = true)
 	private String title;
 
 	@DatabaseField(columnName = "comment", canBeNull = true)

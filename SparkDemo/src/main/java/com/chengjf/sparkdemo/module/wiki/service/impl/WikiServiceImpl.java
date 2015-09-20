@@ -17,6 +17,7 @@ import com.chengjf.sparkdemo.module.wiki.dao.PageDao;
 import com.chengjf.sparkdemo.module.wiki.dao.RevisionDao;
 import com.chengjf.sparkdemo.module.wiki.dao.TextDao;
 import com.chengjf.sparkdemo.module.wiki.model.Page;
+import com.chengjf.sparkdemo.module.wiki.model.Page.PageAttr;
 import com.chengjf.sparkdemo.module.wiki.model.Revision;
 import com.chengjf.sparkdemo.module.wiki.model.Text;
 import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
@@ -35,7 +36,7 @@ public class WikiServiceImpl implements IWikiService {
 			.getLogger(WikiServiceImpl.class);
 
 	@Override
-	public boolean addNewWiki(Map<String, Object> parameters) {
+	public Page addNewWiki(Map<String, Object> parameters) {
 		// STEP 1. 组装Text
 		final Text text = new Text();
 		String context = (String) parameters.get("content");
@@ -100,7 +101,7 @@ public class WikiServiceImpl implements IWikiService {
 			logger.error("", e);
 		}
 
-		return true;
+		return page;
 	}
 
 	@Override
@@ -177,5 +178,104 @@ public class WikiServiceImpl implements IWikiService {
 			}
 		}
 		return tagPages;
+	}
+
+	@Override
+	public List<Page> searchPage(String term, List<PageAttr> attrs) {
+
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		List<Page> pages = pageDao.getAllPages();
+		List<Page> searchPages = new ArrayList<Page>();
+		if (pages == null) {
+			pages = new ArrayList<Page>();
+		}
+		for (Page page : pages) {
+			for (PageAttr attr : attrs) {
+				switch (attr) {
+				case TAGS:
+					if (page.getComment().contains(term)) {
+						searchPages.add(page);
+					}
+					break;
+				case TITLE:
+					if (page.getTitle().contains(term)) {
+						searchPages.add(page);
+					}
+					break;
+				case CONTENT:
+					if (page.getRevision().getText().getText().contains(term)) {
+						searchPages.add(page);
+					}
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		return searchPages;
+	}
+
+	@Override
+	public Page updatePage(Map<String, Object> parameters) {
+		final PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		final TextDao textDao = MyContext.context.getInstance(TextDao.class);
+		final RevisionDao revisionDao = MyContext.context
+				.getInstance(RevisionDao.class);
+
+		String pageId = (String) parameters.get("pageId");
+		final Page page = pageDao.getPageById(pageId);
+		String namespace = (String) parameters.get("namespace");
+		String title = (String) parameters.get("title");
+		String comment = (String) parameters.get("comment");
+		page.setTitle(title);
+		page.setNamespace(namespace);
+		page.setComment(comment);
+
+		final Text text = new Text();
+		String context = (String) parameters.get("content");
+		String type = (String) parameters.get("type");
+		String textId = UUID.randomUUID().toString();
+		text.setTextId(textId);
+		text.setText(context);
+		text.setType(type);
+
+		final Revision revision = new Revision();
+		String revisionId = UUID.randomUUID().toString();
+		String userId = (String) parameters.get("userId");
+		revision.setRevisionId(revisionId);
+		revision.setText(text);
+		revision.setPageId(pageId);
+		revision.setDeleted(false);
+		revision.setTimestamp(new Date());
+		revision.setUserId(userId);
+		revision.setParentId(page.getRevision().getRevisionId());
+		revision.setLatest(true);
+
+		page.getRevision().setLatest(false);
+		page.setRevision(revision);
+
+		// 将revision放入Page
+		page.setRevision(revision);
+
+		try {
+			TransactionManager.callInTransaction(
+					MyContext.context.getInstance(ConnectionSource.class),
+					new Callable<Void>() {
+
+						@Override
+						public Void call() throws Exception {
+							textDao.addText(text);
+							revisionDao.addRevision(revision);
+							pageDao.updatePage(page);
+							return null;
+						}
+					});
+		} catch (SQLException e) {
+			logger.error("", e);
+		} catch (Exception e) {
+			logger.error("", e);
+		}
+
+		return page;
 	}
 }

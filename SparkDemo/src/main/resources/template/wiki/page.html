@@ -14,7 +14,7 @@
     </div>
     <div class="modal-footer">
       <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">No</a>
-      <a href="{{ url_for('wiki/delete/' + page.page_id) }}" class="btn btn-danger">Yes, delete.</a>
+      <a href="{{ url_for('wiki/delete/' + page.pageId) }}" class="btn btn-danger">Yes, delete.</a>
     </div>
   </div>
 	<form class="form-horizontal" id="wiki-form" >
@@ -78,8 +78,8 @@
 {% endif %}
 <h3>Actions</h3>
 <ul class="nav nav-tabs nav-stacked">
-	<li><a href="{{ url_for('wiki/edit/' + page.page_id) }}">Edit</a></li>
-  <li><a href="{{ url_for('wiki/move/' + page.page_id) }}">Move</a></li>
+	<li><a href="{{ url_for('wiki/edit/' + page.pageId) }}">Edit</a></li>
+  <li><a href="{{ url_for('wiki/move/' + page.pageId) }}">Move</a></li>
   <li><a href="#confirmDelete" data-toggle="modal" class="text-error">Delete</a></li>
 </ul>
 {% endblock sidebar %}

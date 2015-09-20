@@ -13,7 +13,7 @@ import com.j256.ormlite.field.DatabaseField;
  */
 public class Revision implements IModel {
 
-	@DatabaseField(columnName = "revision_id", canBeNull = false, id = true)
+	@DatabaseField(columnName = "revision_id", canBeNull = false, id = true, index = true)
 	private String revisionId;
 
 	@DatabaseField(canBeNull = false, columnName = "page_id")
