@@ -1,14 +1,14 @@
 {% extends "template/wiki/base.html" %}
 
-{% block title %}Pages tagged {{ tag }}{% endblock title %}
+{% block title %}页面标签-{{ tag }}{% endblock title %}
 
 {% block content %}
 {% if pages %}
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Title</th>
-				<th>URL</th>
+				<th>标题</th>
+				<th>日期</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,6 +21,6 @@
 		</tbody>
 	</table>
 {% else %}
-	<p>There are no pages tagged {{ tag }}.</p>
+	<p>目前没有页面包含有 {{ tag }}标签。</p>
 {% endif %}
 {% endblock content %}

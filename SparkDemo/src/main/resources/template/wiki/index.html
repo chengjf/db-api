@@ -1,21 +1,21 @@
 {% extends "template/wiki/base.html" %}
 
-{% block title %}Page Index{% endblock title %}
+{% block title %}Wiki索引{% endblock title %}
 
 {% block content %}
 {% if pages %}
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Title</th>
-				<th>URL</th>
+				<th>标题</th>
+				<th>日期</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for page in pages %}
 				<tr>
 					<td><a href="{{ url_for('wiki/display/'+page.pageId) }}">{{ page.title }}</a></td>
-					<td><a href="{{ url_for('wiki/display/'+page.pageId) }}">{{ page.url }}</a></td>
+					<td><a href="{{ url_for('wiki/display/'+page.pageId) }}">{{ page.createdDate }}</a></td>
 				</tr>
 			{% endfor %}
 		</tbody>
@@ -27,8 +27,8 @@
 
 {% block sidebar %}
 <ul class="nav nav-tabs nav-stacked">
-	<li><a href="{{ url_for('wiki/create') }}">New Page</a></li>
-	<li><a href="{{ url_for('wiki/tags') }}">Tag List</a></li>
-	<li><a href="{{ url_for('wiki/search') }}">Search</a></li>
+	<li><a href="{{ url_for('wiki/create') }}">新页面</a></li>
+	<li><a href="{{ url_for('wiki/tags') }}">标签</a></li>
+	<li><a href="{{ url_for('wiki/search') }}">搜索</a></li>
 </ul>
 {% endblock sidebar %}

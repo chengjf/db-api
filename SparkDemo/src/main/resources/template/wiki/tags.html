@@ -1,14 +1,14 @@
 {% extends "template/wiki/base.html" %}
 
-{% block title %}Index by Tags{% endblock title %}
+{% block title %}标签{% endblock title %}
 
 {% block content %}
 {% if tags %}
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Tag</th>
-				<th>Number of Articles</th>
+				<th>标签名称</th>
+				<th>页面数量</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,6 +21,6 @@
 		</tbody>
 	</table>
 {% else %}
-	<p>There are no tags in use so far.</p>
+	<p>目前还没有标签。</p>
 {% endif %}
 {% endblock content %}

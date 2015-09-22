@@ -1,13 +1,13 @@
 {% extends "template/wiki/base.html" %}
 
-{% block title %}Create a new page{% endblock title %}
+{% block title %}创建新页面{% endblock title %}
 {% block content %}
 <form method="POST" class="form-inline">
-	<input type="text" class="form-control" id="url" name="url" placeholder="URL of the new page" required>
-	<input type="submit" class="btn btn-success" value="Create">
+	<input type="text" class="form-control" id="url" name="url" placeholder="新页面的标题" required>
+	<input type="submit" class="btn btn-success" value="新建">
 </form>
 {% endblock content %}
 
 {% block sidebar %}
-<p class="alert alert-success">Thank you for creating new content!</p>
+<p class="alert alert-success">感谢您的分享！</p>
 {% endblock sidebar %}
