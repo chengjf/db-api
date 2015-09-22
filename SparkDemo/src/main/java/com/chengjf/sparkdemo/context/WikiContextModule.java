@@ -3,6 +3,7 @@ package com.chengjf.sparkdemo.context;
 import com.chengjf.sparkdemo.controller.IController;
 import com.chengjf.sparkdemo.model.IModel;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiCreateController;
+import com.chengjf.sparkdemo.module.wiki.controller.WikiDeleteController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiDisplayController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiEditController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiHomeController;
@@ -75,6 +76,10 @@ public class WikiContextModule extends AbstractModule {
 		bind(IController.class)
 				.annotatedWith(Names.named("WikiSearchController"))
 				.to(WikiSearchController.class).in(Scopes.SINGLETON);
+		bind(IController.class)
+				.annotatedWith(Names.named("WikiDeleteController"))
+				.to(WikiDeleteController.class).in(Scopes.SINGLETON);
+
 		// Service
 		bind(IWikiService.class).to(WikiServiceImpl.class).in(Scopes.SINGLETON);
 

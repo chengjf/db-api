@@ -34,4 +34,6 @@ public interface IWikiService {
 	public List<Page> searchPage(String term, List<PageAttr> attrs);
 	
 	public Page updatePage(Map<String, Object> parameters);
+
+	public boolean deletePage(Page page);
 }

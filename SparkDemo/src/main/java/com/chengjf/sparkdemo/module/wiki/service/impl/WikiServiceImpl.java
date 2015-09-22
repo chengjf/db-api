@@ -278,4 +278,13 @@ public class WikiServiceImpl implements IWikiService {
 
 		return page;
 	}
+
+	@Override
+	public boolean deletePage(Page page) {
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		int result = 0;
+		result = pageDao.deletePage(page);
+		return result > 0;
+
+	}
 }
