@@ -21,6 +21,8 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
  * 
+ * Wiki索引页面
+ * 
  * @author sharp
  * @date 2015-9-20
  * 

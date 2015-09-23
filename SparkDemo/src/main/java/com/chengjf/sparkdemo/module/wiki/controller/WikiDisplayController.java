@@ -20,6 +20,8 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
  * 
+ * Wiki查看
+ * 
  * @author sharp
  * @date 2015-9-20
  * 
@@ -53,7 +55,7 @@ public class WikiDisplayController extends CommonController {
 					model.put("page", page);
 				}
 			} catch (Exception e) {
-				logger.error("获取所有Page出错！", e);
+				logger.error("获取Page出错！", e);
 			}
 		}
 		return ControllerHelper.modelAndView(model, "template/wiki/page.html");

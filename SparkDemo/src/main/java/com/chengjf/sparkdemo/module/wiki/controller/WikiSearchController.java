@@ -23,6 +23,7 @@ import com.chengjf.sparkdemo.module.wiki.model.Page.PageAttr;
 import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
+ * Wiki搜索页面
  * 
  * @author sharp
  * @date 2015-9-20

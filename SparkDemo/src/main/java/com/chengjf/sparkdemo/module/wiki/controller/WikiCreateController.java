@@ -19,6 +19,7 @@ import com.chengjf.sparkdemo.controller.CommonController;
 import com.chengjf.sparkdemo.controller.ControllerHelper;
 
 /**
+ * 新建Wiki
  * 
  * @author sharp
  * @date 2015-9-19
@@ -44,7 +45,7 @@ public class WikiCreateController extends CommonController {
 		} catch (UnsupportedEncodingException e) {
 			logger.error("URL参数解码失败！", e);
 		}
-		// redirect到查看页
+		// redirect到编辑页面
 		res.redirect(ControllerHelper.getRedirectUrl("/wiki/edit/" + url));
 		return res;
 	}

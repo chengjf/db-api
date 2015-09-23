@@ -20,6 +20,7 @@ import com.chengjf.sparkdemo.module.wiki.model.Page;
 import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
+ * Wiki的Home页
  * 
  * @author sharp
  * @date 2015-9-19

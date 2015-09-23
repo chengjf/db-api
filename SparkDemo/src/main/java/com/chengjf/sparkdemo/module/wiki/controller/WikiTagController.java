@@ -22,6 +22,7 @@ import com.chengjf.sparkdemo.module.wiki.model.Page;
 import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
+ * Wiki单个标签展示
  * 
  * @author sharp
  * @date 2015-9-20
@@ -54,7 +55,7 @@ public class WikiTagController extends CommonController {
 				List<Page> pages = wikiService.getPagesByTag(tag);
 				model.put("pages", pages);
 			} catch (Exception e) {
-				logger.error("获取所有Page出错！", e);
+				logger.error("获取该标签下的Page出错！", e);
 			}
 		}
 		return ControllerHelper.modelAndView(model, "template/wiki/tag.html");

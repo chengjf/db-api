@@ -25,6 +25,8 @@ import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
  * 
+ * Wiki编辑
+ * 
  * @author sharp
  * @date 2015-9-19
  * 
@@ -61,7 +63,7 @@ public class WikiEditController extends CommonController {
 				}
 				model.put("page", page);
 			} catch (Exception e) {
-				logger.error("获取所有Page出错！", e);
+				logger.error("获取Page出错！", e);
 			}
 		}
 
