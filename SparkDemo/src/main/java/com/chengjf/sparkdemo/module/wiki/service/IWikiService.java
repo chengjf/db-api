@@ -32,7 +32,7 @@ public interface IWikiService {
 	public List<Page> getPagesByTag(String tag);
 
 	public List<Page> searchPage(String term, List<PageAttr> attrs);
-	
+
 	public Page updatePage(Map<String, Object> parameters);
 
 	public boolean deletePage(Page page);

@@ -47,7 +47,8 @@ public class WikiDisplayController extends CommonController {
 					page = wikiService.getPageByName(id);
 				}
 				if (page == null) {
-					return ControllerHelper.modelAndView(model, "template/wiki/create.html");
+					return ControllerHelper.modelAndView(model,
+							"template/wiki/create.html");
 				} else {
 					model.put("page", page);
 				}

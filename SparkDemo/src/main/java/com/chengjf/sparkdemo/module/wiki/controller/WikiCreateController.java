@@ -27,8 +27,9 @@ import com.chengjf.sparkdemo.controller.ControllerHelper;
 @Controller(url = "/wiki/create")
 public class WikiCreateController extends CommonController {
 
-	private static final Logger logger = LoggerFactory.getLogger(WikiCreateController.class);
-	
+	private static final Logger logger = LoggerFactory
+			.getLogger(WikiCreateController.class);
+
 	@Get(templateEngine = TemplateEngine.JINJAVA)
 	public ModelAndView get(Request req, Response res) {
 		return ControllerHelper.modelAndView(null, "template/wiki/create.html");

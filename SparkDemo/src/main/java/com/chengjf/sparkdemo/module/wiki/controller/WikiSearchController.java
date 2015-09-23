@@ -60,6 +60,7 @@ public class WikiSearchController extends CommonController {
 			model.put("results", pages);
 		}
 
-		return ControllerHelper.modelAndView(model, "template/wiki/search.html");
+		return ControllerHelper
+				.modelAndView(model, "template/wiki/search.html");
 	}
 }
