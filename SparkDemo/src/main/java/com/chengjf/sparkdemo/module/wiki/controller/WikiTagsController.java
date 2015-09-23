@@ -47,7 +47,7 @@ public class WikiTagsController extends CommonController {
 				Map<String, List<Page>> tags = new HashMap<String, List<Page>>();
 				List<Page> pages = wikiService.getAllPages();
 				for (Page page : pages) {
-					String[] pageTags = page.getComment().split(",");
+					String[] pageTags = page.getTags().split(",");
 					for (String tag : pageTags) {
 						tag = tag.trim();
 						if ("".equals(tag)) {

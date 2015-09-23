@@ -86,6 +86,8 @@ public class WikiEditController extends CommonController {
 		String title = req.queryParams("title");
 		// page_comment
 		String comment = req.queryParams("comment");
+		// tags
+		String tags = req.queryParams("tags");
 		// user id
 		String userId = req.session().attribute(WikiConstants.CURRENT_USER);
 
@@ -96,7 +98,8 @@ public class WikiEditController extends CommonController {
 		parameters.put("title", title);
 		parameters.put("comment", comment);
 		parameters.put("userId", userId);
-
+		parameters.put("tags", tags);
+		
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
 		Page page = null;

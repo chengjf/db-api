@@ -40,6 +40,17 @@ public class Page implements IModel {
 
 	@DatabaseField(canBeNull = false, foreign = true, columnName = "revision_id", foreignAutoRefresh = true)
 	private Revision revision;
+	
+	@DatabaseField(columnName = "tags", canBeNull = true)
+	private String tags;
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 
 	public String getNamespace() {
 		return namespace;

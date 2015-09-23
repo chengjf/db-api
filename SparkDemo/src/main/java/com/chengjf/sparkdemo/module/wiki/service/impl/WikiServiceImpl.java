@@ -51,12 +51,14 @@ public class WikiServiceImpl implements IWikiService {
 		String namespace = (String) parameters.get("namespace");
 		String title = (String) parameters.get("title");
 		String comment = (String) parameters.get("comment");
+		String tags = (String) parameters.get("tags");
 		String pageId = UUID.randomUUID().toString();
 		page.setPageId(pageId);
 		page.setCounter(0);
 		page.setTitle(title);
 		page.setNamespace(namespace);
 		page.setComment(comment);
+		page.setTags(tags);
 		page.setCreatedDate(new Date());
 
 		// STEP 3. 组装Revision
@@ -173,7 +175,7 @@ public class WikiServiceImpl implements IWikiService {
 			pages = new ArrayList<Page>();
 		}
 		for (Page page : pages) {
-			if (page.getComment().contains(tag)) {
+			if (page.getTags().contains(tag)) {
 				tagPages.add(page);
 			}
 		}
@@ -193,7 +195,7 @@ public class WikiServiceImpl implements IWikiService {
 			for (PageAttr attr : attrs) {
 				switch (attr) {
 				case TAGS:
-					if (page.getComment().contains(term)) {
+					if (page.getTags().contains(term)) {
 						searchPages.add(page);
 					}
 					break;
@@ -227,9 +229,11 @@ public class WikiServiceImpl implements IWikiService {
 		String namespace = (String) parameters.get("namespace");
 		String title = (String) parameters.get("title");
 		String comment = (String) parameters.get("comment");
+		String tags = (String) parameters.get("tags");
 		page.setTitle(title);
 		page.setNamespace(namespace);
 		page.setComment(comment);
+		page.setTags(tags);
 
 		final Text text = new Text();
 		String context = (String) parameters.get("content");
