@@ -36,4 +36,6 @@ public interface IWikiService {
 	public Page updatePage(Map<String, Object> parameters);
 
 	public boolean deletePage(Page page);
+	
+	public List<Revision> getRevisionForPage(Page page);
 }

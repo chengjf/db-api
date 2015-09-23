@@ -59,7 +59,6 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 		} catch (Exception e) {
 			logger.error("", e);
 		}
-
 		return page;
 	}
 
@@ -98,8 +97,13 @@ public class PageORMLiteDao extends CommonORMLiteDao implements PageDao {
 
 	@Override
 	public int deletePageById(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = this.pageDao.deleteById(id);
+		} catch (Exception e) {
+			logger.error("", e);
+		}
+		return result;
 	}
 
 	@Override

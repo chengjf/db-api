@@ -23,4 +23,6 @@ public interface RevisionDao {
 	public int deleteRevision(Revision revision);
 
 	public int deleteRevisionById(String id);
+	
+	public List<Revision> getRevisionsByPageId(String pageId);
 }

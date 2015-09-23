@@ -255,7 +255,8 @@ public class WikiServiceImpl implements IWikiService {
 		revision.setParentId(page.getRevision().getRevisionId());
 		revision.setLatest(true);
 
-		page.getRevision().setLatest(false);
+		final Revision oldRevision = page.getRevision();
+		oldRevision.setLatest(false);
 		page.setRevision(revision);
 
 		// 将revision放入Page
@@ -271,6 +272,7 @@ public class WikiServiceImpl implements IWikiService {
 							textDao.addText(text);
 							revisionDao.addRevision(revision);
 							pageDao.updatePage(page);
+							revisionDao.updateRevision(oldRevision);
 							return null;
 						}
 					});
@@ -290,5 +292,15 @@ public class WikiServiceImpl implements IWikiService {
 		result = pageDao.deletePage(page);
 		return result > 0;
 
+	}
+
+	@Override
+	public List<Revision> getRevisionForPage(Page page) {
+		RevisionDao revisionDao = MyContext.context
+				.getInstance(RevisionDao.class);
+		List<Revision> revisions = revisionDao.getRevisionsByPageId(page
+				.getPageId());
+		revisions.remove(page);
+		return revisions;
 	}
 }

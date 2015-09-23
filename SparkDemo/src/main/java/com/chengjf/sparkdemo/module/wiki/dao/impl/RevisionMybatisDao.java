@@ -68,4 +68,10 @@ public class RevisionMybatisDao extends CommonMybatisDao implements RevisionDao 
 		return result;
 	}
 
+	@Override
+	public List<Revision> getRevisionsByPageId(String pageId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

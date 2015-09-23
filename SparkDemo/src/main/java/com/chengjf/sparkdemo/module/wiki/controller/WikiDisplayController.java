@@ -53,6 +53,7 @@ public class WikiDisplayController extends CommonController {
 							"template/wiki/create.html");
 				} else {
 					wikiService.addClickCount(page.getPageId());
+					model.put("revisions", wikiService.getRevisionForPage(page));
 					model.put("page", page);
 				}
 			} catch (Exception e) {

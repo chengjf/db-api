@@ -1,6 +1,7 @@
 package com.chengjf.sparkdemo.module.wiki.dao.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -41,14 +42,24 @@ public class TextORMLiteDao extends CommonORMLiteDao implements TextDao {
 
 	@Override
 	public List<Text> getAllTexts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Text> textList = new ArrayList<Text>();
+		try {
+			textList = this.textDao.queryForAll();
+		} catch (Exception e) {
+			logger.error("", e);
+		}
+		return textList;
 	}
 
 	@Override
 	public Text getTextById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Text text = null;
+		try {
+			text = this.textDao.queryForId(id);
+		} catch (Exception e) {
+			logger.error("", e);
+		}
+		return text;
 	}
 
 	@Override
@@ -64,20 +75,35 @@ public class TextORMLiteDao extends CommonORMLiteDao implements TextDao {
 
 	@Override
 	public int updateText(Text text) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = this.textDao.update(text);
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return result;
 	}
 
 	@Override
 	public int deleteText(Text text) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = this.textDao.delete(text);
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return result;
 	}
 
 	@Override
 	public int deleteTextById(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = this.textDao.deleteById(id);
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return result;
 	}
 
 }

@@ -58,8 +58,7 @@ public class RevisionORMLiteDao extends CommonORMLiteDao implements RevisionDao 
 		try {
 			revision = this.revisionDao.queryForId(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return revision;
 	}
@@ -77,20 +76,47 @@ public class RevisionORMLiteDao extends CommonORMLiteDao implements RevisionDao 
 
 	@Override
 	public int updateRevision(Revision revision) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = this.revisionDao.update(revision);
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return result;
 	}
 
 	@Override
 	public int deleteRevision(Revision revision) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = this.revisionDao.delete(revision);
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return result;
 	}
 
 	@Override
 	public int deleteRevisionById(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = this.revisionDao.deleteById(id);
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return result;
+	}
+
+	@Override
+	public List<Revision> getRevisionsByPageId(String pageId) {
+		List<Revision> revisions = new ArrayList<Revision>();
+		try {
+			revisions = this.revisionDao.queryForEq("page_id", pageId);
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+
+		return revisions;
 	}
 
 }
