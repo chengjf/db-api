@@ -22,7 +22,7 @@ public class IndexController extends DefaultController {
 
 	@Get(templateEngine = TemplateEngine.DEFAULT)
 	public Object get(Request req, Response res) {
-		res.redirect(ControllerHelper.getRedirectUrl("/todo"));
+		res.redirect(ControllerHelper.getRedirectUrl("/wiki"));
 		return res;
 	}
 

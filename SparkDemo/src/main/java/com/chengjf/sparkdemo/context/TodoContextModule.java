@@ -2,7 +2,6 @@ package com.chengjf.sparkdemo.context;
 
 import com.chengjf.sparkdemo.controller.IController;
 import com.chengjf.sparkdemo.model.IModel;
-import com.chengjf.sparkdemo.module.index.controller.IndexController;
 import com.chengjf.sparkdemo.module.todo.controller.TodoAddController;
 import com.chengjf.sparkdemo.module.todo.controller.TodoController;
 import com.chengjf.sparkdemo.module.todo.dao.TodoDao;
@@ -30,8 +29,6 @@ public class TodoContextModule extends AbstractModule {
 				.to(TodoController.class).in(Scopes.SINGLETON);
 		bind(IController.class).annotatedWith(Names.named("TodoAddController"))
 				.to(TodoAddController.class).in(Scopes.SINGLETON);
-		bind(IController.class).annotatedWith(Names.named("IndexController"))
-				.to(IndexController.class).in(Scopes.SINGLETON);
 
 		// DAO
 		// bind(TodoDao.class).to(TodoMybatisDao.class).in(Scopes.SINGLETON);
