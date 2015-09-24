@@ -303,4 +303,20 @@ public class WikiServiceImpl implements IWikiService {
 		revisions.remove(page);
 		return revisions;
 	}
+
+	@Override
+	public List<Page> getPagesByNamespace(String namespace) {
+		PageDao pageDao = MyContext.context.getInstance(PageDao.class);
+		List<Page> pages = pageDao.getAllPages();
+		List<Page> namespacePages = new ArrayList<Page>();
+		if (pages == null) {
+			pages = new ArrayList<Page>();
+		}
+		for (Page page : pages) {
+			if (page.getNamespace().equals(namespace)) {
+				namespacePages.add(page);
+			}
+		}
+		return namespacePages;
+	}
 }

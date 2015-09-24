@@ -38,4 +38,6 @@ public interface IWikiService {
 	public boolean deletePage(Page page);
 	
 	public List<Revision> getRevisionForPage(Page page);
+	
+	public List<Page> getPagesByNamespace(String namespace);
 }

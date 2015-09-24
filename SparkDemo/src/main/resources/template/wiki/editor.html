@@ -13,7 +13,7 @@
 					
 					<select name="namespace" id="namespace" class="form-control" required="required">
 						{% for key,value in namespaceList.items() %}
-							<option value="key">{{value}}</option>
+							<option value="{{key}}">{{value}}</option>
 						{% endfor%}
 					</select>
 					

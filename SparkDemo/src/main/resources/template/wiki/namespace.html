@@ -1,0 +1,42 @@
+{% extends "template/wiki/base.html" %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+{% if pages %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>标题</th>
+				<th>主題</th>
+				<th>作者</th>
+				<th>日期</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for page in pages %}
+				<tr>
+					<td><a href="{{ url_for('wiki/display/'+page.pageId) }}">{{ page.title }}</a></td>
+					<td>
+					{% for key,value in namespaceList.items() %}
+						{% if key==page.namespace%}{{value}}{% endif %}
+					{% endfor%}
+					</td>
+					<td>{{ page.revision.userId }}</td>
+					<td>{{ page.createdDate }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no pages yet.</p>
+{% endif %}
+{% endblock content %}
+
+{% block sidebar %}
+<ul class="nav nav-tabs nav-stacked">
+	<li><a href="{{ url_for('wiki/create') }}">新页面</a></li>
+	<li><a href="{{ url_for('wiki/tags') }}">标签</a></li>
+	<li><a href="{{ url_for('wiki/search') }}">搜索</a></li>
+</ul>
+{% endblock sidebar %}
