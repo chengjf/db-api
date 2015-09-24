@@ -1,0 +1,25 @@
+{% extends "template/wiki/base.html" %} 
+{% block title%}
+表  {{table.tableName}}
+{% endblock title %} 
+
+{% block content %} 
+{% if table %}
+<table class="table">
+	<thead>
+		<tr>
+			{% for fieldType in table.fieldTypes %}
+			<th>{{ fieldType.columnName }}</th> 
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+{% else %}
+<p>There are no tables yet.</p>
+{% endif %}
+
+ {% endblock content %} 
+
+{% block sidebar %} {% endblock sidebar %}

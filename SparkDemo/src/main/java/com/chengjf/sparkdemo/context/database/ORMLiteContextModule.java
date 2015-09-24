@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo.context;
+package com.chengjf.sparkdemo.context.database;
 
 import com.chengjf.sparkdemo.context.provider.ORMLiteProvider;
 import com.google.inject.AbstractModule;

@@ -1,5 +1,8 @@
 package com.chengjf.sparkdemo.context;
 
+import com.chengjf.sparkdemo.context.biz.AdminContextModule;
+import com.chengjf.sparkdemo.context.biz.WikiContextModule;
+import com.chengjf.sparkdemo.context.database.ORMLiteContextModule;
 import com.google.inject.AbstractModule;
 
 /**
@@ -15,6 +18,7 @@ public class BizModule extends AbstractModule {
 		install(new ORMLiteContextModule());
 		// install(new TodoContextModule());
 		install(new WikiContextModule());
+		install(new AdminContextModule());
 
 	}
 

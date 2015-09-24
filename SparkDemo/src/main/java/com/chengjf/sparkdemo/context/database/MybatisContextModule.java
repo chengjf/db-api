@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo.context;
+package com.chengjf.sparkdemo.context.database;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 

@@ -1,4 +1,4 @@
-package com.chengjf.sparkdemo.context;
+package com.chengjf.sparkdemo.context.biz;
 
 import com.chengjf.sparkdemo.controller.IController;
 import com.chengjf.sparkdemo.model.IModel;

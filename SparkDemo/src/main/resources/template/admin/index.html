@@ -1,0 +1,29 @@
+{% extends "template/wiki/base.html" %}
+
+{% block title %}表{% endblock title %}
+
+{% block content %}
+{% if tables %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>表名</th>
+				<th>行数</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for table in tables %}
+				<tr>
+					<td><a href="{{url_for('admin/'+table.dataClass.name)}}">{{ table.tableName }}</a></td>
+					<td>{{ table.rowNumber }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no tables yet.</p>
+{% endif %}
+{% endblock content %}
+
+{% block sidebar %}
+{% endblock sidebar %}
