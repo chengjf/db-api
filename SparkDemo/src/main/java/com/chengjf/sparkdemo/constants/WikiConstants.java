@@ -15,4 +15,6 @@ public class WikiConstants {
 	public static final String CURRENT_URL = "current_url";
 
 	public static final String CURRENT_PATH = "current_path";
+
+	public static final String NAMESPACE_LIST = "namespaceList";
 }

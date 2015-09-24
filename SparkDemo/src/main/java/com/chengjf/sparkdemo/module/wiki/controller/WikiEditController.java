@@ -39,7 +39,6 @@ public class WikiEditController extends CommonController {
 	@Get(templateEngine = TemplateEngine.JINJAVA)
 	public ModelAndView editGet(Request req, Response res) {
 		Map<String, Object> model = getModel(req, res);
-
 		String url = req.params(":url");
 		try {
 			url = URLDecoder.decode(url, "UTF-8");
@@ -99,7 +98,7 @@ public class WikiEditController extends CommonController {
 		parameters.put("comment", comment);
 		parameters.put("userId", userId);
 		parameters.put("tags", tags);
-		
+
 		IWikiService wikiService = MyContext.context
 				.getInstance(IWikiService.class);
 		Page page = null;

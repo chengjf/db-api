@@ -11,12 +11,15 @@ import com.chengjf.sparkdemo.module.wiki.controller.WikiIndexController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiSearchController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiTagController;
 import com.chengjf.sparkdemo.module.wiki.controller.WikiTagsController;
+import com.chengjf.sparkdemo.module.wiki.dao.NamespaceDao;
 import com.chengjf.sparkdemo.module.wiki.dao.PageDao;
 import com.chengjf.sparkdemo.module.wiki.dao.RevisionDao;
 import com.chengjf.sparkdemo.module.wiki.dao.TextDao;
+import com.chengjf.sparkdemo.module.wiki.dao.impl.NamespaceORMLiteDao;
 import com.chengjf.sparkdemo.module.wiki.dao.impl.PageORMLiteDao;
 import com.chengjf.sparkdemo.module.wiki.dao.impl.RevisionORMLiteDao;
 import com.chengjf.sparkdemo.module.wiki.dao.impl.TextORMLiteDao;
+import com.chengjf.sparkdemo.module.wiki.model.Namespace;
 import com.chengjf.sparkdemo.module.wiki.model.Page;
 import com.chengjf.sparkdemo.module.wiki.model.Revision;
 import com.chengjf.sparkdemo.module.wiki.model.Text;
@@ -43,7 +46,8 @@ public class WikiContextModule extends AbstractModule {
 				.in(Scopes.SINGLETON);
 		bind(IModel.class).annotatedWith(Names.named("Revision"))
 				.to(Revision.class).in(Scopes.SINGLETON);
-
+		bind(IModel.class).annotatedWith(Names.named("Namespace"))
+				.to(Namespace.class).in(Scopes.SINGLETON);
 		// URL
 		// bind(IController.class)
 		// .annotatedWith(Names.named("WikiListController"))
@@ -87,6 +91,8 @@ public class WikiContextModule extends AbstractModule {
 		bind(PageDao.class).to(PageORMLiteDao.class).in(Scopes.SINGLETON);
 		bind(TextDao.class).to(TextORMLiteDao.class).in(Scopes.SINGLETON);
 		bind(RevisionDao.class).to(RevisionORMLiteDao.class).in(
+				Scopes.SINGLETON);
+		bind(NamespaceDao.class).to(NamespaceORMLiteDao.class).in(
 				Scopes.SINGLETON);
 
 	}

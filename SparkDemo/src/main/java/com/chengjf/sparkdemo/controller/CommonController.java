@@ -26,6 +26,8 @@ import com.chengjf.sparkdemo.annotation.Put;
 import com.chengjf.sparkdemo.annotation.TemplateEngine;
 import com.chengjf.sparkdemo.annotation.Trace;
 import com.chengjf.sparkdemo.constants.WikiConstants;
+import com.chengjf.sparkdemo.context.MyContext;
+import com.chengjf.sparkdemo.module.wiki.dao.NamespaceDao;
 import com.chengjf.sparkdemo.template.jinjava.JinJavaRoute;
 
 /**
@@ -514,6 +516,8 @@ public abstract class CommonController implements IController {
 	protected final Map<String, Object> getModel(Request req, Response res) {
 		Map<String, Object> model = new HashMap<String, Object>();
 
+		initList(model);
+		
 		// init current_user
 		model.put(WikiConstants.CURRENT_USER,
 				req.session().attribute(WikiConstants.CURRENT_USER));
@@ -531,5 +535,17 @@ public abstract class CommonController implements IController {
 
 		return model;
 
+	}
+
+	private final void initList(Map<String, Object> model) {
+		NamespaceDao namespaceDao = MyContext.context
+				.getInstance(NamespaceDao.class);
+
+		if (namespaceDao == null) {
+			logger.error("无法获取到" + NamespaceDao.class);
+		} else {
+			Map<String, String> namespaceList = namespaceDao.getNamespaceList();
+			model.put(WikiConstants.NAMESPACE_LIST, namespaceList);
+		}
 	}
 }
