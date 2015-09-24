@@ -37,7 +37,8 @@ public class WikiSearchController extends CommonController {
 
 	@Get(templateEngine = TemplateEngine.JINJAVA)
 	public ModelAndView get(Request req, Response res) {
-		return ControllerHelper.modelAndView(null, "template/wiki/search.html");
+		Map<String, Object> model = getModel(req, res);
+		return ControllerHelper.modelAndView(model, "template/wiki/search.html");
 	}
 
 	@Post(templateEngine = TemplateEngine.JINJAVA)

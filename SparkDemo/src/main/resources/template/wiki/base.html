@@ -24,7 +24,11 @@
 				<li class="divider-vertical"></li>
 				<li><a href="{{ url_for('wiki/create') }}">新页面</a></li>
 				<li class="divider-vertical"></li>
-				<li></li>
+				
+				{% for key,value in namespaceList.items() %}
+					<li><a href="{{ url_for('wiki/namespace/'+key) }}">{{value}}</a></li>
+				{% endfor%}
+				
 			</ul>
 			<ul class="nav navbar-right">
 				{% if current_user == null %}

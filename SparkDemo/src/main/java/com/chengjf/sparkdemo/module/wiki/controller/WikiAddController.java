@@ -36,7 +36,8 @@ public class WikiAddController extends CommonController {
 
 	@Get(templateEngine = TemplateEngine.FREEMARKER)
 	public ModelAndView get(Request req, Response res) {
-		return ControllerHelper.modelAndView(null, "template/wiki/addWiki.ftl");
+		Map<String, Object> model = getModel(req, res);
+		return ControllerHelper.modelAndView(model, "template/wiki/addWiki.ftl");
 	}
 
 	@Post(templateEngine = TemplateEngine.DEFAULT)

@@ -3,6 +3,7 @@ package com.chengjf.sparkdemo.module.wiki.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,8 @@ public class WikiCreateController extends CommonController {
 
 	@Get(templateEngine = TemplateEngine.JINJAVA)
 	public ModelAndView get(Request req, Response res) {
-		return ControllerHelper.modelAndView(null, "template/wiki/create.html");
+		Map<String, Object> model = getModel(req, res);
+		return ControllerHelper.modelAndView(model, "template/wiki/create.html");
 	}
 
 	@Post(templateEngine = TemplateEngine.DEFAULT)
