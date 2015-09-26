@@ -22,3 +22,6 @@ db-api就是要来管理这些数据库之间的交互关系的，系统数据�
 	>python app.py runserver -p 8080
 
 最新的系统使用Java来实现，位于SparkDemo目录下，使用Maven进行配置。
+
+1. 使用Google Guice来进行依赖注入（DI）功能
+2. 使用ORMLite来进行ORM和数据库处理
