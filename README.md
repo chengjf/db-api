@@ -25,3 +25,4 @@ db-api就是要来管理这些数据库之间的交互关系的，系统数据�
 
 1. 使用Google Guice来进行依赖注入（DI）功能
 2. 使用ORMLite来进行ORM和数据库处理
+3. 使用jinjava作为模板引擎，放弃了Freemarker
