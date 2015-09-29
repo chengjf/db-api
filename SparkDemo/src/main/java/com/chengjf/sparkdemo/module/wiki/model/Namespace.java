@@ -5,6 +5,8 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
+ * 命名空间
+ * 
  * @author CHENGJIANFENG100
  * @date 2015-9-23
  */
