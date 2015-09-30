@@ -20,6 +20,8 @@ import com.chengjf.sparkdemo.module.wiki.model.Page;
 import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
+ * Wiki命名空间Controller
+ * 
  * @author CHENGJIANFENG100
  * @date 2015-9-24
  */
