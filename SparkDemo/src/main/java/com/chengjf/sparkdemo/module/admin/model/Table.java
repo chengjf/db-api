@@ -1,23 +1,26 @@
 package com.chengjf.sparkdemo.module.admin.model;
 
+import com.chengjf.sparkdemo.model.IModel;
 import com.j256.ormlite.field.FieldType;
 
 /**
+ * 表结构
+ * 
  * @author CHENGJIANFENG100
- * @param <T>
- *
+ * @param <IModel>
+ * 
  */
-public class Table<T> {
+public class Table {
 
 	private String tableName;
 	private long rowNumber;
 	private FieldType[] fieldTypes;
-	private Class<T> dataClass;
-	
+	private Class<IModel> dataClass;
+
 	public String getTableName() {
 		return tableName;
 	}
-	
+
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
 	}
@@ -38,12 +41,12 @@ public class Table<T> {
 		this.fieldTypes = fieldTypes;
 	}
 
-	public Class<T> getDataClass() {
+	public Class<IModel> getDataClass() {
 		return dataClass;
 	}
 
-	public void setDataClass(Class<T> dataClass) {
+	public void setDataClass(Class<IModel> dataClass) {
 		this.dataClass = dataClass;
 	}
-	
+
 }

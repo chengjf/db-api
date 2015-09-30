@@ -21,6 +21,8 @@ import com.chengjf.sparkdemo.module.admin.service.IAdminService;
 import com.chengjf.sparkdemo.module.wiki.service.IWikiService;
 
 /**
+ * 后台管理首页
+ * 
  * @author CHENGJIANFENG100
  * @date 2015-9-24
  */
@@ -31,7 +33,6 @@ public class AdminIndexController extends CommonController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminIndexController.class);
 
-	@SuppressWarnings("rawtypes")
 	@Get(templateEngine = TemplateEngine.JINJAVA)
 	public ModelAndView getAllTables(Request req, Response res) {
 		Map<String, Object> model = getModel(req, res);
