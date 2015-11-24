@@ -19,12 +19,18 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableInfo;
 
+/**
+ * 后台服务实现类
+ * 
+ * @author sharp
+ * @date 2015-9-30
+ * 
+ */
 public class AdminServiceImpl implements IAdminService {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminServiceImpl.class);
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Table> getAllTables() {
 		List<Table> tables = new ArrayList<Table>();
@@ -34,7 +40,7 @@ public class AdminServiceImpl implements IAdminService {
 
 		for (Binding<IModel> bind : list) {
 			IModel model = MyContext.context.getInstance(bind.getKey());
-			Table table = getTable(model.getClass());
+			Table table = getTable(model);
 			if (!"".equals(table.getTableName())) {
 				tables.add(table);
 			}
@@ -43,16 +49,18 @@ public class AdminServiceImpl implements IAdminService {
 		return tables;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private <T> Table getTable(Class<T> t) {
+	@SuppressWarnings("unchecked")
+	private Table getTable(IModel model) {
 		Table table = new Table();
 		try {
 			ConnectionSource connectionSource = MyContext.context
 					.getInstance(ConnectionSource.class);
-			Dao<T, String> dao = DaoManager.createDao(connectionSource, t);
+			Dao<IModel, String> dao = DaoManager.createDao(connectionSource,
+					model.getClass());
 			if (dao.isTableExists()) {
-				TableInfo<T, String> tableInfo = new TableInfo<T, String>(
-						connectionSource, (BaseDaoImpl<T, String>) dao, t);
+				TableInfo<IModel, String> tableInfo = new TableInfo<IModel, String>(
+						connectionSource, (BaseDaoImpl<IModel, String>) dao,
+						(Class<IModel>) model.getClass());
 
 				table.setTableName(tableInfo.getTableName());
 				table.setRowNumber(dao.countOf());
@@ -69,7 +77,7 @@ public class AdminServiceImpl implements IAdminService {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public <T> Table getTableByTableClassName(String tableClass) {
+	public Table getTableByTableClassName(String tableClass) {
 		Table table = new Table();
 		Class t;
 		try {
@@ -78,12 +86,13 @@ public class AdminServiceImpl implements IAdminService {
 					.getInstance(ConnectionSource.class);
 			Dao<?, String> dao = DaoManager.createDao(connectionSource, t);
 			if (dao.isTableExists()) {
-				TableInfo<?, String> tableInfo = new TableInfo<T, String>(
-						connectionSource, (BaseDaoImpl<T, String>) dao, t);
+				TableInfo<IModel, String> tableInfo = new TableInfo<IModel, String>(
+						connectionSource, (BaseDaoImpl<IModel, String>) dao, t);
 
 				table.setTableName(tableInfo.getTableName());
 				table.setRowNumber(dao.countOf());
 				table.setFieldTypes(tableInfo.getFieldTypes());
+				table.setDataClass((Class<IModel>) dao.getDataClass());
 			} else {
 				logger.error("下表未创建！" + tableClass);
 			}
@@ -93,5 +102,25 @@ public class AdminServiceImpl implements IAdminService {
 			logger.error("", e);
 		}
 		return table;
+	}
+
+	@Override
+	public List<IModel> getTableData(Table table) {
+
+		List<IModel> rs = new ArrayList<IModel>();
+		try {
+			ConnectionSource connectionSource = MyContext.context
+					.getInstance(ConnectionSource.class);
+			Dao<IModel, String> dao = DaoManager.createDao(connectionSource,
+					table.getDataClass());
+			if (dao.isTableExists()) {
+				rs = dao.queryForAll();
+			} else {
+				logger.error("下表未创建！" + table.getTableName());
+			}
+		} catch (SQLException e) {
+			logger.error("", e);
+		}
+		return rs;
 	}
 }

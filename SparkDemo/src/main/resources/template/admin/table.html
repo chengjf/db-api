@@ -14,6 +14,13 @@
 		</tr>
 	</thead>
 	<tbody>
+			{% for item in data %}
+			<tr>
+				{% for fieldType in table.fieldTypes %}
+					<th>{{ item[fieldType.fieldName] }}</th> 
+				{% endfor %}
+			</tr> 
+			{% endfor %}
 	</tbody>
 </table>
 {% else %}
