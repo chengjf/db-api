@@ -1,0 +1,14 @@
+figure {
+    display: block;
+    /*width: 20%;*/
+    float: left;
+    margin: 10px;
+}
+
+figcaption {
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}

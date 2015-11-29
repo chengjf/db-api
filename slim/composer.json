@@ -1,0 +1,9 @@
+{
+    "require": {
+        "twig/twig": "^1.23",
+        "slim/slim": "^2.6",
+        "slim/views": "^0.1.3",
+        "rmccue/requests": "^1.6",
+        "illuminate/database": "^5.1"
+    }
+}
